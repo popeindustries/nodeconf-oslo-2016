@@ -1,0 +1,34 @@
+{
+  "name": "nodeconf-oslo-2016",
+  "description": "Presentation for NodeConf Oslo 2016",
+  "version": "1.0.0",
+  "author": "Alexander Pope <alex@pope-industries.com>",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "buddy": "*",
+    "buddy-server": "*"
+  },
+  "repository": "https://github.com/popeindustries/nodeconf-oslo-2016.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "watch": "buddy --reload --serve watch"
+  },
+  "buddy": {
+    "build": {
+      "targets": [
+        {
+          "input": "src/index.*",
+          "output": "."
+        }
+      ]
+    },
+    "server": {
+      "directory": ".",
+      "port": 3000,
+      "env": {
+      }
+    }
+  }
+}

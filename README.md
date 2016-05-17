@@ -1,0 +1,6 @@
+- about me
+- about Yr
+  - history
+  - today: traffic & audience
+- about new Yr
+  - history (m.yr.no)
