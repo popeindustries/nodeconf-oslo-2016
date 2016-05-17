@@ -1,6 +1,8 @@
-- about me
+- about me?
 - about Yr
   - history
-  - today: traffic & audience
+    - open data
+    - traffic numbers
+    - geographic reach
 - about new Yr
   - history (m.yr.no)
