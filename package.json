@@ -19,7 +19,11 @@
     "build": {
       "targets": [
         {
-          "input": "src/index.*",
+          "input": ["src/index.js", "src/index.html"],
+          "output": "."
+        },
+        {
+          "input": "src/index.css",
           "output": "."
         }
       ]
