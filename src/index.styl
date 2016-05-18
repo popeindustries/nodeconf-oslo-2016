@@ -1,0 +1,124 @@
+@import './lib/normalize.css';
+@import './lib/fonts.css';
+
+BLACK = #050A07;
+LIGHT_GREEN = #D7E4AE;
+YR_BLUE = #00b9f1;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+html {
+  background-color: BLACK;
+}
+body {
+  color: white;
+  font-family: "Avenir", sans-serif;
+  font-size: 16px;
+  font-variant: normal;
+  font-weight: 400;
+  overflow: hidden;
+  z-index: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  letter-spacing: 0.0625em;
+  line-height: 2;
+  font-size: 3em;
+}
+section {
+  box-shadow: 0 1rem 1rem 1rem rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  transform: translate(100%, 0);
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 400ms linear, visibility 400ms linear;
+  visibility: hidden;
+  width: 100%;
+  &.visible {
+    visibility: visible;
+    transform: translate(0, 0);
+  }
+  &.stacked {
+    opacity: 0;
+  }
+}
+.small {
+  font-size: 65%;
+}
+.partial {
+  opacity: 0;
+  transition: all 0.5s;
+  &.show {
+    opacity: 1;
+  }
+}
+
+#title {
+  background-image: url('src/images/nodeconf-13.jpg');
+  background-position: bottom center;
+  background-size: cover;
+  color: LIGHT_GREEN;
+  h1 {
+    mix-blend-mode: difference;
+    padding: 0 2em;
+    position: relative;
+  }
+}
+
+#history {
+  align-items: center;
+  background-color: white;
+  .logo {
+    height: 10em;
+    width: 10em;
+    z-index: 1;
+  }
+  .logo--met {
+    height: 18em;
+    width: 18em;
+  }
+  .partner-logos {
+    align-items: center;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    .logo {
+      margin: 0 2em;
+    }
+  }
+  .stats {
+    bottom: 0;
+    fill: #00b9f1;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    .stat-grad-stop-1 {
+      stop-color: YR_BLUE;
+    }
+    .stat-grad-stop-2 {
+      stop-color: BLACK;
+    }
+  }
+}
+
+#architecture {
+  background-image: url('src/images/nodeconf-8.jpg');
+  background-position: bottom center;
+  background-size: cover;
+}

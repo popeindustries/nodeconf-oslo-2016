@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "buddy": "*",
+    "buddy-plugin-stylus": "*",
     "buddy-server": "*"
   },
   "repository": "https://github.com/popeindustries/nodeconf-oslo-2016.git",
@@ -23,7 +24,7 @@
           "output": "."
         },
         {
-          "input": "src/index.css",
+          "input": "src/index.styl",
           "output": "."
         }
       ]

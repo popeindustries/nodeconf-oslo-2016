@@ -95,17 +95,16 @@ _m_['src/index.js']=(function(module,exports){
    * @param {Event} evt
    */
   function onKeyDown (evt) {
-    console.log(evt)
-    if (evt.key === 'ArrowRight'
-      || evt.key === 'ArrowUp'
-      || evt.key === 'PageDown') {
+    if (evt.code === 'ArrowRight'
+      || evt.code === 'ArrowUp'
+      || evt.code === 'PageDown') {
         model.partials.length
           ? showPartial()
           : nextSlide();
     }
-    if (evt.key === 'ArrowLeft'
-      || evt.key === 'ArrowDown'
-      || evt.key === 'PageUp')  {
+    if (evt.code === 'ArrowLeft'
+      || evt.code === 'ArrowDown'
+      || evt.code === 'PageUp')  {
         prevSlide();
     }
   }
