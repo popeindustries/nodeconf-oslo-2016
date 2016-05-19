@@ -204,6 +204,33 @@ section.stacked {
 #history .stats .stat-grad-stop-2 {
   stop-color: #050a07;
 }
+#geo {
+  background-color: #fff;
+}
+#geo .map {
+  height: 100%;
+  width: 100%;
+}
+#geo path {
+  fill: #aeecff;
+  stroke: #5ed9ff;
+  stroke-width: 1;
+}
+#geo path.med {
+  fill: #28cdff;
+  stroke: #00a6d9;
+}
+#geo path.med-high {
+  fill: #0dc7ff;
+  stroke: #00a6d9;
+}
+#geo path.high {
+  fill: #00b9f1;
+  stroke: #0094c1;
+}
+#geo path.none {
+  fill: #fff;
+}
 #architecture {
   background-image: url("src/images/nodeconf-8.jpg");
   background-position: bottom center;

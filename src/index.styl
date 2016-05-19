@@ -117,6 +117,34 @@ section {
   }
 }
 
+#geo {
+  background-color: white;
+  .map {
+    height: 100%;
+    width: 100%;
+  }
+  path {
+    fill: lighten(YR_BLUE, 70%);
+    stroke: lighten(YR_BLUE, 40%);
+    stroke-width: 1;
+    &.med {
+      fill: lighten(YR_BLUE, 20%);
+      stroke: darken(YR_BLUE, 10%);
+    }
+    &.med-high {
+      fill: lighten(YR_BLUE, 10%);
+      stroke: darken(YR_BLUE, 10%);
+    }
+    &.high {
+      fill: YR_BLUE;
+      stroke: darken(YR_BLUE, 20%);
+    }
+    &.none {
+      fill: white;
+    }
+  }
+}
+
 #architecture {
   background-image: url('src/images/nodeconf-8.jpg');
   background-position: bottom center;

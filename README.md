@@ -1,8 +1,53 @@
-- about me?
-- about Yr
-  - history
-    - open data
-    - traffic numbers
-    - geographic reach
-- about new Yr
-  - history (m.yr.no)
+- title
+- history
+  - partners
+  - open data
+  - stats
+    - ~60% mobile (web/native)
+- geography 
+  - map
+  - big in Japan? big in North Korea
+- mobile
+  - products (www./m./apps)
+  - divert small screens to m., everything else to www.
+  - n95/iPhone
+  - www. (not responsive)
+- plan
+  - www. (responsive)
+  - 11,996 devices
+  - 641 different screen resolutions
+  - native apps (if you're into that kind of thing)
+- architecture
+  - classic monolith
+  - break into component parts
+  - OOPS! UI render split between platforms
+  - Node/universal .js (summer 2014 prototype)
+  - OOPS! environments out of sync
+- universal
+  - SSR?
+    - robust/accessible
+    - caching
+    - progressive
+  - context switching costs
+  - simpler mental model
+  - aside: open office (Facebook)?
+  - conceptually similar, but different concerns
+  - many concurrent short sessions vs. single long session (updated)
+  - 80% shared code (14/6/80)
+- routing
+  - express(-client).js
+    - history api
+  - shared routes/param validation
+  - middleware
+  - url => state
+- data
+  - mutable vs. immutable
+- render
+  - React.js
+  - unidirectional flow
+  - "React and the economics of dynamic web interfaces": Nicholas Zakas (https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces)
+    - "it fundamentally changes an equation we've all been working with for years, and an idea can be much more powerful than the technology implementing it"
+    - "...the idea of DOM updates being fast ... is important"
+    - "The cost of each render remains relatively consistent and is based only on the parts of the page that have changed, so there's little difference between manually re-rendering just the part of the page that has changed and re-rendering the entire page. Those are effectively the same operations"
+    - "React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code"
+    - "it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes"
