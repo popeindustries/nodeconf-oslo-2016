@@ -153,6 +153,9 @@ section.stacked {
   color: #9fb26d;
   text-align: center;
 }
+#title h1 {
+  line-height: 1;
+}
 #title .top,
 #title .bottom {
   background-size: cover;
@@ -163,7 +166,6 @@ section.stacked {
 #title .bottom h1 {
   font-size: 4vw;
   left: 50%;
-  line-height: 1;
   mix-blend-mode: difference;
   position: absolute;
   text-transform: uppercase;
@@ -188,8 +190,7 @@ section.stacked {
 #title .middle h1 {
   font-size: 3vw;
   font-weight: 500;
-  line-height: 1;
-  transform: translate(-50%, -1.125vw);
+  transform: translate(-50%, -1vw);
 }
 #title .bottom {
   background-image: url("src/images/nodeconf-13.jpg");
@@ -198,9 +199,9 @@ section.stacked {
 }
 #title .bottom h1 {
   font-weight: 500;
+  height: 4vw;
   margin-left: 3rem;
-  transform: scaleY(-1);
-  top: -1vw;
+  top: -0.1vw;
 }
 #history {
   align-items: center;
