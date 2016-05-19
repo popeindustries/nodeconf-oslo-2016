@@ -1,11 +1,11 @@
 'use strict';
 
-const elHtml = document.documentElement;
 const elSlides = document.querySelector('.slides');
 let model = {
-  slide: 0,
+  slideIndex: 0,
   slides: parseSlides(Array.prototype.slice.call(elSlides.children)),
-  partials: [],
+  stepIndex: 0,
+  stepTotal: 0,
   total: 0
 };
 model.total = model.slides.length;
@@ -36,15 +36,16 @@ function prevSlide () {
 }
 
 /**
- * Display 'slide'
- * @param {Nunber} slide
+ * Display 'slideIndex'
+ * @param {Nunber} slideIndex
  */
-function changeSlide (slide) {
-  const back = slide < model.slide;
-  const current = model.slides[model.slide];
-  const next = model.slides[slide];
+function changeSlide (slideIndex) {
+  const back = slideIndex < model.slideIndex;
+  const current = model.slides[model.slideIndex];
+  const next = model.slides[slideIndex];
 
-  model.partials = Array.prototype.slice.call(next.querySelectorAll('.partial:not(.show)')) || [];
+  model.stepTotal = parseInt(next.dataset.steps, 10) || 2;
+  model.stepIndex = 1;
 
   if (next != current) {
     next.classList.remove('stacked');
@@ -56,15 +57,21 @@ function changeSlide (slide) {
     }
   }
 
-  model.slide = slide;
-  window.history.pushState({}, 'slide ' + slide, '/' + slide);
+  model.slideIndex = slideIndex;
+  window.history.pushState({}, 'slide ' + slideIndex, '/' + slideIndex);
 }
 
 /**
  * Display next partial element
  */
-function showPartial () {
-  model.partials.shift().classList.add('show');
+function nextStep () {
+  const slide = mdoel.slides[model.slideIndex];
+  const stepIndex = model.stepIndex + 1;
+
+  if (stepIndex > model.stepTotal) return nextSlide();
+  slide.classList.remove(`step-${model.stepIndex}`);
+  slide.classList.add(`step-${stepIndex}`);
+  model.stepIndex = stepIndex;
 }
 
 /**
@@ -84,16 +91,20 @@ function getUrlSlide () {
  * @param {Event} evt
  */
 function onKeyDown (evt) {
-  if (evt.code === 'ArrowRight'
-    || evt.code === 'ArrowUp'
-    || evt.code === 'PageDown') {
-      model.partials.length
-        ? showPartial()
-        : nextSlide();
+  const key = (evt.key || evt.keyIdentifier).toLowerCase();
+
+  if (key === 'arrowright'
+    || key === 'arrowup'
+    || key === 'right'
+    || key === 'up'
+    || key === 'pagedown') {
+      nextStep();
   }
-  if (evt.code === 'ArrowLeft'
-    || evt.code === 'ArrowDown'
-    || evt.code === 'PageUp')  {
+  if (key === 'arrowleft'
+    || key === 'arrowdown'
+    || key === 'left'
+    || key === 'down'
+    || key === 'pageup')  {
       prevSlide();
   }
 }
