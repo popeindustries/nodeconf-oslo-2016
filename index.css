@@ -108,7 +108,7 @@ body {
   font-family: "Avenir", sans-serif;
   font-size: 16px;
   font-variant: normal;
-  font-weight: 400;
+  font-weight: 500;
   overflow: hidden;
   z-index: 0;
 }
@@ -121,16 +121,11 @@ h5 {
   padding: 0;
 }
 h1 {
-  letter-spacing: 0.0625em;
   line-height: 2;
-  font-size: 3em;
+  font-size: 6em;
 }
 section {
-  box-shadow: 0 1rem 1rem 1rem rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
   height: 100%;
-  justify-content: center;
   left: 0;
   opacity: 1;
   position: absolute;
@@ -147,9 +142,6 @@ section.visible {
 section.stacked {
   opacity: 0;
 }
-.small {
-  font-size: 65%;
-}
 .partial {
   opacity: 0;
   transition: all 0.5s;
@@ -158,15 +150,55 @@ section.stacked {
   opacity: 1;
 }
 #title {
-  background-image: url("src/images/nodeconf-13.jpg");
-  background-position: bottom center;
-  background-size: cover;
-  color: #d7e4ae;
+  color: #9fb26d;
+  text-align: center;
 }
-#title h1 {
-  mix-blend-mode: difference;
-  padding: 0 2em;
+#title .top,
+#title .bottom {
+  background-size: cover;
   position: relative;
+  width: 100%;
+}
+#title .top h1,
+#title .bottom h1 {
+  left: 50%;
+  line-height: 1;
+  mix-blend-mode: difference;
+  position: absolute;
+}
+#title .top {
+  background-image: url("src/images/nodeconf-14.jpg");
+  background-position: center top;
+  height: 45%;
+}
+#title .top h1 {
+  bottom: -1.4rem;
+  text-transform: uppercase;
+  transform: translateX(-110%);
+}
+#title .middle {
+  left: 0;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-4.4rem);
+  width: 100%;
+  z-index: 1;
+}
+#title .middle h1 {
+  font-size: 5rem;
+  font-weight: 500;
+}
+#title .bottom {
+  background-image: url("src/images/nodeconf-13.jpg");
+  background-position: center bottom;
+  height: 55%;
+}
+#title .bottom h1 {
+  font-weight: 500;
+  text-transform: lowercase;
+  transform: translateX(10%);
+  top: 0rem;
 }
 #history {
   align-items: center;

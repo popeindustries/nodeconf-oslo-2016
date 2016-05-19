@@ -3,6 +3,7 @@
 
 BLACK = #050A07;
 LIGHT_GREEN = #D7E4AE;
+DARK_YELLOW = #322C10;
 YR_BLUE = #00b9f1;
 
 html,
@@ -18,7 +19,7 @@ body {
   font-family: "Avenir", sans-serif;
   font-size: 16px;
   font-variant: normal;
-  font-weight: 400;
+  font-weight: 500;
   overflow: hidden;
   z-index: 0;
 }
@@ -31,16 +32,16 @@ h5 {
   padding: 0;
 }
 h1 {
-  letter-spacing: 0.0625em;
+  // letter-spacing: 0.0625em;
   line-height: 2;
-  font-size: 3em;
+  font-size: 6em;
 }
 section {
-  box-shadow: 0 1rem 1rem 1rem rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
+  // box-shadow: 0 1rem 1rem 1rem rgba(0,0,0,0.1);
+  // display: flex;
+  // flex-direction: column;
   height: 100%;
-  justify-content: center;
+  // justify-content: center;
   left: 0;
   opacity: 1;
   position: absolute;
@@ -57,9 +58,6 @@ section {
     opacity: 0;
   }
 }
-.small {
-  font-size: 65%;
-}
 .partial {
   opacity: 0;
   transition: all 0.5s;
@@ -69,14 +67,56 @@ section {
 }
 
 #title {
-  background-image: url('src/images/nodeconf-13.jpg');
-  background-position: bottom center;
-  background-size: cover;
-  color: LIGHT_GREEN;
-  h1 {
-    mix-blend-mode: difference;
-    padding: 0 2em;
+  color: #9FB26D;
+  text-align: center;
+  .top,
+  .bottom {
+    background-size: cover;
     position: relative;
+    width: 100%;
+    h1 {
+      left: 50%;
+      line-height: 1;
+      mix-blend-mode: difference;
+      position: absolute;
+    }
+  }
+  .top {
+    background-image: url('src/images/nodeconf-14.jpg');
+    background-position: center top;
+    height: 45%;
+    h1 {
+      bottom: -1.4rem;
+      text-transform: uppercase;
+      transform: translateX(-110%);
+    }
+  }
+  .middle {
+    left: 0;
+    mix-blend-mode: difference;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-4.4rem)
+    width: 100%;
+    z-index: 1;
+    h1 {
+      font-size: 5rem;
+      font-weight: 500;
+    }
+  }
+  .bottom {
+    background-image: url('src/images/nodeconf-13.jpg');
+    background-position: center bottom;
+    height: 55%;
+    h1 {
+      font-weight: 500;
+      text-transform: lowercase;
+      transform: translateX(10%);
+      top: 0rem;
+    }
+  }
+  h1 {
+    // opacity: 0.5
   }
 }
 
