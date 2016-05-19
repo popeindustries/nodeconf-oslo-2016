@@ -161,10 +161,12 @@ section.stacked {
 }
 #title .top h1,
 #title .bottom h1 {
+  font-size: 4vw;
   left: 50%;
   line-height: 1;
   mix-blend-mode: difference;
   position: absolute;
+  text-transform: uppercase;
 }
 #title .top {
   background-image: url("src/images/nodeconf-14.jpg");
@@ -172,22 +174,22 @@ section.stacked {
   height: 45%;
 }
 #title .top h1 {
-  bottom: -1.4rem;
-  text-transform: uppercase;
-  transform: translateX(-110%);
+  bottom: -1vw;
+  margin-left: -3rem;
+  transform: translateX(-100%);
 }
 #title .middle {
-  left: 0;
+  left: 50%;
   mix-blend-mode: difference;
   position: absolute;
   top: 45%;
-  transform: translateY(-4.4rem);
-  width: 100%;
   z-index: 1;
 }
 #title .middle h1 {
-  font-size: 5rem;
+  font-size: 3vw;
   font-weight: 500;
+  line-height: 1;
+  transform: translate(-50%, -1.125vw);
 }
 #title .bottom {
   background-image: url("src/images/nodeconf-13.jpg");
@@ -196,9 +198,9 @@ section.stacked {
 }
 #title .bottom h1 {
   font-weight: 500;
-  text-transform: lowercase;
-  transform: translateX(10%);
-  top: 0rem;
+  margin-left: 3rem;
+  transform: scaleY(-1);
+  top: -1vw;
 }
 #history {
   align-items: center;
