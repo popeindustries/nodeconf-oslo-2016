@@ -113,10 +113,10 @@ body {
   height: 100%;
 }
 html {
-  background-color: #050a07;
+  background-color: #fff;
 }
 body {
-  color: #fff;
+  color: #050a07;
   font-family: "Avenir Next", sans-serif;
   font-size: 16px;
   font-variant: normal;
@@ -129,12 +129,21 @@ h2,
 h3,
 h4,
 h5 {
+  line-height: normal;
   margin: 0;
   padding: 0;
 }
 h1 {
-  font-size: 6em;
+  font-size: 4vw;
   font-weight: 900;
+}
+h2 {
+  font-size: 2.2vw;
+  font-weight: 400;
+}
+h3 {
+  font-size: 1.4vw;
+  font-weight: 400;
 }
 section {
   height: 100%;
@@ -178,7 +187,6 @@ section.hide {
 }
 #title .top h1,
 #title .bottom h1 {
-  font-size: 4vw;
   left: 50%;
   mix-blend-mode: difference;
   position: absolute;
@@ -213,7 +221,6 @@ section.hide {
 }
 #title .bottom h1 {
   font-weight: 400;
-  height: 4vw;
   margin-left: 3rem;
   top: -0.4vw;
 }
@@ -234,12 +241,14 @@ section.hide {
 }
 #history {
   align-items: center;
-  background-color: #fff;
+  color: #004a60;
   transition-duration: 800ms;
 }
 #history .logo--yr,
 #history .partner-logos,
-#history .stats {
+#history .stats,
+#history .max-users,
+#history .mobile-users {
   position: absolute;
   transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
@@ -276,23 +285,43 @@ section.hide {
 #history .stats {
   bottom: 0;
   fill: #00b9f1;
-  height: 100%;
   right: 0;
   opacity: 1;
+  stroke: #0094c1;
+  stroke-width: 2px;
   transform: scaleY(0);
   transform-origin: bottom;
   transition-duration: 400ms;
   visibility: hidden;
-  width: 100%;
-}
-#history .stats .stat-grad-stop-1 {
-  stop-color: #00b9f1;
-}
-#history .stats .stat-grad-stop-2 {
-  stop-color: #050a07;
 }
 #history .stats .mobile {
+  fill: #00b9f1;
+  stroke: #0094c1;
   visibility: hidden;
+}
+#history .max-users,
+#history .mobile-users {
+  opacity: 0;
+}
+#history .max-users {
+  right: 240px;
+  bottom: 1020px;
+}
+#history .max-users::after {
+  content: '';
+  background-color: #004a60;
+  display: block;
+  height: 2px;
+  right: 0;
+  transform: translateX(100%);
+  top: 50%;
+  position: absolute;
+  width: 240px;
+}
+#history .mobile-users {
+  bottom: 50px;
+  color: #fff;
+  right: 240px;
 }
 #history.step-1 .logo--yr {
   transform: translate(-50%, -150%);
@@ -307,8 +336,18 @@ section.hide {
   visibility: visible;
   transform: scaleY(1);
 }
+#history.step-2 .max-users {
+  opacity: 1;
+}
+#history.step-3 .stats {
+  fill: #aeecff;
+  stroke: #5ed9ff;
+}
 #history.step-3 .stats .mobile {
   visibility: visible;
+}
+#history.step-3 .mobile-users {
+  opacity: 1;
 }
 #history.hide .logo--yr {
   opacity: 0;
@@ -320,32 +359,82 @@ section.hide {
 #history.hide .stats .mobile {
   visibility: hidden;
 }
-#geo {
-  background-color: #fff;
+#history.hide .max-users,
+#history.hide .mobile-users {
+  opacity: 0;
 }
-#geo .map {
+#geography {
+  color: #004a60;
+}
+#geography .map {
+  fill: #fff;
   height: 100%;
-  width: 100%;
-}
-#geo path {
-  fill: #aeecff;
+  opacity: 0;
   stroke: #5ed9ff;
   stroke-width: 1;
+  transform: scale(6);
+  transition: all 400ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  width: 100%;
 }
-#geo path.med {
+#geography .map path {
+  transition: fill 200ms linear;
+}
+#geography .title,
+#geography .no-users,
+#geography .nk-users {
+  background-color: rgba(255,255,255,0.8);
+  opacity: 0;
+  padding: 0.5vw 1vw;
+  position: absolute;
+  transition: opacity 200ms linear;
+}
+#geography .title {
+  bottom: 2vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#geography .no-users {
+  left: 44%;
+  top: 22%;
+}
+#geography .nk-users {
+  right: 10%;
+  top: 45%;
+}
+#geography.show .map {
+  opacity: 1;
+  transform: scale(1);
+}
+#geography.step-1 path {
+  fill: #aeecff;
+}
+#geography.step-1 path.none {
+  fill: #fff;
+}
+#geography.step-2 path.med {
   fill: #28cdff;
   stroke: #00a6d9;
 }
-#geo path.med-high {
+#geography.step-2 path.med-high {
   fill: #0dc7ff;
   stroke: #00a6d9;
 }
-#geo path.high {
+#geography.step-2 path.high {
   fill: #00b9f1;
   stroke: #0094c1;
 }
-#geo path.none {
-  fill: #fff;
+#geography.step-2 .title,
+#geography.step-2 .no-users {
+  opacity: 1;
+}
+#geography.step-3 .nk-users {
+  opacity: 1;
+}
+#geography.hide .map,
+#geography.hide .title,
+#geography.hide .no-users,
+#geography.hide .nk-users {
+  opacity: 0;
 }
 #architecture {
   background-image: url("src/images/nodeconf-8.jpg");

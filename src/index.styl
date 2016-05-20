@@ -2,9 +2,8 @@
 @import './lib/fonts.css';
 
 BLACK = #050A07;
-LIGHT_GREEN = #D7E4AE;
-DARK_YELLOW = #322C10;
 YR_BLUE = #00b9f1;
+DARK_BLUE = darken(YR_BLUE, 60%);
 TRANSITION_DURATION = 400ms;
 TRANSITION_DURATION_SHORT = 200ms;
 TRANSITION_DURATION_LONG = 800ms;
@@ -16,10 +15,10 @@ body {
   height: 100%;
 }
 html {
-  background-color: BLACK;
+  background-color: white;
 }
 body {
-  color: white;
+  color: BLACK;
   font-family: "Avenir Next", sans-serif;
   font-size: 16px;
   font-variant: normal;
@@ -32,12 +31,21 @@ h2,
 h3,
 h4,
 h5 {
+  line-height: normal;
   margin: 0;
   padding: 0;
 }
 h1 {
-  font-size: 6em;
+  font-size: 4vw;
   font-weight: 900;
+}
+h2 {
+  font-size: 2.2vw;
+  font-weight: 400;
+}
+h3 {
+  font-size: 1.4vw;
+  font-weight: 400;
 }
 section {
   height: 100%;
@@ -79,7 +87,6 @@ section {
     transition: all TRANSITION_DURATION 100ms TRANSITION_TIMING_CUBIC_OUT;
     width: 100%;
     h1 {
-      font-size: 4vw;
       left: 50%;
       mix-blend-mode: difference;
       position: absolute;
@@ -114,7 +121,6 @@ section {
     height: 55%;
     h1 {
       font-weight: 400;
-      height: 4vw;
       margin-left: 3rem;
       top: -0.4vw;
     }
@@ -140,11 +146,13 @@ section {
 
 #history {
   align-items: center;
-  background-color: white;
+  color: DARK_BLUE;
   transition-duration: TRANSITION_DURATION_LONG;
   .logo--yr,
   .partner-logos,
-  .stats {
+  .stats,
+  .max-users,
+  .mobile-users {
     position: absolute;
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
   }
@@ -180,24 +188,44 @@ section {
   }
   .stats {
     bottom: 0;
-    fill: #00b9f1;
-    height: 100%;
+    fill: YR_BLUE;
     right: 0;
     opacity: 1;
+    stroke: darken(YR_BLUE, 20%);
+    stroke-width: 2px;
     transform: scaleY(0);
     transform-origin: bottom;
     transition-duration: TRANSITION_DURATION;
     visibility: hidden;
-    width: 100%;
-    .stat-grad-stop-1 {
-      stop-color: YR_BLUE;
-    }
-    .stat-grad-stop-2 {
-      stop-color: BLACK;
-    }
     .mobile {
+      fill: YR_BLUE;
+      stroke: darken(YR_BLUE, 20%);
       visibility: hidden;
     }
+  }
+  .max-users,
+  .mobile-users {
+    opacity: 0;
+  }
+  .max-users {
+    right: 240px;
+    bottom: 1020px;
+    &::after {
+      content: '';
+      background-color: DARK_BLUE;
+      display: block;
+      height: 2px;
+      right: 0;
+      transform: translateX(100%);
+      top: 50%;
+      position: absolute;
+      width: 240px;
+    }
+  }
+  .mobile-users {
+    bottom: 50px;
+    color: white;
+    right: 240px;
   }
   &.step-1 {
     .logo--yr {
@@ -215,10 +243,20 @@ section {
       visibility: visible;
       transform: scaleY(1);
     }
+    .max-users {
+      opacity: 1;
+    }
   }
   &.step-3 {
-    .stats .mobile {
-      visibility: visible;
+    .stats {
+      fill: lighten(YR_BLUE, 70%);
+      stroke: lighten(YR_BLUE, 40%);
+      .mobile {
+        visibility: visible;
+      }
+    }
+    .mobile-users {
+      opacity: 1;
     }
   }
   &.hide {
@@ -232,33 +270,95 @@ section {
         visibility: hidden;
       }
     }
+    .max-users,
+    .mobile-users {
+      opacity: 0;
+    }
   }
 }
 
-#geo {
-  background-color: white;
+#geography {
+  color: DARK_BLUE;
   .map {
+    fill: white;
     height: 100%;
-    width: 100%;
-  }
-  path {
-    fill: lighten(YR_BLUE, 70%);
+    opacity: 0;
     stroke: lighten(YR_BLUE, 40%);
     stroke-width: 1;
-    &.med {
-      fill: lighten(YR_BLUE, 20%);
-      stroke: darken(YR_BLUE, 10%);
+    transform: scale(6);
+    transition: all TRANSITION_DURATION TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+    width: 100%;
+    path {
+      transition: fill TRANSITION_DURATION_SHORT linear;
     }
-    &.med-high {
-      fill: lighten(YR_BLUE, 10%);
-      stroke: darken(YR_BLUE, 10%);
+  }
+  .title,
+  .no-users,
+  .nk-users {
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    padding: 0.5vw 1vw;
+    position: absolute;
+    transition: opacity TRANSITION_DURATION_SHORT linear;
+  }
+  .title {
+    bottom: 2vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .no-users {
+    left: 44%;
+    top: 22%;
+  }
+  .nk-users {
+    right: 10%;
+    top: 45%;
+  }
+  &.show {
+    .map {
+      opacity: 1;
+      transform: scale(1);
     }
-    &.high {
-      fill: YR_BLUE;
-      stroke: darken(YR_BLUE, 20%);
+  }
+  &.step-1 {
+    path {
+      fill: lighten(YR_BLUE, 70%);
+      &.none {
+        fill: white;
+      }
     }
-    &.none {
-      fill: white;
+  }
+  &.step-2 {
+    path {
+      &.med {
+        fill: lighten(YR_BLUE, 20%);
+        stroke: darken(YR_BLUE, 10%);
+      }
+      &.med-high {
+        fill: lighten(YR_BLUE, 10%);
+        stroke: darken(YR_BLUE, 10%);
+      }
+      &.high {
+        fill: YR_BLUE;
+        stroke: darken(YR_BLUE, 20%);
+      }
+    }
+    .title,
+    .no-users {
+      opacity: 1;
+    }
+  }
+  &.step-3 {
+    .nk-users {
+      opacity: 1;
+    }
+  }
+  &.hide {
+    .map,
+    .title,
+    .no-users,
+    .nk-users {
+      opacity: 0;
     }
   }
 }
