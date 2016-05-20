@@ -458,6 +458,7 @@ section.hide {
 }
 #mobile {
   perspective: 60rem;
+  transition-duration: 800ms;
 }
 #mobile .m,
 #mobile .www,
@@ -535,12 +536,33 @@ section.hide {
   opacity: 1;
 }
 #mobile.hide .m,
-#mobile.hide .www,
-#mobile.hide .phone {
+#mobile.hide .www {
   opacity: 0;
+}
+#mobile.hide .n95 {
+  transform: translateX(25%) rotateY(0deg);
+}
+#mobile.hide .iphone {
+  transform: translateX(-25%) rotateY(0deg);
+}
+#mobile.hide .iphone .front {
+  visibility: hidden;
 }
 #architecture {
   background-image: url("src/images/nodeconf-8.jpg");
   background-position: bottom center;
   background-size: cover;
+  opacity: 0;
+}
+#architecture .diagram {
+  display: none;
+}
+#architecture.show {
+  opacity: 1;
+}
+#architecture.step-1 .diagram {
+  display: block;
+}
+#architecture.hide {
+  opacity: 0;
 }

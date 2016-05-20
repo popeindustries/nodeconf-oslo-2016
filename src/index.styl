@@ -387,6 +387,7 @@ section {
 
 #mobile {
   perspective: 60rem;
+  transition-duration: TRANSITION_DURATION_LONG;
   .m,
   .www,
   .phone {
@@ -474,9 +475,17 @@ section {
   }
   &.hide {
     .m,
-    .www,
-    .phone {
+    .www {
       opacity: 0;
+    }
+    .n95 {
+      transform: translateX(25%) rotateY(0deg);
+    }
+    .iphone {
+      transform: translateX(-25%) rotateY(0deg);
+      .front {
+        visibility: hidden;
+      }
     }
   }
 }
@@ -485,4 +494,19 @@ section {
   background-image: url('src/images/nodeconf-8.jpg');
   background-position: bottom center;
   background-size: cover;
+  opacity: 0;
+  .diagram {
+    display: none;
+  }
+  &.show {
+    opacity: 1;
+  }
+  &.step-1 {
+    .diagram {
+      display: block;
+    }
+  }
+  &.hide {
+    opacity: 0;
+  }
 }

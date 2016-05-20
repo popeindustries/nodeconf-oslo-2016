@@ -19,6 +19,7 @@
   - native apps (if you're into that kind of thing)
 - architecture
   - classic monolith
+  - TFS -> GIT
   - break into component parts
   - OOPS! UI render split between platforms
   - Node/universal .js (summer 2014 prototype)
