@@ -1,42 +1,28 @@
 'use strict';
 
 const elSlides = document.querySelector('.slides');
-let model = {
+let model = window.model = parse({
   slideIndex: 0,
-  slides: parseSlides(Array.prototype.slice.call(elSlides.children)),
+  slides: [],
   stepIndex: 0,
-  stepTotal: 0,
-  total: 0
-};
-model.total = model.slides.length;
+  stepTotal: 0
+});
 
 /**
  * Parse slide elements
- * @param {Array} elements
+ * @param {Object} model
  * @returns {Array}
  */
-function parseSlides (elements) {
-  return elements.filter((element) => {
+function parse (model) {
+  model.slides = Array.prototype.slice.call(elSlides.children).filter((element) => {
     return element.tagName == 'HEADER' || element.tagName == 'SECTION';
   });
+
+  return model;
 }
 
 /**
- * Advance to next slide
- */
-function nextSlide () {
-  if (model.slide + 1 < model.total) changeSlide(model.slide + 1);
-}
-
-/**
- * Advance to previous slide
- */
-function prevSlide () {
-  if (model.slide - 1 >= 0) changeSlide(model.slide - 1);
-}
-
-/**
- * Display 'slideIndex'
+ * Display slide at 'slideIndex'
  * @param {Nunber} slideIndex
  */
 function changeSlide (slideIndex) {
@@ -44,34 +30,56 @@ function changeSlide (slideIndex) {
   const current = model.slides[model.slideIndex];
   const next = model.slides[slideIndex];
 
-  model.stepTotal = parseInt(next.dataset.steps, 10) || 2;
-  model.stepIndex = 1;
+  model.stepTotal = parseInt(next.dataset.steps, 10) || 0;
+  model.stepIndex = back ? model.stepTotal : 0;
 
-  if (next != current) {
-    next.classList.remove('stacked');
-    next.classList.add('visible');
-    if (back) {
-      current.classList.remove('visible');
-    } else {
-      current.classList.add('stacked');
-    }
+  next.classList.add('show');
+  next.classList.remove('hide');
+  next.style.zIndex = 100 - slideIndex;
+  if (current && next != current) {
+    current.classList.add('hide');
+    current.addEventListener('transitionend', onTransitionEnd, false);
   }
-
   model.slideIndex = slideIndex;
-  window.history.pushState({}, 'slide ' + slideIndex, '/' + slideIndex);
+  changeStep(model.stepIndex);
+  window.history.pushState({}, '', window.location.pathname.replace(/\/\d+$/, `/${slideIndex}`));
 }
 
 /**
- * Display next partial element
+ * Display step at 'stepIndex'
+ * @param {Nunber} stepIndex
  */
-function nextStep () {
-  const slide = mdoel.slides[model.slideIndex];
-  const stepIndex = model.stepIndex + 1;
+function changeStep (stepIndex) {
+  const slide = model.slides[model.slideIndex];
+  let classStr = slide.getAttribute('class').replace(/\s?step-\d\s?/g, '');
 
-  if (stepIndex > model.stepTotal) return nextSlide();
-  slide.classList.remove(`step-${model.stepIndex}`);
-  slide.classList.add(`step-${stepIndex}`);
+  for (let i = 1; i <= stepIndex; i++) {
+    classStr += ` step-${i}`;
+  }
+  slide.setAttribute('class', classStr);
   model.stepIndex = stepIndex;
+}
+
+/**
+ * Advance to next step/slide
+ */
+function next () {
+  if (model.stepTotal && model.stepIndex + 1 <= model.stepTotal) {
+    changeStep(model.stepIndex + 1);
+  } else if (model.slideIndex + 1 < model.slides.length) {
+    changeSlide(model.slideIndex + 1);
+  }
+}
+
+/**
+ * Advance to previous step/slide
+ */
+function prev () {
+  if (model.stepTotal && model.stepIndex - 1 >= 0) {
+    changeStep(model.stepIndex - 1);
+  } else if (model.slideIndex - 1 >= 0) {
+    changeSlide(model.slideIndex - 1);
+  }
 }
 
 /**
@@ -98,14 +106,14 @@ function onKeyDown (evt) {
     || key === 'right'
     || key === 'up'
     || key === 'pagedown') {
-      nextStep();
+      next();
   }
   if (key === 'arrowleft'
     || key === 'arrowdown'
     || key === 'left'
     || key === 'down'
     || key === 'pageup')  {
-      prevSlide();
+      prev();
   }
 }
 
@@ -114,16 +122,26 @@ function onKeyDown (evt) {
  * @param {Event} evt
  */
 function onPopState (evt) {
-  changeSlide(getUrlSlide());
+  if (evt.state) changeSlide(getUrlSlide());
+}
+
+/**
+ * Handle transition end event
+ * @param {Event} evt
+ */
+function onTransitionEnd (evt) {
+  const slide = evt.target;
+
+  slide.removeEventListener('transitionend', onTransitionEnd, false);
+
+  if (slide.classList.contains('hide') && slide.classList.contains('show')) {
+    slide.classList.remove('show');
+    slide.style.zIndex = null;
+  }
 }
 
 document.addEventListener('keyup', onKeyDown, false);
 window.addEventListener('popstate', onPopState, false);
-window.history.replaceState({}, document.title);
+window.history.replaceState({}, document.title, window.location.pathname);
 
-const currentSlide = getUrlSlide();
-
-model.slides.forEach((element, idx) => {
-  if (idx < currentSlide) element.classList.add('stacked');
-});
-changeSlide(currentSlide);
+changeSlide(getUrlSlide());

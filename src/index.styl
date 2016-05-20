@@ -5,6 +5,10 @@ BLACK = #050A07;
 LIGHT_GREEN = #D7E4AE;
 DARK_YELLOW = #322C10;
 YR_BLUE = #00b9f1;
+TRANSITION_DURATION = 400ms;
+TRANSITION_DURATION_SHORT = 200ms;
+TRANSITION_DURATION_LONG = 800ms;
+TRANSITION_TIMING_CUBIC_OUT = cubic-bezier(0.215, 0.61, 0.355, 1);
 
 html,
 body {
@@ -16,7 +20,7 @@ html {
 }
 body {
   color: white;
-  font-family: "Avenir", sans-serif;
+  font-family: "Avenir Next", sans-serif;
   font-size: 16px;
   font-variant: normal;
   font-weight: 500;
@@ -32,30 +36,23 @@ h5 {
   padding: 0;
 }
 h1 {
-  // letter-spacing: 0.0625em;
-  line-height: 2;
   font-size: 6em;
+  font-weight: 900;
 }
 section {
-  // box-shadow: 0 1rem 1rem 1rem rgba(0,0,0,0.1);
-  // display: flex;
-  // flex-direction: column;
   height: 100%;
-  // justify-content: center;
   left: 0;
   opacity: 1;
   position: absolute;
   top: 0;
-  transform: translate(100%, 0);
-  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 400ms linear, visibility 400ms linear;
+  transition: all TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT;
   visibility: hidden;
   width: 100%;
-  &.visible {
+  &.show {
     visibility: visible;
-    transform: translate(0, 0);
   }
-  &.stacked {
-    opacity: 0;
+  &.hide {
+    visibility: hidden;
   }
 }
 .partial {
@@ -69,13 +66,17 @@ section {
 #title {
   color: #9FB26D;
   text-align: center;
+  transition-duration: 500ms;
   h1 {
     line-height: 1;
+    transition: all TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT;
   }
   .top,
   .bottom {
     background-size: cover;
+    overflow: hidden;
     position: relative;
+    transition: all TRANSITION_DURATION 100ms TRANSITION_TIMING_CUBIC_OUT;
     width: 100%;
     h1 {
       font-size: 4vw;
@@ -90,7 +91,7 @@ section {
     background-position: center top;
     height: 45%;
     h1 {
-      bottom: -1vw;
+      bottom: -0.8vw;
       margin-left: -3rem;
       transform: translateX(-100%);
     }
@@ -104,7 +105,7 @@ section {
     h1 {
       font-size: 3vw;
       font-weight: 500;
-      transform: translate(-50%, -1vw);
+      transform: translate(-50%, -1.25vw);
     }
   }
   .bottom {
@@ -112,11 +113,27 @@ section {
     background-position: center bottom;
     height: 55%;
     h1 {
-      font-weight: 500;
+      font-weight: 400;
       height: 4vw;
       margin-left: 3rem;
-      // transform: scaleY(-1);
-      top: -0.1vw;
+      top: -0.4vw;
+    }
+  }
+  &.hide {
+    .top {
+      transform: translateY(-100%);
+      h1 {
+        transform: translate(-100%, 100%);
+      }
+    }
+    .middle h1 {
+      opacity: 0;
+    }
+    .bottom {
+      transform: translateY(100%);
+      h1 {
+        transform: translateY(-100%);
+      }
     }
   }
 }
@@ -124,36 +141,96 @@ section {
 #history {
   align-items: center;
   background-color: white;
-  .logo {
+  transition-duration: TRANSITION_DURATION_LONG;
+  .logo--yr,
+  .partner-logos,
+  .stats {
+    position: absolute;
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+  }
+  .logo--yr {
     height: 10em;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
     width: 10em;
     z-index: 1;
   }
-  .logo--met {
-    height: 18em;
-    width: 18em;
-  }
   .partner-logos {
     align-items: center;
-    display: none;
+    display: flex;
     flex-direction: row;
     justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 35%;
+    width: 100%;
     .logo {
       margin: 0 2em;
+    }
+    .logo--nrk {
+      height: 10em;
+      width: 10em;
+    }
+    .logo--met {
+      height: 18em;
+      width: 18em;
     }
   }
   .stats {
     bottom: 0;
     fill: #00b9f1;
     height: 100%;
-    left: 0;
-    position: absolute;
+    right: 0;
+    opacity: 1;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition-duration: TRANSITION_DURATION;
+    visibility: hidden;
     width: 100%;
     .stat-grad-stop-1 {
       stop-color: YR_BLUE;
     }
     .stat-grad-stop-2 {
       stop-color: BLACK;
+    }
+    .mobile {
+      visibility: hidden;
+    }
+  }
+  &.step-1 {
+    .logo--yr {
+      transform: translate(-50%, -150%);
+    }
+    .partner-logos {
+      opacity: 1;
+    }
+  }
+  &.step-2 {
+    .partner-logos {
+      opacity: 0;
+    }
+    .stats {
+      visibility: visible;
+      transform: scaleY(1);
+    }
+  }
+  &.step-3 {
+    .stats .mobile {
+      visibility: visible;
+    }
+  }
+  &.hide {
+    .logo--yr {
+      opacity: 0;
+    }
+    .stats {
+      opacity: 0;
+      transform: scaleY(10);
+      .mobile {
+        visibility: hidden;
+      }
     }
   }
 }

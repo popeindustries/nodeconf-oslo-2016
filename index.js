@@ -6,93 +6,200 @@ if (window.require == null) {
     return (_m_[id].boot) ? _m_[id]() : _m_[id];
   };
 }
+var global = window.global = window;
+
+(function (global) {
+  var babelHelpers = global.babelHelpers = {};
+
+  babelHelpers.classCallCheck = function (instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  };
+
+  babelHelpers.createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  babelHelpers.defineProperty = function (obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  };
+
+  babelHelpers.get = function get(object, property, receiver) {
+    if (object === null) object = Function.prototype;
+    var desc = Object.getOwnPropertyDescriptor(object, property);
+
+    if (desc === undefined) {
+      var parent = Object.getPrototypeOf(object);
+
+      if (parent === null) {
+        return undefined;
+      } else {
+        return get(parent, property, receiver);
+      }
+    } else if ("value" in desc) {
+      return desc.value;
+    } else {
+      var getter = desc.get;
+
+      if (getter === undefined) {
+        return undefined;
+      }
+
+      return getter.call(receiver);
+    }
+  };
+
+  babelHelpers.inherits = function (subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  };
+
+  babelHelpers.possibleConstructorReturn = function (self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  };
+
+  babelHelpers.taggedTemplateLiteral = function (strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  };
+})(typeof global === "undefined" ? self : global);
 _m_['src/index.js']=(function(module,exports){
   module=this;exports=module.exports;
 
   'use strict';
   
-  const elSlides = document.querySelector('.slides');
-  let model = {
+  var elSlides = document.querySelector('.slides');
+  var model = window.model = parse({
     slideIndex: 0,
-    slides: parseSlides(Array.prototype.slice.call(elSlides.children)),
+    slides: [],
     stepIndex: 0,
-    stepTotal: 0,
-    total: 0
-  };
-  model.total = model.slides.length;
+    stepTotal: 0
+  });
   
   /**
    * Parse slide elements
-   * @param {Array} elements
+   * @param {Object} model
    * @returns {Array}
    */
-  function parseSlides (elements) {
-    return elements.filter((element) => {
+  function parse(model) {
+    model.slides = Array.prototype.slice.call(elSlides.children).filter(function (element) {
       return element.tagName == 'HEADER' || element.tagName == 'SECTION';
     });
+  
+    return model;
   }
   
   /**
-   * Advance to next slide
-   */
-  function nextSlide () {
-    if (model.slide + 1 < model.total) changeSlide(model.slide + 1);
-  }
-  
-  /**
-   * Advance to previous slide
-   */
-  function prevSlide () {
-    if (model.slide - 1 >= 0) changeSlide(model.slide - 1);
-  }
-  
-  /**
-   * Display 'slideIndex'
+   * Display slide at 'slideIndex'
    * @param {Nunber} slideIndex
    */
-  function changeSlide (slideIndex) {
-    const back = slideIndex < model.slideIndex;
-    const current = model.slides[model.slideIndex];
-    const next = model.slides[slideIndex];
+  function changeSlide(slideIndex) {
+    var back = slideIndex < model.slideIndex;
+    var current = model.slides[model.slideIndex];
+    var next = model.slides[slideIndex];
   
-    model.stepTotal = parseInt(next.dataset.steps, 10) || 2;
-    model.stepIndex = 1;
+    model.stepTotal = parseInt(next.dataset.steps, 10) || 0;
+    model.stepIndex = back ? model.stepTotal : 0;
   
-    if (next != current) {
-      next.classList.remove('stacked');
-      next.classList.add('visible');
-      if (back) {
-        current.classList.remove('visible');
-      } else {
-        current.classList.add('stacked');
-      }
+    next.classList.add('show');
+    next.classList.remove('hide');
+    next.style.zIndex = 100 - slideIndex;
+    if (current && next != current) {
+      current.classList.add('hide');
+      current.addEventListener('transitionend', onTransitionEnd, false);
     }
-  
     model.slideIndex = slideIndex;
-    window.history.pushState({}, 'slide ' + slideIndex, '/' + slideIndex);
+    changeStep(model.stepIndex);
+    window.history.pushState({}, '', window.location.pathname.replace(/\/\d+$/, '/' + slideIndex));
   }
   
   /**
-   * Display next partial element
+   * Display step at 'stepIndex'
+   * @param {Nunber} stepIndex
    */
-  function nextStep () {
-    const slide = mdoel.slides[model.slideIndex];
-    const stepIndex = model.stepIndex + 1;
+  function changeStep(stepIndex) {
+    var slide = model.slides[model.slideIndex];
+    var classStr = slide.getAttribute('class').replace(/\s?step-\d\s?/g, '');
   
-    if (stepIndex > model.stepTotal) return nextSlide();
-    slide.classList.remove(`step-${model.stepIndex}`);
-    slide.classList.add(`step-${stepIndex}`);
+    for (var i = 1; i <= stepIndex; i++) {
+      classStr += ' step-' + i;
+    }
+    slide.setAttribute('class', classStr);
     model.stepIndex = stepIndex;
+  }
+  
+  /**
+   * Advance to next step/slide
+   */
+  function next() {
+    if (model.stepTotal && model.stepIndex + 1 <= model.stepTotal) {
+      changeStep(model.stepIndex + 1);
+    } else if (model.slideIndex + 1 < model.slides.length) {
+      changeSlide(model.slideIndex + 1);
+    }
+  }
+  
+  /**
+   * Advance to previous step/slide
+   */
+  function prev() {
+    if (model.stepTotal && model.stepIndex - 1 >= 0) {
+      changeStep(model.stepIndex - 1);
+    } else if (model.slideIndex - 1 >= 0) {
+      changeSlide(model.slideIndex - 1);
+    }
   }
   
   /**
    * Get current slide index from url
    * @returns {Number}
    */
-  function getUrlSlide () {
-    const slide = window.location.pathname
-      .split('/')
-      .slice(-1)[0];
+  function getUrlSlide() {
+    var slide = window.location.pathname.split('/').slice(-1)[0];
   
     return parseInt(slide, 0) || 0;
   }
@@ -101,22 +208,14 @@ _m_['src/index.js']=(function(module,exports){
    * Handle key down
    * @param {Event} evt
    */
-  function onKeyDown (evt) {
-    const key = (evt.key || evt.keyIdentifier).toLowerCase();
+  function onKeyDown(evt) {
+    var key = (evt.key || evt.keyIdentifier).toLowerCase();
   
-    if (key === 'arrowright'
-      || key === 'arrowup'
-      || key === 'right'
-      || key === 'up'
-      || key === 'pagedown') {
-        nextStep();
+    if (key === 'arrowright' || key === 'arrowup' || key === 'right' || key === 'up' || key === 'pagedown') {
+      next();
     }
-    if (key === 'arrowleft'
-      || key === 'arrowdown'
-      || key === 'left'
-      || key === 'down'
-      || key === 'pageup')  {
-        prevSlide();
+    if (key === 'arrowleft' || key === 'arrowdown' || key === 'left' || key === 'down' || key === 'pageup') {
+      prev();
     }
   }
   
@@ -124,20 +223,30 @@ _m_['src/index.js']=(function(module,exports){
    * Handle pop state event
    * @param {Event} evt
    */
-  function onPopState (evt) {
-    changeSlide(getUrlSlide());
+  function onPopState(evt) {
+    if (evt.state) changeSlide(getUrlSlide());
+  }
+  
+  /**
+   * Handle transition end event
+   * @param {Event} evt
+   */
+  function onTransitionEnd(evt) {
+    var slide = evt.target;
+  
+    slide.removeEventListener('transitionend', onTransitionEnd, false);
+  
+    if (slide.classList.contains('hide') && slide.classList.contains('show')) {
+      slide.classList.remove('show');
+      slide.style.zIndex = null;
+    }
   }
   
   document.addEventListener('keyup', onKeyDown, false);
   window.addEventListener('popstate', onPopState, false);
-  window.history.replaceState({}, document.title);
+  window.history.replaceState({}, document.title, window.location.pathname);
   
-  const currentSlide = getUrlSlide();
-  
-  model.slides.forEach((element, idx) => {
-    if (idx < currentSlide) element.classList.add('stacked');
-  });
-  changeSlide(currentSlide);
+  changeSlide(getUrlSlide());
 
   return module.exports;
 }).call({exports:{}});
