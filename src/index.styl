@@ -4,6 +4,8 @@
 BLACK = #050A07;
 YR_BLUE = #00b9f1;
 DARK_BLUE = darken(YR_BLUE, 60%);
+GREEN = #41d041;
+RED = #d21111;
 TRANSITION_DURATION = 400ms;
 TRANSITION_DURATION_SHORT = 200ms;
 TRANSITION_DURATION_LONG = 800ms;
@@ -46,6 +48,27 @@ h2 {
 h3 {
   font-size: 1.4vw;
   font-weight: 400;
+}
+ul {
+  margin: 0;
+  padding: 0 0 0 0.5vw;
+}
+li {
+  font-size: 1.2vw;
+  list-style-type: none;
+  padding: 0.5vw 0;
+  &::before {
+    display: inline-block;
+    padding-right: 0.5vw;
+  }
+  &.good::before {
+    content: '+';
+    color: GREEN;
+  }
+  &.bad::before {
+    content: '—';
+    color: RED;
+  }
 }
 section {
   height: 100%;
@@ -145,7 +168,6 @@ section {
 }
 
 #history {
-  align-items: center;
   color: DARK_BLUE;
   transition-duration: TRANSITION_DURATION_LONG;
   .logo--yr,
@@ -358,6 +380,102 @@ section {
     .title,
     .no-users,
     .nk-users {
+      opacity: 0;
+    }
+  }
+}
+
+#mobile {
+  perspective: 60rem;
+  .m,
+  .www,
+  .phone {
+    position: absolute;
+    transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+  }
+  .phone {
+    height: 875px;
+    left: 50%;
+    margin: -400px 0 0 -250px;
+    top: 50%;
+    transform-style: preserve-3d;
+    width: 500px;
+    &.n95 {
+      z-index: 1;
+    }
+    &.iphone {
+      opacity: 0;
+    }
+    figure {
+      backface-visibility: hidden;
+      height: 100%;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 100%;
+      &.front {
+        z-index: 2;
+      }
+      &.back {
+        transform: rotateY(180deg);
+      }
+      figcaption {
+        display: block;
+        font-size: 1.4vw;
+        margin-top: 1vw;
+      }
+    }
+  }
+  .m,
+  .www {
+    left: 50%;
+    opacity: 0;
+    top: 30%;
+  }
+  .m {
+    transform: translateX(-200%);
+  }
+  .www {
+    transform: translateX(200%);
+  }
+  &.step-1 {
+    .n95 {
+      transform: rotateY(-180deg);
+    }
+  }
+  &.step-2 {
+    .m {
+      opacity: 1;
+    }
+  }
+  &.step-3 {
+    .m {
+      transform: translateX(-300%);
+    }
+    .n95 {
+      transform: translateX(-50%) rotateY(-180deg);
+    }
+    .iphone {
+      opacity: 1;
+      transform: translateX(50%);
+    }
+  }
+  &.step-4 {
+    .iphone {
+      transform: translateX(50%) rotateY(180deg);
+    }
+  }
+  &.step-5 {
+    .www {
+      opacity: 1;
+    }
+  }
+  &.hide {
+    .m,
+    .www,
+    .phone {
       opacity: 0;
     }
   }

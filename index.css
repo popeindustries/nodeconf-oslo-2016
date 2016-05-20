@@ -145,6 +145,27 @@ h3 {
   font-size: 1.4vw;
   font-weight: 400;
 }
+ul {
+  margin: 0;
+  padding: 0 0 0 0.5vw;
+}
+li {
+  font-size: 1.2vw;
+  list-style-type: none;
+  padding: 0.5vw 0;
+}
+li::before {
+  display: inline-block;
+  padding-right: 0.5vw;
+}
+li.good::before {
+  content: '+';
+  color: #41d041;
+}
+li.bad::before {
+  content: '—';
+  color: #d21111;
+}
 section {
   height: 100%;
   left: 0;
@@ -240,7 +261,6 @@ section.hide {
   transform: translateY(-100%);
 }
 #history {
-  align-items: center;
   color: #004a60;
   transition-duration: 800ms;
 }
@@ -434,6 +454,89 @@ section.hide {
 #geography.hide .title,
 #geography.hide .no-users,
 #geography.hide .nk-users {
+  opacity: 0;
+}
+#mobile {
+  perspective: 60rem;
+}
+#mobile .m,
+#mobile .www,
+#mobile .phone {
+  position: absolute;
+  transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
+}
+#mobile .phone {
+  height: 875px;
+  left: 50%;
+  margin: -400px 0 0 -250px;
+  top: 50%;
+  transform-style: preserve-3d;
+  width: 500px;
+}
+#mobile .phone.n95 {
+  z-index: 1;
+}
+#mobile .phone.iphone {
+  opacity: 0;
+}
+#mobile .phone figure {
+  backface-visibility: hidden;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+#mobile .phone figure.front {
+  z-index: 2;
+}
+#mobile .phone figure.back {
+  transform: rotateY(180deg);
+}
+#mobile .phone figure figcaption {
+  display: block;
+  font-size: 1.4vw;
+  margin-top: 1vw;
+}
+#mobile .m,
+#mobile .www {
+  left: 50%;
+  opacity: 0;
+  top: 30%;
+}
+#mobile .m {
+  transform: translateX(-200%);
+}
+#mobile .www {
+  transform: translateX(200%);
+}
+#mobile.step-1 .n95 {
+  transform: rotateY(-180deg);
+}
+#mobile.step-2 .m {
+  opacity: 1;
+}
+#mobile.step-3 .m {
+  transform: translateX(-300%);
+}
+#mobile.step-3 .n95 {
+  transform: translateX(-50%) rotateY(-180deg);
+}
+#mobile.step-3 .iphone {
+  opacity: 1;
+  transform: translateX(50%);
+}
+#mobile.step-4 .iphone {
+  transform: translateX(50%) rotateY(180deg);
+}
+#mobile.step-5 .www {
+  opacity: 1;
+}
+#mobile.hide .m,
+#mobile.hide .www,
+#mobile.hide .phone {
   opacity: 0;
 }
 #architecture {
