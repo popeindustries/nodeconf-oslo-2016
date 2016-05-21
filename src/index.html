@@ -70,8 +70,49 @@
         </ul>
       </div>
     </section>
-    <section id="architecture" data-steps="3">
-      <img class="diagram" inline src="src/images/architecture.svg">
+    <section id="architecture" data-steps="8">
+      <svg class="diagram old" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+        <circle class="view" opacity="0.5" cx="50" cy="50" r="50"/>
+        <circle class="view" opacity="0.7" cx="50" cy="50" r="45"/>
+        <circle class="view" cx="50" cy="50" r="40"/>
+        <circle class="api" cx="50" cy="50" r="35"/>
+        <circle class="data" cx="50" cy="50" r="30"/>
+        <g class="text">
+          <circle fill="none" cx="50" cy="50" r="60"/>
+          <line x1="98" y1="12" x2="105" y2="5" />
+          <line x1="110" y1="47" x2="120" y2="47" />
+          <line x1="103" y1="82" x2="110" y2="89" />
+          <text opacity="0.6" x="105" y="5">DATA</text>
+          <text opacity="0.6" x="120" y="52">API</text>
+          <text opacity="0.6" x="110" y="100">VIEWS</text>
+        </g>
+      </svg>
+      <svg class="diagram new-view" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+        <circle class="view" cx="50" cy="50" r="25"/>
+        <g class="text">
+          <circle class="ring" fill="none" cx="50" cy="50" r="35"/>
+          <line x1="76" y1="72" x2="85" y2="81" />
+          <text opacity="0.6" x="85" y="92">VIEW</text>
+        </g>
+      </svg>
+      <svg class="diagram new-api" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+        <circle class="api" cx="50" cy="50" r="20"/>
+        <circle class="api api-2" cx="50" cy="50" r="25"/>
+        <g class="text">
+          <circle fill="none" cx="50" cy="50" r="35"/>
+          <line x1="85" y1="50" x2="98" y2="50" />
+          <text opacity="0.6" x="95" y="56">API</text>
+        </g>
+      </svg>
+      <svg class="diagram new-data" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+        <circle class="data" cx="50" cy="50" r="25"/>
+        <g class="text">
+          <circle fill="none" cx="50" cy="50" r="35"/>
+          <line x1="73" y1="24" x2="80" y2="17" />
+          <text opacity="0.6" x="80" y="17">DATA</text>
+        </g>
+      </svg>
+
     </section>
   </div>
   <script src="index.js"></script>

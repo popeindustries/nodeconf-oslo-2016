@@ -575,13 +575,87 @@ section.hide {
   opacity: 0;
 }
 #architecture .diagram {
-  display: none;
+  bottom: 50%;
+  font-weight: 400;
+  left: 48%;
+  opacity: 0;
+  position: absolute;
+  transform: scale(2.5);
+  transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
+}
+#architecture .diagram .api {
+  fill: #dc7e0a;
+}
+#architecture .diagram .data {
+  fill: #f3da5e;
+}
+#architecture .diagram .view {
+  fill: #2c8190;
+}
+#architecture .diagram .text {
+  fill: #3b4e64;
+  stroke: #3b4e64;
+}
+#architecture .diagram .text circle,
+#architecture .diagram .text line {
+  stroke-dasharray: 2 2;
+  opacity: 0.4;
+}
+#architecture .diagram .text text {
+  stroke: none;
+}
+#architecture .diagram.old {
+  transform: translateY(200%) scale(0.5);
+}
+#architecture .diagram.old .text {
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+#architecture .diagram.new-api .api-2 {
+  opacity: 0;
+}
+#architecture .diagram.new-view .ring {
+  opacity: 0;
 }
 #architecture.show {
   opacity: 1;
 }
-#architecture.step-1 .diagram {
-  display: block;
+#architecture.step-1 .diagram.old {
+  opacity: 1;
+  transform: translateY(0) scale(2.5);
+}
+#architecture.step-2 .diagram.old .text {
+  opacity: 1;
+}
+#architecture.step-3 .diagram.old {
+  opacity: 0.5;
+  transform: translate(-600%, 0) scale(2.5);
+}
+#architecture.step-4 .diagram.new-data {
+  opacity: 1;
+}
+#architecture.step-5 .diagram.new-data {
+  transform: translate(0, -250%) scale(2.5);
+}
+#architecture.step-5 .diagram.new-api,
+#architecture.step-5 .diagram.new-view {
+  opacity: 1;
+  transform: translate(150%, -25%) scale(2.5);
+}
+#architecture.step-6 .diagram.new-data {
+  transform: translate(-50%, -275%) scale(2.5);
+}
+#architecture.step-6 .diagram.new-api {
+  transform: translate(200%, -150%) scale(2.5);
+}
+#architecture.step-6 .diagram.new-api .api-2 {
+  opacity: 1;
+}
+#architecture.step-6 .diagram.new-view {
+  transform: translate(0, 0) scale(2.5);
+}
+#architecture.step-6 .diagram.new-view .ring {
+  opacity: 0.4;
 }
 #architecture.hide {
   opacity: 0;

@@ -39,13 +39,13 @@ You might be wondering where all these people come from if there are only 5 mill
   - and not responsive to screen size at all
 
 ### architecture
-3 years ago, the powers that be decided Yr needed a better mobile web experience, and that the most future-proof approach would be to (eventually) move all traffic to a single, responsive site
+In 2013, it was decided that Yr needed a better mobile web experience, and that the most future-proof approach would be to (eventually) move all traffic to a single, responsive site
 
-[STEP] One of the biggest obstacles in our way was a classic, monolithic codebase, so instead of updating things piece by piece... 
+[STEP] One of the biggest obstacles in our way was the classic, monolithic application, so instead of trying to update things piece by piece... 
 
 [STEP] ...we decided to start from scratch
 
-This was a really satisfying way to start things off, but it was probably a mistake, because we were soon going to have 2 different systems to take care of
+This was a really satisfying way to start things off, but it was probably a mistake, because soon we were taking care of 2 different systems
 
 
 

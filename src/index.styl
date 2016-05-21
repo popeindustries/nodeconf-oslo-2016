@@ -518,14 +518,104 @@ section {
   background-size: cover;
   opacity: 0;
   .diagram {
-    display: none;
+    bottom: 50%;
+    font-weight: 400;
+    left: 48%;
+    opacity: 0;
+    position: absolute;
+    transform: scale(2.5);
+    transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+    .api {
+      fill: #DC7E0A;
+    }
+    .data {
+      fill: #F3DA5E;
+    }
+    .view {
+      fill: #2C8190;
+    }
+    .text {
+      fill: #3B4E64;
+      stroke: #3B4E64;
+      circle,
+      line {
+        stroke-dasharray: 2 2;
+        opacity: 0.4
+      }
+      text {
+        stroke: none;
+      }
+    }
+  }
+  .diagram.old {
+    transform: translateY(200%) scale(0.5);
+    .text {
+      opacity: 0;
+      transition: opacity TRANSITION_DURATION_SHORT linear;
+    }
+  }
+  .diagram.new-api {
+    .api-2 {
+      opacity: 0;
+    }
+  }
+  .diagram.new-view {
+    .ring {
+      opacity: 0;
+    }
   }
   &.show {
     opacity: 1;
   }
   &.step-1 {
-    .diagram {
-      display: block;
+    .diagram.old {
+      opacity: 1;
+      transform: translateY(0) scale(2.5);
+    }
+  }
+  &.step-2 {
+    .diagram.old {
+      .text {
+        opacity: 1;
+      }
+    }
+  }
+  &.step-3 {
+    .diagram.old {
+      opacity: 0.5;
+      transform: translate(-600%, 0) scale(2.5);
+    }
+  }
+  &.step-4 {
+    .diagram.new-data {
+      opacity: 1;
+    }
+  }
+  &.step-5 {
+    .diagram.new-data {
+      transform: translate(0, -250%) scale(2.5);
+    }
+    .diagram.new-api,
+    .diagram.new-view {
+      opacity: 1;
+      transform: translate(150%, -25%) scale(2.5);
+    }
+  }
+  &.step-6 {
+    .diagram.new-data {
+      transform: translate(-50%, -275%) scale(2.5);
+    }
+    .diagram.new-api {
+      transform: translate(200%, -150%) scale(2.5);
+      .api-2 {
+        opacity: 1;
+      }
+    }
+    .diagram.new-view {
+      transform: translate(0, 0) scale(2.5);
+      .ring {
+        opacity: 0.4;
+      }
     }
   }
   &.hide {
