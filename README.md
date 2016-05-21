@@ -1,29 +1,66 @@
-- title
-- history
-  - partners
-  - open data
-  - stats
-    - ~60% mobile (web/native)
-- geography 
-  - map
-  - big in Japan? big in North Korea
-- mobile
-  - products (www./m./apps)
-  - divert small screens to m., everything else to www.
-  - n95/iPhone
-  - www. (not responsive)
-- plan
-  - www. (responsive)
-  - 11,996 devices
-  - 641 different screen resolutions
-  - native apps (if you're into that kind of thing)
-- architecture
+### title
+Hi, my name is Alex, and I'm here to tell you a story about a little weather service called 'Yr'
+
+### history
+[STEP] Yr is a collaboration between Norway's state broadcaster, NRK, (where I work) and it's Meteorological Institute, known as Met (because 'meteorological' is *really* hard to say)
+  
+Although NRK and Met have collaborated to deliver weather reports to Norwegians since forever, first via radio, then TV, in 2007 they released yr.no on the internets
+
+[STEP] The website quickly became one of the most used in Norway...
+
+[STEP] ...and last summer we had 9 million (unique) visitors per week...
+
+[STEP] ...of which approximately 60% used a mobile device (evenly split between web and native apps)
+
+### geography 
+You might be wondering where all these people come from if there are only 5 million people in Norway...
+
+[STEP] ...and the answer to that would be everywhere expect, apparently, Western Sahara
+
+[STEP] Norway accounts for a little under 50% of traffic, with most of the remaining top 10 coming from northern Europe. Strangely, we are big with South African farmers, and though we are *not* so big in Japan...
+
+[STEP] ...we did record 31 sessions from North Korea, so maybe that counts as big in North Korea
+
+### mobile
+[STEP] In 2007, if you wipped out your top-of-the-line Nokia N95, Yr would have looked something like this
+
+[STEP] Unfortunately, in 2015, if you wipped out your top-of-the-line iPhone 6, Yr would still have looked something like this...
+
+[STEP] ...though with a little bit of work, you could opt for the desktop version instead
+
+[STEP] The mobile version had a lot going for it:
+  - it was light on bandwidth
+  - it was very simple, so it worked well on different sized screens
+  - but it was also light on features
+
+[STEP] The desktop version, on the other hand
+  - is heavy on features and content
+  - but also heavy on bandwidth
+  - and not responsive to screen size at all
+
+### architecture
+3 years ago, the powers that be decided Yr needed a better mobile web experience, and that the most future-proof approach would be to (eventually) move all traffic to a single, responsive site
+
+[STEP] One of the biggest obstacles in our way was a classic, monolithic codebase, so instead of updating things piece by piece... 
+
+[STEP] ...we decided to start from scratch
+
+This was a really satisfying way to start things off, but it was probably a mistake, because we were soon going to have 2 different systems to take care of
+
+
+
+
   - classic monolith
   - TFS -> GIT
   - break into component parts
   - OOPS! UI render split between platforms
   - Node/universal .js (summer 2014 prototype)
   - OOPS! environments out of sync
+- plan
+  - www. (responsive)
+  - 11,996 devices
+  - 641 different screen resolutions
+  - native apps (if you're into that kind of thing)
 - universal
   - SSR?
     - robust/accessible

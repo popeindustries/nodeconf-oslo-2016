@@ -267,6 +267,7 @@ section.hide {
 #history .logo--yr,
 #history .partner-logos,
 #history .stats,
+#history .launch-date,
 #history .max-users,
 #history .mobile-users {
   position: absolute;
@@ -319,9 +320,24 @@ section.hide {
   stroke: #0094c1;
   visibility: hidden;
 }
+#history .launch-date,
 #history .max-users,
 #history .mobile-users {
   opacity: 0;
+}
+#history .launch-date {
+  right: 1610px;
+  bottom: 150px;
+}
+#history .launch-date::after {
+  content: '';
+  background-color: #004a60;
+  display: block;
+  height: 200px;
+  left: 50px;
+  top: 100%;
+  position: absolute;
+  width: 2px;
 }
 #history .max-users {
   right: 240px;
@@ -356,17 +372,20 @@ section.hide {
   visibility: visible;
   transform: scaleY(1);
 }
-#history.step-2 .max-users {
+#history.step-2 .launch-date {
   opacity: 1;
 }
-#history.step-3 .stats {
+#history.step-3 .max-users {
+  opacity: 1;
+}
+#history.step-4 .stats {
   fill: #aeecff;
   stroke: #5ed9ff;
 }
-#history.step-3 .stats .mobile {
+#history.step-4 .stats .mobile {
   visibility: visible;
 }
-#history.step-3 .mobile-users {
+#history.step-4 .mobile-users {
   opacity: 1;
 }
 #history.hide .logo--yr {
@@ -379,6 +398,7 @@ section.hide {
 #history.hide .stats .mobile {
   visibility: hidden;
 }
+#history.hide .launch-date,
 #history.hide .max-users,
 #history.hide .mobile-users {
   opacity: 0;
@@ -517,20 +537,20 @@ section.hide {
   transform: rotateY(-180deg);
 }
 #mobile.step-2 .m {
-  opacity: 1;
-}
-#mobile.step-3 .m {
   transform: translateX(-300%);
 }
-#mobile.step-3 .n95 {
+#mobile.step-2 .n95 {
   transform: translateX(-50%) rotateY(-180deg);
 }
-#mobile.step-3 .iphone {
+#mobile.step-2 .iphone {
   opacity: 1;
   transform: translateX(50%);
 }
-#mobile.step-4 .iphone {
+#mobile.step-3 .iphone {
   transform: translateX(50%) rotateY(180deg);
+}
+#mobile.step-4 .m {
+  opacity: 1;
 }
 #mobile.step-5 .www {
   opacity: 1;

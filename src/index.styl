@@ -173,6 +173,7 @@ section {
   .logo--yr,
   .partner-logos,
   .stats,
+  .launch-date,
   .max-users,
   .mobile-users {
     position: absolute;
@@ -225,9 +226,24 @@ section {
       visibility: hidden;
     }
   }
+  .launch-date,
   .max-users,
   .mobile-users {
     opacity: 0;
+  }
+  .launch-date {
+    right: 1610px;
+    bottom: 150px;
+    &::after {
+      content: '';
+      background-color: DARK_BLUE;
+      display: block;
+      height: 200px;
+      left: 50px;
+      top: 100%;
+      position: absolute;
+      width: 2px;
+    }
   }
   .max-users {
     right: 240px;
@@ -265,11 +281,16 @@ section {
       visibility: visible;
       transform: scaleY(1);
     }
-    .max-users {
+    .launch-date {
       opacity: 1;
     }
   }
   &.step-3 {
+    .max-users {
+      opacity: 1;
+    }
+  }
+  &.step-4 {
     .stats {
       fill: lighten(YR_BLUE, 70%);
       stroke: lighten(YR_BLUE, 40%);
@@ -292,6 +313,7 @@ section {
         visibility: hidden;
       }
     }
+    .launch-date,
     .max-users,
     .mobile-users {
       opacity: 0;
@@ -448,11 +470,6 @@ section {
   }
   &.step-2 {
     .m {
-      opacity: 1;
-    }
-  }
-  &.step-3 {
-    .m {
       transform: translateX(-300%);
     }
     .n95 {
@@ -463,9 +480,14 @@ section {
       transform: translateX(50%);
     }
   }
-  &.step-4 {
+  &.step-3 {
     .iphone {
       transform: translateX(50%) rotateY(180deg);
+    }
+  }
+  &.step-4 {
+    .m {
+      opacity: 1;
     }
   }
   &.step-5 {
