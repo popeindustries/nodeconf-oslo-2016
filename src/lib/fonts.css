@@ -29,3 +29,11 @@
   font-weight: bold;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Hack';
+  src: url('src/fonts/Hack-Regular.woff2') format('woff2'),
+    url('src/fonts/Hack-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

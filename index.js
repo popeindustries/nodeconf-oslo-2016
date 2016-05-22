@@ -245,6 +245,7 @@ _m_['src/index.js']=(function(module,exports){
   document.addEventListener('keyup', onKeyDown, false);
   window.addEventListener('popstate', onPopState, false);
   window.history.replaceState({}, document.title, window.location.pathname);
+  hljs.initHighlightingOnLoad();
   
   changeSlide(getUrlSlide());
 

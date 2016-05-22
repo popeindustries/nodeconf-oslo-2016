@@ -24,7 +24,7 @@ You might be wondering where all these people come from if there are only 5 mill
 ### mobile
 [STEP] In 2007, if you wipped out your top-of-the-line Nokia N95, Yr would have looked something like this
 
-[STEP] Unfortunately, in 2015, if you wipped out your top-of-the-line iPhone 6, Yr would still have looked something like this...
+[STEP] Unfortunately, in 2012, if you wipped out your top-of-the-line iPhone, Yr would still have looked something like this...
 
 [STEP] ...though with a little bit of work, you could opt for the desktop version instead
 
@@ -38,37 +38,66 @@ You might be wondering where all these people come from if there are only 5 mill
   - but also heavy on bandwidth
   - and not responsive to screen size at all
 
+Although mobile represented only 1/3 of traffic at that time, it was obvious that Yr needed a better mobile web experience
+
+The plan going forward was to make Yr "responsive", starting with a mobile site optimized for the devices of the day, eventually growing to replace the traditional "desktop" version
+
 ### architecture
-In 2013, it was decided that Yr needed a better mobile web experience, and that the most future-proof approach would be to (eventually) move all traffic to a single, responsive site
+In 2013, I joined the team as a front-end developer and designer in order to help build this responsive vision of the future
 
-[STEP] One of the biggest obstacles in our way was the classic, monolithic application, so instead of trying to update things piece by piece... 
+At that time, the team was 3 developers strong, and the application looked something like this...
 
-[STEP] ...we decided to start from scratch
+[STEP] ...a giant blob of data lying under a layer of XML, with several view render layers handling requests for mobile pages, desktop pages, app embedded views, svgs, pdfs, and more!
 
-This was a really satisfying way to start things off, but it was probably a mistake, because soon we were taking care of 2 different systems
+It was a (largely) reliable system that had proven itself over several years...
+
+[STEP] ...but it was also very scary to update or change!
+  - had very few tests of any kind (email-driven-development: users would email error reports and regressions)
+  - 2 week delay to verify releases
+
+[STEP] Naturally, in our eagerness to "do things right", we decided to start from scratch...
+
+[STEP] ...so the first thing we did was pull out all the place name data into it's own service. This represented some 80% of the existing code base, and was where we made our first serious mistake: it was too difficult to replace the existing implementation in our monolith, so both systems were destined to drift out of sync (though we didn't realize it at the time)
+
+[STEP] The next step was to build a REST API and new view renderer for the markup I was designing
+
+After spending some time with a workflow that consisted of me sending static markup changes to my colleague to implement, it became clear this just wasn't going work...
+
+[STEP] ...so after a lot of prodding, and a skunkworks prototype, we split the API and view renderer into separate projects, and the front-end department became responsible for the render stack
+
+### universal
+Since late 2014 we have been doing the whole thing in JavaScript with Node.js. At that time, it wouldn't have been totally crazy to opt for client-only rendering, but from the very beginning our goal has been to render on the server on first request, with subsequent requests handled directly by the client
+
+We feel this pattern best matches our content while providing an optimal experience for all our users
+
+Specifically, it's...
+
+[STEP] ...cacheable. Most of the forecast data we get from Met expires hourly, so the cost of that server render can be spread over many requests. It's also...
+
+[STEP] ...resilient. The browser is hostile territory, and bad things happen all the time, so being able to show content when things are blowing up is an advantage. And it's...
+
+[STEP] ...accessible. Not all devices are created equal (in 2015 we had visits from 11,996 different devices), and server-side rendering allows us to deliver content to as many of them as possible. And lastly, it's...
+
+[STEP] ...progressive. Delivering a decent baseline experience allows us to add additional features when there is support
+
+[STEP] I call this model "CRAP". It's not cool like "SPA", or "PWA", but let's be honest, most people want it. They eat crap, they watch crap, and they spend a lot of time looking at crap on their phones. But seriously, this model is so crap it's awesome
+
+### express
+As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control of your content
+
+At the time, I thought this was such a big deal, and I was so excited, that I ended up porting Express.js to run in the browser
 
 
 
 
-  - classic monolith
-  - TFS -> GIT
-  - break into component parts
-  - OOPS! UI render split between platforms
-  - Node/universal .js (summer 2014 prototype)
-  - OOPS! environments out of sync
 - plan
   - www. (responsive)
   - 11,996 devices
   - 641 different screen resolutions
   - native apps (if you're into that kind of thing)
 - universal
-  - SSR?
-    - robust/accessible
-    - caching
-    - progressive
   - context switching costs
   - simpler mental model
-  - aside: open office (Facebook)?
   - conceptually similar, but different concerns
   - many concurrent short sessions vs. single long session (updated)
   - 80% shared code (14/6/80)
