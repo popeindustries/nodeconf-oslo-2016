@@ -42,7 +42,7 @@ function changeSlide (slideIndex) {
   }
   model.slideIndex = slideIndex;
   changeStep(model.stepIndex);
-  window.history.pushState({}, '', window.location.pathname.replace(/\/\d+$/, `/${slideIndex}`));
+  window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
 
 /**

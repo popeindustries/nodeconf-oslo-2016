@@ -226,7 +226,6 @@ bg(path) {
   .stats {
     bottom: 0;
     fill: YR_BLUE;
-    height: 100%;
     right: 0;
     opacity: 1;
     stroke: darken(YR_BLUE, 20%);
@@ -512,17 +511,10 @@ bg(path) {
   }
   &.hide {
     .m,
-    .www {
-      opacity: 0;
-    }
-    .n95 {
-      transform: translateX(25%) rotateY(0deg);
-    }
+    .www,
+    .n95,
     .iphone {
-      transform: translateX(-25%) rotateY(0deg);
-      .front {
-        visibility: hidden;
-      }
+      opacity: 0;
     }
   }
 }
@@ -723,8 +715,8 @@ bg(path) {
     .point {
       color: #82665E;
       &::first-letter {
-        color: #4D3F3E;
-        font-weight: 900;
+        color: #FEF1B5;
+        font-weight: 600;
       }
     }
   }
@@ -741,17 +733,125 @@ bg(path) {
 }
 
 #express {
-  align-items: center;
   background-color: #1A0F09;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
+  .code,
+  .coverage,
+  .thought {
+    opacity: 0;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+    transform: translate(-50%, 50%);
+  }
+  .coverage,
+  .thought {
+    color: #e6db74;
+    font-size: 4vw;
+    line-height: 1;
+    font-weight: 600;
+    text-align: center;
+  }
   &.show {
     opacity: 1;
+    .app {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-1 {
+    .app {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .middleware {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-2 {
+    .middleware {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .param {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-3 {
+    .param {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .route {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-4 {
+    .route {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .runtime {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-5 {
+    .runtime {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .coverage {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-6 {
+    .coverage {
+      transform: translate(-50%, -150%);
+    }
+    .thought {
+      opacity: 1;
+    transform: translate(-50%, -25%);
+    }
   }
   &.hide {
     opacity: 0;
+    .coverage,
+    .thought {
+      opacity: 0;
+    }
+  }
+}
+
+#caveats {
+  opacity: 0;
+  transition-duration: TRANSITION_DURATION_LONG;
+  .bg {
+    bg('src/images/nodeconf-6.jpg');
+    full();
+    -webkit-filter: brightness(0);
+    filter: brightness(0);
+    transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
+    z-index: -1;
+  }
+  &.show {
+    opacity: 1;
+    .bg {
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+    }
+  }
+  &.hide {
+    opacity: 0;
+    .bg {
+      -webkit-filter: brightness(4);
+      filter: brightness(4);
+    }
   }
 }

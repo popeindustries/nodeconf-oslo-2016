@@ -154,7 +154,7 @@ _m_['src/index.js']=(function(module,exports){
     }
     model.slideIndex = slideIndex;
     changeStep(model.stepIndex);
-    window.history.pushState({}, '', window.location.pathname.replace(/\/\d+$/, '/' + slideIndex));
+    window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, '/' + slideIndex));
   }
   
   /**

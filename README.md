@@ -78,35 +78,52 @@ Specifically, it's...
 
 [STEP] ...accessible. Not all devices are created equal (in 2015 we had visits from 11,996 different devices), and server-side rendering allows us to deliver content to as many of them as possible. And lastly, it's...
 
-[STEP] ...progressive. Delivering a decent baseline experience allows us to add additional features when there is support
+[STEP] ...progressive. Delivering a decent baseline experience allows us to add additional features, and improve that experience, if a device supports it
 
-[STEP] I call this model "CRAP". It's not cool like "SPA", or "PWA", but let's be honest, most people want it. They eat crap, they watch crap, and they spend a lot of time looking at crap on their phones. But seriously, this model is so crap it's awesome
+[STEP] Basically, it's CRAP! It might not be a hip acronym like SPA, AMP, or PWA, but let's be honest, most of us love crap. We eat crap, we watch crap, and we spend a lot of time looking at crap on our phones. But seriously, this model is so CRAP it's awesome
 
 ### express
-As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control of your content
+As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control over your content
 
-At the time, I thought this was such a big deal, and I was so excited, that I ended up porting Express.js to run in the browser
+At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser (I'll just let that sync in a little...)
 
+So whether it's initializing an application...
 
+[STEP] ...or adding middleware...
 
+[STEP] ...or adding request param validation...
 
+[STEP] ...or handling a request...
+
+...it works the same on the server as it does in the browser
+
+The initial trigger is different, of course (the HTTP pipeline in Node, and the History API in the browser), but the logic abstractions are the same: get an url, route it to a logic handler, munge some data, and render
+
+[STEP] Sometimes we do have to do a little of this...
+
+[STEP]...but overall we are able to share 80% of our code between the two environments...
+
+[STEP]...and that probably leads to something like 42% less thinking
+
+That's wonderful for us as developers, but it's also CRAP for our users (remembering of course that CRAP is awesome). 
+
+By representing state as URLs, and by using anchor tags to link between sections, disabling JavaScript, or using a low end device that doesn't pass our mustard test, just works
+
+<!-- ### caveats
+Of course, it's not *all* sunsets and rainbows
+
+It may be the same language, and we can impose similar abstractions, but the server and browser environments do have different concerns
+
+[STEP] On the server, we are mostly concerned with the total number of concurrent requests we can handle while responding as quickly as possible
+
+[STEP] On the client 
+ -->
 - plan
-  - www. (responsive)
-  - 11,996 devices
   - 641 different screen resolutions
-  - native apps (if you're into that kind of thing)
 - universal
-  - context switching costs
-  - simpler mental model
-  - conceptually similar, but different concerns
   - many concurrent short sessions vs. single long session (updated)
-  - 80% shared code (14/6/80)
 - routing
-  - express(-client).js
-    - history api
-  - shared routes/param validation
-  - middleware
-  - url => state
+  - history api
 - data
   - mutable vs. immutable
 - render
