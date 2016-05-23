@@ -437,6 +437,7 @@ bg(path) {
     top: 50%;
     transform-style: preserve-3d;
     width: 500px;
+    will-change: transform, opacity;
     &.n95 {
       z-index: 1;
     }
@@ -488,6 +489,7 @@ bg(path) {
     }
     .n95 {
       transform: translateX(-50%) rotateY(-180deg);
+      transition-duration: TRANSITION_DURATION_SHORT;
     }
     .iphone {
       opacity: 1;
@@ -497,6 +499,7 @@ bg(path) {
   &.step-3 {
     .iphone {
       transform: translateX(50%) rotateY(180deg);
+      transition-duration: TRANSITION_DURATION_SHORT;
     }
   }
   &.step-4 {
@@ -510,11 +513,18 @@ bg(path) {
     }
   }
   &.hide {
+    opacity: 0;
     .m,
     .www,
     .n95,
     .iphone {
       opacity: 0;
+    }
+    .n95 {
+      transform: translateX(-5%) rotateY(-90deg);
+    }
+    .iphone {
+      transform: translateX(5%) rotateY(90deg);
     }
   }
 }
@@ -595,8 +605,8 @@ bg(path) {
   }
   &.step-1 {
     .bg {
-      -webkit-filter: blur(10px) brightness(1);
-      filter: blur(10px) brightness(1);
+      -webkit-filter: blur(5px) brightness(1);
+      filter: blur(5px) brightness(1);
     }
     .old {
       opacity: 1;
@@ -652,8 +662,8 @@ bg(path) {
   &.hide {
     opacity: 0;
     .bg {
-      -webkit-filter: blur(10px) brightness(4);
-      filter: blur(10px) brightness(4);
+      -webkit-filter: blur(5px) brightness(4);
+      filter: blur(5px) brightness(4);
     }
   }
 }
@@ -717,6 +727,7 @@ bg(path) {
       &::first-letter {
         color: #FEF1B5;
         font-weight: 600;
+        padding-right: 1vw;
       }
     }
   }
@@ -828,6 +839,10 @@ bg(path) {
     }
   }
 }
+
+
+
+
 
 #caveats {
   opacity: 0;

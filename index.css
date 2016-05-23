@@ -504,6 +504,7 @@ pre code {
   top: 50%;
   transform-style: preserve-3d;
   width: 500px;
+  will-change: transform, opacity;
 }
 #mobile .phone.n95 {
   z-index: 1;
@@ -552,6 +553,7 @@ pre code {
 }
 #mobile.step-2 .n95 {
   transform: translateX(-50%) rotateY(-180deg);
+  transition-duration: 200ms;
 }
 #mobile.step-2 .iphone {
   opacity: 1;
@@ -559,6 +561,7 @@ pre code {
 }
 #mobile.step-3 .iphone {
   transform: translateX(50%) rotateY(180deg);
+  transition-duration: 200ms;
 }
 #mobile.step-4 .m {
   opacity: 1;
@@ -566,11 +569,20 @@ pre code {
 #mobile.step-5 .www {
   opacity: 1;
 }
+#mobile.hide {
+  opacity: 0;
+}
 #mobile.hide .m,
 #mobile.hide .www,
 #mobile.hide .n95,
 #mobile.hide .iphone {
   opacity: 0;
+}
+#mobile.hide .n95 {
+  transform: translateX(-5%) rotateY(-90deg);
+}
+#mobile.hide .iphone {
+  transform: translateX(5%) rotateY(90deg);
 }
 #architecture {
   font-weight: 400;
@@ -654,8 +666,8 @@ pre code {
   filter: blur(0) brightness(1);
 }
 #architecture.step-1 .bg {
-  -webkit-filter: blur(10px) brightness(1);
-  filter: blur(10px) brightness(1);
+  -webkit-filter: blur(5px) brightness(1);
+  filter: blur(5px) brightness(1);
 }
 #architecture.step-1 .old {
   opacity: 1;
@@ -701,8 +713,8 @@ pre code {
   opacity: 0;
 }
 #architecture.hide .bg {
-  -webkit-filter: blur(10px) brightness(4);
-  filter: blur(10px) brightness(4);
+  -webkit-filter: blur(5px) brightness(4);
+  filter: blur(5px) brightness(4);
 }
 #universal {
   opacity: 0;
@@ -766,6 +778,7 @@ pre code {
 #universal.step-5 .point::first-letter {
   color: #fef1b5;
   font-weight: 600;
+  padding-right: 1vw;
 }
 #universal.hide {
   opacity: 0;
