@@ -47,7 +47,7 @@ In 2013, I joined the team as a front-end developer and designer in order to hel
 
 At that time, the team was 3 developers strong, and the application looked something like this...
 
-[STEP] ...a giant blob of data lying under a layer of XML, with several view render layers handling requests for mobile pages, desktop pages, app embedded views, svgs, pdfs, and more!
+[STEP] ...a giant blob of data lying under a layer of XML, with several view render layers handling requests for mobile pages, desktop pages, app embedded views, svgs, pdfs, and probably a lot more!
 
 It was a (largely) reliable system that had proven itself over several years...
 
@@ -85,7 +85,7 @@ Specifically, it's...
 ### express
 As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control over your content
 
-At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser (I'll just let that sync in a little...)
+At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser
 
 So whether it's initializing an application...
 
@@ -95,19 +95,25 @@ So whether it's initializing an application...
 
 [STEP] ...or handling a request...
 
+[STEP] Thunder
 ...it works the same on the server as it does in the browser
 
 The initial trigger is different, of course (the HTTP pipeline in Node, and the History API in the browser), but the logic abstractions are the same: get an url, route it to a logic handler, munge some data, and render
 
 [STEP] Sometimes we do have to do a little of this...
 
-[STEP]...but overall we are able to share 80% of our code between the two environments...
-
-[STEP]...and that probably leads to something like 42% less thinking
+[STEP]...but overall we are able to share 80% of our code between the two environments
 
 That's wonderful for us as developers, but it's also CRAP for our users (remembering of course that CRAP is awesome). 
 
 By representing state as URLs, and by using anchor tags to link between sections, disabling JavaScript, or using a low end device that doesn't pass our mustard test, just works
+
+
+
+
+
+
+
 
 <!-- ### caveats
 Of course, it's not *all* sunsets and rainbows
@@ -122,8 +128,6 @@ It may be the same language, and we can impose similar abstractions, but the ser
   - 641 different screen resolutions
 - universal
   - many concurrent short sessions vs. single long session (updated)
-- routing
-  - history api
 - data
   - mutable vs. immutable
 - render
