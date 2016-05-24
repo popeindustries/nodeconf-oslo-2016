@@ -1074,41 +1074,41 @@
       <div class="bg"></div>
       <pre class="code app">
         <code class="js">
-const app = express();
+          const app = express();
         </code>
       </pre>
       <pre class="code middleware">
         <code class="js">
-app.use(function (req, res, next) {
-  log('request from: ' + req.originalUrl);
-  next();
-});
+          app.use(function (req, res, next) {
+            log('request from: ' + req.originalUrl);
+            next();
+          });
         </code>
       </pre>
       <pre class="code param">
         <code class="js">
-app.param('localeCode', function (req, res, next, localeCode) {
-  if (valid(localeCode)) return next();
-  return next(Error('invalid locale code'));
-});
+          app.param('localeCode', function (req, res, next, localeCode) {
+            if (valid(localeCode)) return next();
+            return next(Error('invalid locale code'));
+          });
         </code>
       </pre>
       <pre class="code route">
         <code class="js">
-const pattern = '/:localeCode({localeCode})/:page({page})';
+          const pattern = '/:localeCode({localeCode})/:page({page})';
 
-app.get(pattern, function (req, res, next) {
-  const localeCode = req.params.localeCode;
-  const query = req.query;
-  //...
-});
+          app.get(pattern, function (req, res, next) {
+            const localeCode = req.params.localeCode;
+            const query = req.query;
+            //...
+          });
         </code>
       </pre>
       <pre class="code runtime">
         <code class="js">
-const thing = runtime.isServer
-  ? require('thing-server.js')
-  : require('thing-client.js');
+          const thing = runtime.isServer
+            ? require('thing-server.js')
+            : require('thing-client.js');
         </code>
       </pre>
       <h2 class="coverage">80% shared code</h2>

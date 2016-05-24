@@ -112,6 +112,8 @@ _m_['src/index.js']=(function(module,exports){
 
   'use strict';
   
+  var TOUCH_THRESHOLD = 100;
+  
   var elSlides = document.querySelector('.slides');
   var isProduction = undefined == 'production';
   var isNotes = window.name == 'notes';
@@ -276,6 +278,23 @@ _m_['src/index.js']=(function(module,exports){
   }
   
   /**
+   * Handle touch
+   * @param {Event} evt
+   */
+  function onTouchStart(evt) {
+    evt.preventDefault();
+    var start = evt.layerX;
+    var _cb = void 0;
+  
+    document.documentElement.addEventListener('touchend', _cb = function cb(evt) {
+      document.documentElement.removeEventListener('touchend', _cb, false);
+      var diff = start - evt.layerX;
+  
+      if (Math.abs(diff) >= TOUCH_THRESHOLD) diff > 0 ? next() : prev();
+    }, false);
+  }
+  
+  /**
    * Handle pop state event
    * @param {Event} evt
    */
@@ -299,7 +318,8 @@ _m_['src/index.js']=(function(module,exports){
   }
   
   if (!isNotes) {
-    document.addEventListener('keyup', onKeyDown, false);
+    document.addEventListener('keyup', onKeyDown, false, { passive: true });
+    document.documentElement.addEventListener('touchstart', onTouchStart, false);
     window.addEventListener('popstate', onPopState, false);
     window.history.replaceState({}, document.title, window.location.pathname);
   

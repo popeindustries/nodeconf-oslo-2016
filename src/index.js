@@ -1,5 +1,7 @@
 'use strict';
 
+const TOUCH_THRESHOLD = 100;
+
 const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
 const isNotes = window.name == 'notes';
@@ -174,6 +176,23 @@ function onKeyDown (evt) {
 }
 
 /**
+ * Handle touch
+ * @param {Event} evt
+ */
+function onTouchStart (evt) {
+  evt.preventDefault();
+  const start = evt.layerX;
+  let cb;
+
+  document.documentElement.addEventListener('touchend', (cb = function (evt) {
+    document.documentElement.removeEventListener('touchend', cb, false);
+    const diff = start - evt.layerX;
+
+    if (Math.abs(diff) >= TOUCH_THRESHOLD) (diff > 0) ? next() : prev();
+  }), false);
+}
+
+/**
  * Handle pop state event
  * @param {Event} evt
  */
@@ -197,7 +216,8 @@ function onTransitionEnd (evt) {
 }
 
 if (!isNotes) {
-  document.addEventListener('keyup', onKeyDown, false);
+  document.addEventListener('keyup', onKeyDown, false, { passive: true });
+  document.documentElement.addEventListener('touchstart', onTouchStart, false);
   window.addEventListener('popstate', onPopState, false);
   window.history.replaceState({}, document.title, window.location.pathname);
 
