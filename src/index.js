@@ -30,10 +30,15 @@ function parse (model) {
     notes.push(Array.prototype.slice.call(element.querySelectorAll('.note')));
     return notes;
   }, []);
-  model.steps = model.slides.reduce((steps, element, idx) => {
-    steps.push(Array.prototype.slice.call(element.querySelectorAll('.step')).length);
-    return steps;
-  }, []);
+  model.steps = model.notes.map((group) => {
+    let step = 0;
+
+    return group.reduce((steps, element, idx) => {
+      if (element.classList.contains('step')) step++;
+      steps.push(step);
+      return steps;
+    }, [])
+  });
 
   return model;
 }
@@ -57,7 +62,7 @@ function changeSlide (slideIndex, back) {
     current.classList.add('hide');
     current.addEventListener('transitionend', onTransitionEnd, false);
   }
-  changeNote(model.slideIndex, slideIndex, noteIndex, back);
+  changeNote(model.slideIndex, slideIndex, noteIndex);
   model.slideIndex = slideIndex;
   window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
@@ -67,17 +72,14 @@ function changeSlide (slideIndex, back) {
  * @param {Number} currentSlideIndex
  * @param {Number} nextSlideIndex
  * @param {Number} noteIndex
- * @param {Boolean} back
  */
-function changeNote (currentSlideIndex, nextSlideIndex, noteIndex, back) {
+function changeNote (currentSlideIndex, nextSlideIndex, noteIndex) {
   const current = model.notes[currentSlideIndex][model.noteIndex];
   const next = model.notes[nextSlideIndex][noteIndex];
-  const isStep = /step/.test(next.getAttribute('class'));
-  const wasStep = back && /step/.test(current.getAttribute('class'));
 
   if (current) current.style.opacity = 0;
   if (next) next.style.opacity = 1;
-  if (isStep || wasStep) changeStep(nextSlideIndex, back ? model.stepIndex - 1 : model.stepIndex + 1);
+  changeStep(nextSlideIndex, model.steps[nextSlideIndex][noteIndex]);
   if (model.notesWindow) model.notesWindow.change(currentSlideIndex, nextSlideIndex, model.noteIndex, noteIndex);
   model.noteIndex = noteIndex;
 }
@@ -133,7 +135,7 @@ function next () {
  */
 function prev () {
   if (model.noteIndex - 1 >= 0) {
-    changeNote(model.slideIndex, model.slideIndex, model.noteIndex - 1, true);
+    changeNote(model.slideIndex, model.slideIndex, model.noteIndex - 1);
   } else if (model.slideIndex - 1 >= 0) {
     changeSlide(model.slideIndex - 1, true);
   } else {
