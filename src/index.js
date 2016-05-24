@@ -4,15 +4,14 @@ const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
 const isNotes = window.name == 'notes';
 const startingSlide = isProduction ? 0 : getUrlSlide();
-let startingNote = 0;
 let model = window.model = parse({
   notes: [],
   noteIndex: 0,
   notesWindow: null,
   slides: [],
   slideIndex: 0,
-  stepIndex: 0,
-  stepTotal: 0
+  steps: [],
+  stepIndex: 0
 });
 
 /**
@@ -24,34 +23,29 @@ function parse (model) {
   model.slides = Array.prototype.slice.call(elSlides.children).filter((element) => {
     return element.tagName == 'HEADER' || element.tagName == 'SECTION';
   });
-  if (isNotes) {
-    model.notes = model.slides.reduce((notes, element, idx) => {
-      if (startingSlide == idx) startingNote = notes.length;
-      return notes.concat(Array.prototype.slice.call(element.querySelectorAll('.note')));
-    }, []);
-  }
+  model.notes = model.slides.reduce((notes, element, idx) => {
+    notes.push(Array.prototype.slice.call(element.querySelectorAll('.note')));
+    return notes;
+  }, []);
+  model.steps = model.slides.reduce((steps, element, idx) => {
+    steps.push(Array.prototype.slice.call(element.querySelectorAll('.step')).length);
+    return steps;
+  }, []);
 
   return model;
 }
 
 /**
- * Open notes window
- */
-function openNotes () {
-  if (!isProduction) model.notesWindow = window.open(window.location.href, 'notes');
-}
-
-/**
  * Display slide at 'slideIndex'
- * @param {Nunber} slideIndex
+ * @param {Number} slideIndex
+ * @param {Boolean} back
  */
-function changeSlide (slideIndex) {
-  const back = slideIndex < model.slideIndex;
+function changeSlide (slideIndex, back) {
   const current = model.slides[model.slideIndex];
   const next = model.slides[slideIndex];
+  const noteIndex = back ? model.notes[slideIndex].length - 1 : 0;
 
-  model.stepTotal = parseInt(next.dataset.steps, 10) || 0;
-  model.stepIndex = back ? model.stepTotal : 0;
+  model.stepIndex = back ? model.steps[slideIndex] + 1 : 0;
 
   next.classList.add('show');
   next.classList.remove('hide');
@@ -60,17 +54,38 @@ function changeSlide (slideIndex) {
     current.classList.add('hide');
     current.addEventListener('transitionend', onTransitionEnd, false);
   }
+  changeNote(model.slideIndex, slideIndex, noteIndex, back);
   model.slideIndex = slideIndex;
-  changeStep(model.stepIndex);
   window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
 
 /**
+ * Display note at 'noteIndex'
+ * @param {Number} currentSlideIndex
+ * @param {Number} nextSlideIndex
+ * @param {Number} noteIndex
+ * @param {Boolean} back
+ */
+function changeNote (currentSlideIndex, nextSlideIndex, noteIndex, back) {
+  const current = model.notes[currentSlideIndex][model.noteIndex];
+  const next = model.notes[nextSlideIndex][noteIndex];
+  const isStep = /step/.test(next.getAttribute('class'));
+  const wasStep = back && /step/.test(current.getAttribute('class'));
+
+  if (current) current.style.opacity = 0;
+  if (next) next.style.opacity = 1;
+  if (isStep || wasStep) changeStep(nextSlideIndex, back ? model.stepIndex - 1 : model.stepIndex + 1);
+  if (model.notesWindow) model.notesWindow.change(currentSlideIndex, nextSlideIndex, model.noteIndex, noteIndex);
+  model.noteIndex = noteIndex;
+}
+
+/**
  * Display step at 'stepIndex'
+ * @param {Number} slideIndex
  * @param {Nunber} stepIndex
  */
-function changeStep (stepIndex) {
-  const slide = model.slides[model.slideIndex];
+function changeStep (slideIndex, stepIndex) {
+  const slide = model.slides[slideIndex];
   let classStr = slide.getAttribute('class').replace(/\s?step-\d\s?/g, '');
 
   for (let i = 1; i <= stepIndex; i++) {
@@ -80,49 +95,47 @@ function changeStep (stepIndex) {
   model.stepIndex = stepIndex;
 }
 
-/**
- * Display note at 'noteIndex'
- * @param {Number} noteIndex
- */
-function changeNote (noteIndex) {
-  const current = model.notes[model.noteIndex];
-  const next = model.notes[noteIndex];
+function changeRemoteNote (currentSlideIndex, nextSlideIndex, currentNoteIndex, nextNoteIndex) {
+  const currentSlide = model.slides[currentSlideIndex];
+  const nextSlide = model.slides[nextSlideIndex];
+  const currentNote = model.notes[currentSlideIndex][currentNoteIndex];
+  const nextNote = model.notes[nextSlideIndex][nextNoteIndex];
 
-  if (current) current.style.opacity = 0;
-  if (next) next.style.opacity = 1;
-  model.noteIndex = noteIndex;
+  nextSlide.classList.add('show');
+  nextSlide.classList.remove('hide');
+  nextSlide.style.zIndex = 100 - nextSlideIndex;
+  if (currentSlide && nextSlide != currentSlide) {
+    currentSlide.classList.add('hide');
+    currentSlide.classList.remove('show');
+  }
+  if (currentNote) currentNote.style.opacity = 0;
+  if (nextNote) nextNote.style.opacity = 1;
 }
 
 /**
  * Advance to next step/slide/note
- * @returns {null}
  */
 function next () {
-  if (isNotes) return changeNote(model.noteIndex + 1);
-  if (model.stepTotal && model.stepIndex + 1 <= model.stepTotal) {
-    changeStep(model.stepIndex + 1);
+  if (model.noteIndex + 1 < model.notes[model.slideIndex].length) {
+    changeNote(model.slideIndex, model.slideIndex, model.noteIndex + 1);
   } else if (model.slideIndex + 1 < model.slides.length) {
     changeSlide(model.slideIndex + 1);
   } else {
     return;
   }
-  if (model.notesWindow) model.notesWindow.next();
 }
 
 /**
  * Advance to previous step/slide/note
- * @returns {null}
  */
 function prev () {
-  if (isNotes) return changeNote(model.noteIndex - 1);
-  if (model.stepTotal && model.stepIndex - 1 >= 0) {
-    changeStep(model.stepIndex - 1);
+  if (model.noteIndex - 1 >= 0) {
+    changeNote(model.slideIndex, model.slideIndex, model.noteIndex - 1, true);
   } else if (model.slideIndex - 1 >= 0) {
-    changeSlide(model.slideIndex - 1);
+    changeSlide(model.slideIndex - 1, true);
   } else {
     return;
   }
-  if (model.notesWindow) model.notesWindow.prev();
 }
 
 /**
@@ -158,7 +171,6 @@ function onKeyDown (evt) {
     || key === 'pageup')  {
       prev();
   }
-  if (key === 'n') openNotes();
 }
 
 /**
@@ -188,13 +200,20 @@ if (!isNotes) {
   document.addEventListener('keyup', onKeyDown, false);
   window.addEventListener('popstate', onPopState, false);
   window.history.replaceState({}, document.title, window.location.pathname);
+
   hljs.initHighlightingOnLoad();
 
-  changeSlide(startingSlide);
-} else {
-  window.next = next;
-  window.prev = prev;
-  document.documentElement.classList.add('presentation-notes');
+  if (!isProduction) {
+    document.documentElement.classList.add('dev');
+    changeSlide(startingSlide);
+  } else {
+    model.notesWindow = window.open(window.location.href, 'notes');
+    setTimeout(() => {
+      changeSlide(startingSlide);
+    }, 1000);
+  }
 
-  changeNote(startingNote);
+} else {
+  window.change = changeRemoteNote;
+  document.documentElement.classList.add('presentation-notes');
 }

@@ -22,9 +22,9 @@ You might be wondering where all these people come from if there are only 5 mill
 [STEP] ...we did record 31 sessions from North Korea, so maybe that counts as big in North Korea
 
 ### mobile
-[STEP] In 2007, if you wipped out your top-of-the-line Nokia N95, Yr would have looked something like this
+[STEP] In 2007, if you pulled out your top-of-the-line Nokia N95, Yr would have looked something like this
 
-[STEP] Unfortunately, in 2012, if you wipped out your top-of-the-line iPhone, Yr would still have looked something like this...
+[STEP] Unfortunately, in 2012, if you pulled out your top-of-the-line iPhone, Yr would still have looked something like this...
 
 [STEP] ...though with a little bit of work, you could opt for the desktop version instead
 
@@ -82,9 +82,9 @@ Specifically, it's...
 
 [STEP] Basically, it's CRAP! It might not be a hip acronym like SPA, AMP, or PWA, but let's be honest, most of us love crap. We eat crap, we watch crap, and we spend a lot of time looking at crap on our phones. But seriously, this model is so CRAP it's awesome
 
-### express
 As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control over your content
 
+### express
 At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser
 
 So whether it's initializing an application...
@@ -95,8 +95,7 @@ So whether it's initializing an application...
 
 [STEP] ...or handling a request...
 
-[STEP] Thunder
-...it works the same on the server as it does in the browser
+[STEP] Thunder ...it works the same on the server as it does in the browser
 
 The initial trigger is different, of course (the HTTP pipeline in Node, and the History API in the browser), but the logic abstractions are the same: get an url, route it to a logic handler, munge some data, and render
 

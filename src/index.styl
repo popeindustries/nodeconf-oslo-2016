@@ -115,13 +115,24 @@ pre {
     background-color: transparent !important;
   }
 }
+.slides {
+  full();
+}
 .notes {
+  background-color: white;
   color: BLACK;
   display: none;
   font-size: 3vw;
   font-weight: 400;
   text-align: left;
+  z-index: 1000;
   full();
+  .dev & {
+    background-color: rgba(255,255,255,0.8);
+    display: block;
+    font-size: 1vw;
+    top: 94vh;
+  }
   .note {
     left: 50%;
     margin: 0;
@@ -132,6 +143,10 @@ pre {
     transform: translate(-50%, -50%);
     visibility: visible;
     width: 60%;
+    .dev & {
+      margin: 0 1vw;
+      width: 99vw;
+    }
   }
 }
 
@@ -431,7 +446,7 @@ pre {
       opacity: 1;
     }
   }
-  &.step-4 {
+  &.step-3 {
     .nk-users {
       opacity: 1;
     }

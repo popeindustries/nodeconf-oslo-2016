@@ -204,17 +204,32 @@ pre code {
   overflow: hidden !important;
   background-color: transparent !important;
 }
-.notes {
-  color: #050a07;
-  display: none;
-  font-size: 3vw;
-  font-weight: 400;
-  text-align: left;
+.slides {
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+}
+.notes {
+  background-color: #fff;
+  color: #050a07;
+  display: none;
+  font-size: 3vw;
+  font-weight: 400;
+  text-align: left;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.dev .notes {
+  background-color: rgba(255,255,255,0.8);
+  display: block;
+  font-size: 1vw;
+  top: 94vh;
 }
 .notes .note {
   left: 50%;
@@ -226,6 +241,10 @@ pre code {
   transform: translate(-50%, -50%);
   visibility: visible;
   width: 60%;
+}
+.dev .notes .note {
+  margin: 0 1vw;
+  width: 99vw;
 }
 #title {
   color: #9fb26d;
@@ -507,7 +526,7 @@ pre code {
 #geography.step-2 .no-users {
   opacity: 1;
 }
-#geography.step-4 .nk-users {
+#geography.step-3 .nk-users {
   opacity: 1;
 }
 #geography.hide .map,
