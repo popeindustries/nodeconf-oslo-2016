@@ -61,7 +61,7 @@ h2 {
   font-weight: 400;
 }
 h3 {
-  font-size: 1.8vw;
+  font-size: 2vw;
   font-weight: 400;
 }
 ul {
@@ -521,7 +521,7 @@ pre {
       }
       figcaption {
         display: block;
-        font-size: 1.8vw;
+        font-size: 2.2vw;
         margin-top: 1vw;
       }
     }
@@ -593,6 +593,7 @@ pre {
 }
 
 #architecture {
+  color: #3B4E64;
   font-weight: 400;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
@@ -613,15 +614,17 @@ pre {
     }
   }
   .diagram {
-    bottom: 50%;
     height: 12vw;
     left: 50%;
     opacity: 0;
     position: absolute;
     transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+    transform: translate(-50%, -50%);
+    top: 40%;
     width: 12vw;
+    z-index: 1000;
     &.old {
-      transform: translateX(-50%) scale(0.5);
+      transform: translate(-50%, -50%) scale(0.5);
     }
     &.new-api {
       .api-2 {
@@ -633,32 +636,41 @@ pre {
         opacity: 0;
       }
     }
-    .api {
-      fill: #DC7E0A;
-    }
-    .data {
-      fill: #F3DA5E;
-    }
-    .renderer {
-      fill: #2C8190;
-    }
-    .text {
-      fill: #3B4E64;
-      stroke: #3B4E64;
-      circle,
-      line {
-        stroke-dasharray: 2 2;
-        opacity: 0.4
+    svg {
+      height: 100%;
+      width: 100%;
+      .api {
+        fill: #DC7E0A;
       }
-      text {
-        stroke: none;
+      .data {
+        fill: #F3DA5E;
+      }
+      .renderer {
+        fill: #2C8190;
+      }
+      .text {
+        fill: #3B4E64;
+        stroke: #3B4E64;
+        circle,
+        line {
+          stroke-dasharray: 2 2;
+          opacity: 0.4
+        }
+        text {
+          stroke: none;
+        }
       }
     }
   }
   .old-aside {
-    bottom: 55%;
     left: 50%;
-    transform: translateX(-175%)
+    text-align: right;
+    top: 40%;
+    transform: translate(-150%, -50%);
+    width: 20vw;
+    h3 {
+      margin: 2vw 0;
+    }
   }
   &.show {
     opacity: 1;
@@ -674,7 +686,7 @@ pre {
     }
     .old {
       opacity: 1;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
     }
   }
   &.step-2 {
@@ -685,7 +697,7 @@ pre {
   &.step-3 {
     .old {
       opacity: 0.5;
-      transform: translate(-300%, 0);
+      transform: translate(-300%, -50%);
     }
     .old-aside {
       opacity: 0;
@@ -698,26 +710,31 @@ pre {
   }
   &.step-5 {
     .new-data {
-      transform: translate(-50%, -100%);
+      transform: translate(-50%, -150%);
     }
     .new-api,
     .new-renderer {
       opacity: 1;
-      transform: translate(50%, -25%);
+      transform: translate(30%, -50%);
     }
   }
   &.step-6 {
     .new-api {
-      transform: translate(50%, -50%);
+      transform: translate(50%, -75%);
       .api-2 {
         opacity: 1;
       }
     }
     .new-renderer {
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -25%);
       .ring {
         opacity: 0.4;
       }
+    }
+  }
+  &.step-7 {
+    .old {
+      opacity: 1;
     }
   }
   &.hide {

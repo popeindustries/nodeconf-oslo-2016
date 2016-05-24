@@ -988,58 +988,63 @@
     <section id="architecture">
       <div class="bg"></div>
       <div class="diagram-group">
-        <svg class="diagram old" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
-          <circle class="renderer" opacity="0.5" cx="50" cy="50" r="50"/>
-          <circle class="renderer" opacity="0.7" cx="50" cy="50" r="45"/>
-          <circle class="renderer" cx="50" cy="50" r="40"/>
-          <circle class="api" cx="50" cy="50" r="35"/>
-          <circle class="data" cx="50" cy="50" r="30"/>
-          <g class="text">
-            <circle fill="none" cx="50" cy="50" r="60"/>
-            <line x1="98" y1="12" x2="105" y2="5" />
-            <line x1="110" y1="47" x2="120" y2="47" />
-            <line x1="103" y1="82" x2="110" y2="89" />
-            <text opacity="0.6" x="105" y="5">DATA</text>
-            <text opacity="0.6" x="120" y="52">API</text>
-            <text opacity="0.6" x="110" y="100">RENDERERS</text>
-          </g>
-        </svg>
+        <div class="diagram old">
+          <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+            <circle class="renderer" opacity="0.5" cx="50" cy="50" r="50"/>
+            <circle class="renderer" opacity="0.7" cx="50" cy="50" r="45"/>
+            <circle class="renderer" cx="50" cy="50" r="40"/>
+            <circle class="api" cx="50" cy="50" r="35"/>
+            <circle class="data" cx="50" cy="50" r="30"/>
+            <g class="text">
+              <circle fill="none" cx="50" cy="50" r="60"/>
+              <line x1="98" y1="12" x2="105" y2="5" />
+              <line x1="110" y1="47" x2="120" y2="47" />
+              <line x1="103" y1="82" x2="110" y2="89" />
+              <text opacity="0.6" x="105" y="5">DATA</text>
+              <text opacity="0.6" x="120" y="52">API</text>
+              <text opacity="0.6" x="110" y="100">RENDERERS</text>
+            </g>
+          </svg>
+        </div>
         <aside class="old-aside">
-          <h2>scary!</h2>
-          <ul>
-            <li class="bad">few tests</li>
-            <li class="bad">2 week release delay</li>
-          </ul>
+          <h3>no tests!</h3>
+          <h3>2 week pre-release staging!</h3>
         </aside>
       </div>
-      <svg class="diagram new-renderer" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
-        <circle class="renderer" cx="50" cy="50" r="25"/>
-        <g class="text">
-          <circle class="ring" fill="none" cx="50" cy="50" r="35"/>
-          <line x1="76" y1="72" x2="85" y2="81" />
-          <text opacity="0.6" x="85" y="92">RENDERER</text>
-        </g>
-      </svg>
-      <svg class="diagram new-api" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
-        <circle class="api" cx="50" cy="50" r="20"/>
-        <circle class="api api-2" cx="50" cy="50" r="25"/>
-        <g class="text">
-          <circle fill="none" cx="50" cy="50" r="35"/>
-          <line x1="85" y1="50" x2="98" y2="50" />
-          <text opacity="0.6" x="95" y="56">API</text>
-        </g>
-      </svg>
-      <svg class="diagram new-data" width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
-        <circle class="data" cx="50" cy="50" r="25"/>
-        <g class="text">
-          <circle fill="none" cx="50" cy="50" r="35"/>
-          <line x1="73" y1="24" x2="80" y2="17" />
-          <text opacity="0.6" x="80" y="17">DATA</text>
-        </g>
-      </svg>
+      <div class="diagram new-renderer">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <circle class="renderer" cx="50" cy="50" r="25"/>
+          <g class="text">
+            <circle class="ring" fill="none" cx="50" cy="50" r="35"/>
+            <line x1="76" y1="72" x2="85" y2="81" />
+            <text opacity="0.6" x="85" y="92">RENDERER</text>
+          </g>
+        </svg>
+      </div>
+      <div class="diagram new-api">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <circle class="api" cx="50" cy="50" r="20"/>
+          <circle class="api api-2" cx="50" cy="50" r="25"/>
+          <g class="text">
+            <circle fill="none" cx="50" cy="50" r="35"/>
+            <line x1="85" y1="50" x2="98" y2="50" />
+            <text opacity="0.6" x="95" y="56">API</text>
+          </g>
+        </svg>
+      </div>
+      <div class="diagram new-data">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <circle class="data" cx="50" cy="50" r="25"/>
+          <g class="text">
+            <circle fill="none" cx="50" cy="50" r="35"/>
+            <line x1="73" y1="24" x2="80" y2="17" />
+            <text opacity="0.6" x="80" y="17">DATA</text>
+          </g>
+        </svg>
+      </div>
       <div class="notes">
-        <p class="note">In 2013, I joined the team as a front-end developer and designer in order to help build this responsive vision of the future</p>
-        <p class="note">At that time, the team was 3 developers strong, and the application looked something like this...</p>
+        <p class="note">In 2013, I joined the 3 person strong developer team as a front-end developer and designer</p>
+        <p class="note">Much of the code base at that time dated from the last redesign in 2010, though you could still find some code from the original version if you dug deep enough</p>
         <p class="note step">...a giant blob of data lying under a layer of XML, with several view render layers handling requests for mobile pages, desktop pages, app embedded views, svgs, pdfs, and probably a lot more!</p>
         <p class="note">It was a (largely) reliable system that had proven itself over several years...</p>
         <p class="note step">...but it was also very scary to update or change: there were very few tests of any kind (email-driven-development: users would email error reports and regressions), and there was a 2 week delay to verify releases</p>
@@ -1048,6 +1053,7 @@
         <p class="note step">The next step was to build a REST API and new view renderer for the markup I was designing</p>
         <p class="note">After spending some time with a workflow that consisted of me sending static markup changes to my colleague to implement, it became clear this just wasn't going work...</p>
         <p class="note step">...so after a lot of prodding, and a skunkworks prototype, we split the API and view renderer into separate projects, and the front-end department became responsible for the render stack</p>
+        <p class="note step">now we have 4 monoliths</p>
       </div>
     </section>
 
