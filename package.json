@@ -16,7 +16,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production buddy --serve watch",
-    "watch": "buddy --reload --serve watch"
+    "watch": "NODE_ENV=development buddy --reload --serve watch"
   },
   "buddy": {
     "build": {

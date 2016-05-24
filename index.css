@@ -205,11 +205,14 @@ pre code {
   background-color: transparent !important;
 }
 .slides {
+  background-color: #fff;
+  height: 56.25vw;
   left: 0;
   overflow: hidden;
   position: absolute;
   transform-origin: top left;
   top: 0;
+  width: 100%;
 }
 .notes {
   background-color: #fff;
@@ -226,10 +229,10 @@ pre code {
   top: 0;
 }
 .dev .notes {
-  background-color: rgba(255,255,255,0.8);
+  background-color: transparent;
   display: block;
   font-size: 1vw;
-  top: 94vh;
+  top: initial;
 }
 .notes .note {
   left: 50%;
@@ -243,8 +246,13 @@ pre code {
   width: 60%;
 }
 .dev .notes .note {
-  margin: 0 1vw;
-  width: 99vw;
+  background-color: rgba(255,255,255,0.8);
+  bottom: 0;
+  left: 0;
+  top: initial;
+  transform: none;
+  padding: 1em;
+  width: 100%;
 }
 #title {
   color: #9fb26d;
@@ -278,7 +286,7 @@ pre code {
 }
 #title .top h1 {
   bottom: -0.8vw;
-  margin-left: -3rem;
+  margin-left: -3vw;
   transform: translateX(-100%);
 }
 #title .middle {
@@ -301,7 +309,7 @@ pre code {
 }
 #title .bottom h1 {
   font-weight: 400;
-  margin-left: 3rem;
+  margin-left: 3vw;
   top: -0.4vw;
 }
 #title.hide .top {
@@ -333,11 +341,11 @@ pre code {
   transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 #history .logo--yr {
-  height: 10em;
+  height: 12vw;
   left: 50%;
   top: 45%;
   transform: translate(-50%, -50%);
-  width: 10em;
+  width: 12vw;
   z-index: 1;
 }
 #history .partner-logos {
@@ -352,19 +360,20 @@ pre code {
   width: 100%;
 }
 #history .partner-logos .logo {
-  margin: 0 2em;
+  margin: 0 4vw;
 }
 #history .partner-logos .logo--nrk {
-  height: 10em;
-  width: 10em;
+  height: 12vw;
+  width: 12vw;
 }
 #history .partner-logos .logo--met {
-  height: 18em;
-  width: 18em;
+  height: 22vw;
+  width: 22vw;
 }
 #history .stats {
   bottom: 0;
   fill: #00b9f1;
+  height: 100%;
   right: 0;
   opacity: 1;
   stroke: #0094c1;
@@ -373,6 +382,7 @@ pre code {
   transform-origin: bottom;
   transition-duration: 400ms;
   visibility: hidden;
+  width: 100%;
 }
 #history .stats .mobile {
   fill: #00b9f1;
@@ -385,38 +395,38 @@ pre code {
   opacity: 0;
 }
 #history .launch-date {
-  right: 1610px;
-  bottom: 150px;
+  left: 1.8vw;
+  top: 45vw;
 }
 #history .launch-date::after {
   content: '';
   background-color: #004a60;
   display: block;
-  height: 200px;
-  left: 50px;
+  height: 10vw;
+  left: 2.8vw;
   top: 100%;
   position: absolute;
-  width: 2px;
+  width: 1px;
 }
 #history .max-users {
-  right: 240px;
-  bottom: 1020px;
+  right: 10vw;
+  top: 1vh;
 }
 #history .max-users::after {
   content: '';
   background-color: #004a60;
   display: block;
-  height: 2px;
+  height: 1px;
   right: 0;
   transform: translateX(100%);
   top: 50%;
   position: absolute;
-  width: 240px;
+  width: 12vw;
 }
 #history .mobile-users {
-  bottom: 50px;
+  top: 45vw;
   color: #fff;
-  right: 240px;
+  right: 10vw;
 }
 #history.step-1 .logo--yr {
   transform: translate(-50%, -150%);
@@ -546,12 +556,12 @@ pre code {
   transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
 }
 #mobile .phone {
-  height: 875px;
+  height: 40vw;
   left: 50%;
-  margin: -400px 0 0 -250px;
+  margin: -22vw 0 0 -10vw;
   top: 50%;
   transform-style: preserve-3d;
-  width: 500px;
+  width: 20vw;
   will-change: transform, opacity;
 }
 #mobile .phone.n95 {
@@ -576,6 +586,9 @@ pre code {
 #mobile .phone figure.back {
   transform: rotateY(180deg);
 }
+#mobile .phone figure img {
+  height: 100%;
+}
 #mobile .phone figure figcaption {
   display: block;
   font-size: 1.4vw;
@@ -591,7 +604,7 @@ pre code {
   transform: translateX(-200%);
 }
 #mobile .www {
-  transform: translateX(200%);
+  transform: translateX(180%);
 }
 #mobile.step-1 .n95 {
   transform: rotateY(-180deg);
@@ -600,12 +613,12 @@ pre code {
   transform: translateX(-300%);
 }
 #mobile.step-2 .n95 {
-  transform: translateX(-50%) rotateY(-180deg);
+  transform: translateX(-60%) rotateY(-180deg);
   transition-duration: 200ms;
 }
 #mobile.step-2 .iphone {
   opacity: 1;
-  transform: translateX(50%);
+  transform: translateX(60%);
 }
 #mobile.step-3 .iphone {
   transform: translateX(50%) rotateY(180deg);
@@ -665,14 +678,15 @@ pre code {
 }
 #architecture .diagram {
   bottom: 50%;
-  left: 48%;
+  height: 12vw;
+  left: 50%;
   opacity: 0;
   position: absolute;
-  transform: scale(2.5);
   transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
+  width: 12vw;
 }
 #architecture .diagram.old {
-  transform: translateY(0) scale(0.5);
+  transform: translateX(-50%) scale(0.5);
 }
 #architecture .diagram.new-api .api-2 {
   opacity: 0;
@@ -702,8 +716,8 @@ pre code {
   stroke: none;
 }
 #architecture .old-aside {
-  bottom: 50%;
-  left: 48%;
+  bottom: 55%;
+  left: 50%;
   transform: translateX(-175%);
 }
 #architecture.show {
@@ -719,14 +733,14 @@ pre code {
 }
 #architecture.step-1 .old {
   opacity: 1;
-  transform: translateY(0) scale(2.5);
+  transform: translateX(-50%);
 }
 #architecture.step-2 .old-aside {
   opacity: 1;
 }
 #architecture.step-3 .old {
   opacity: 0.5;
-  transform: translate(-600%, 0) scale(2.5);
+  transform: translate(-300%, 0);
 }
 #architecture.step-3 .old-aside {
   opacity: 0;
@@ -735,24 +749,21 @@ pre code {
   opacity: 1;
 }
 #architecture.step-5 .new-data {
-  transform: translate(0, -250%) scale(2.5);
+  transform: translate(-50%, -100%);
 }
 #architecture.step-5 .new-api,
 #architecture.step-5 .new-renderer {
   opacity: 1;
-  transform: translate(150%, -25%) scale(2.5);
-}
-#architecture.step-6 .new-data {
-  transform: translate(-50%, -275%) scale(2.5);
+  transform: translate(50%, -25%);
 }
 #architecture.step-6 .new-api {
-  transform: translate(200%, -150%) scale(2.5);
+  transform: translate(50%, -50%);
 }
 #architecture.step-6 .new-api .api-2 {
   opacity: 1;
 }
 #architecture.step-6 .new-renderer {
-  transform: translate(0, 0) scale(2.5);
+  transform: translate(-50%, 0);
 }
 #architecture.step-6 .new-renderer .ring {
   opacity: 0.4;
@@ -924,18 +935,18 @@ pre code {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#express.step-5 .runtime {
+#express.step-6 .runtime {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
-#express.step-6 .bg {
+#express.step-7 .bg {
   opacity: 1;
 }
-#express.step-6 .runtime {
+#express.step-7 .runtime {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#express.step-6 .coverage {
+#express.step-7 .coverage {
   opacity: 1;
   transform: translate(-50%, -50%);
 }

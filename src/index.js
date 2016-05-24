@@ -1,11 +1,10 @@
 'use strict';
 
-const TARGET_HEIGHT = 1080;
-const TARGET_WIDTH = 1920;
 const TOUCH_THRESHOLD = 100;
 
 const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
+const isDevelopment = process.env.NODE_ENV == 'development';
 const isNotes = window.name == 'notes';
 const startingSlide = isProduction ? 0 : getUrlSlide();
 let model = window.model = parse({
@@ -223,23 +222,16 @@ if (!isNotes) {
   window.addEventListener('popstate', onPopState, false);
   window.history.replaceState({}, document.title, window.location.pathname);
 
-  if (elSlides.clientWidth / elSlides.clientHeight != TARGET_WIDTH / TARGET_HEIGHT) {
-    console.log('fix', elSlides.clientWidth, elSlides.clientHeight);
-    elSlides.style.width = `${TARGET_WIDTH}px`;
-    elSlides.style.height = `${TARGET_HEIGHT}px`;
-    elSlides.style.transform = `scale(${document.documentElement.clientWidth / TARGET_WIDTH})`;
-  }
-
   hljs.initHighlightingOnLoad();
 
-  if (!isProduction) {
-    document.documentElement.classList.add('dev');
-    changeSlide(startingSlide);
-  } else {
+  if (isProduction) {
     model.notesWindow = window.open(window.location.href, 'notes');
     setTimeout(() => {
       changeSlide(startingSlide);
     }, 1000);
+  } else {
+    if (isDevelopment) document.documentElement.classList.add('dev');
+    changeSlide(startingSlide);
   }
 } else {
   window.change = changeRemoteNote;

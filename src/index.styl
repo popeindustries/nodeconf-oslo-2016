@@ -6,6 +6,8 @@ YR_BLUE = #00b9f1;
 DARK_BLUE = darken(YR_BLUE, 60%);
 GREEN = #41d041;
 RED = #d21111;
+RATIO = 16/9;
+RATIO_INVERT = 9/16;
 TRANSITION_DURATION = 400ms;
 TRANSITION_DURATION_SHORT = 200ms;
 TRANSITION_DURATION_LONG = 800ms;
@@ -116,11 +118,14 @@ pre {
   }
 }
 .slides {
+  background-color: white;
+  height: (RATIO_INVERT * 100)vw;
   left: 0;
   overflow: hidden;
   position: absolute;
   transform-origin: top left;
   top: 0;
+  width: 100%;
 }
 .notes {
   background-color: white;
@@ -132,10 +137,10 @@ pre {
   z-index: 1000;
   full();
   .dev & {
-    background-color: rgba(255,255,255,0.8);
+    background-color: transparent;
     display: block;
     font-size: 1vw;
-    top: 94vh;
+    top: initial;
   }
   .note {
     left: 50%;
@@ -148,8 +153,13 @@ pre {
     visibility: visible;
     width: 60%;
     .dev & {
-      margin: 0 1vw;
-      width: 99vw;
+      background-color: rgba(255,255,255,0.8);
+      bottom: 0;
+      left: 0;
+      top: initial;
+      transform: none;
+      padding: 1em;
+      width: 100%;
     }
   }
 }
@@ -181,7 +191,7 @@ pre {
     height: 45%;
     h1 {
       bottom: -0.8vw;
-      margin-left: -3rem;
+      margin-left: -3vw;
       transform: translateX(-100%);
     }
   }
@@ -202,7 +212,7 @@ pre {
     height: 55%;
     h1 {
       font-weight: 400;
-      margin-left: 3rem;
+      margin-left: 3vw;
       top: -0.4vw;
     }
   }
@@ -238,11 +248,11 @@ pre {
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
   }
   .logo--yr {
-    height: 10em;
+    height: 12vw;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
-    width: 10em;
+    width: 12vw;
     z-index: 1;
   }
   .partner-logos {
@@ -256,20 +266,21 @@ pre {
     top: 35%;
     width: 100%;
     .logo {
-      margin: 0 2em;
+      margin: 0 4vw;
     }
     .logo--nrk {
-      height: 10em;
-      width: 10em;
+      height: 12vw;
+      width: 12vw;
     }
     .logo--met {
-      height: 18em;
-      width: 18em;
+      height: 22vw;
+      width: 22vw;
     }
   }
   .stats {
     bottom: 0;
     fill: YR_BLUE;
+    height: 100%;
     right: 0;
     opacity: 1;
     stroke: darken(YR_BLUE, 20%);
@@ -278,6 +289,7 @@ pre {
     transform-origin: bottom;
     transition-duration: TRANSITION_DURATION;
     visibility: hidden;
+    width: 100%;
     .mobile {
       fill: YR_BLUE;
       stroke: darken(YR_BLUE, 20%);
@@ -290,38 +302,38 @@ pre {
     opacity: 0;
   }
   .launch-date {
-    right: 1610px;
-    bottom: 150px;
+    left: 1.8vw;
+    top: 45vw;
     &::after {
       content: '';
       background-color: DARK_BLUE;
       display: block;
-      height: 200px;
-      left: 50px;
+      height: 10vw;
+      left: 2.8vw;
       top: 100%;
       position: absolute;
-      width: 2px;
+      width: 1px;
     }
   }
   .max-users {
-    right: 240px;
-    bottom: 1020px;
+    right: 10vw;
+    top: 1vh;
     &::after {
       content: '';
       background-color: DARK_BLUE;
       display: block;
-      height: 2px;
+      height: 1px;
       right: 0;
       transform: translateX(100%);
       top: 50%;
       position: absolute;
-      width: 240px;
+      width: 12vw;
     }
   }
   .mobile-users {
-    bottom: 50px;
+    top: 45vw;
     color: white;
-    right: 240px;
+    right: 10vw;
   }
   &.step-1 {
     .logo--yr {
@@ -475,12 +487,12 @@ pre {
     transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
   }
   .phone {
-    height: 875px;
+    height: 40vw;
     left: 50%;
-    margin: -400px 0 0 -250px;
+    margin: -22vw 0 0 -10vw;
     top: 50%;
     transform-style: preserve-3d;
-    width: 500px;
+    width: 20vw;
     will-change: transform, opacity;
     &.n95 {
       z-index: 1;
@@ -503,6 +515,9 @@ pre {
       &.back {
         transform: rotateY(180deg);
       }
+      img {
+        height: 100%;
+      }
       figcaption {
         display: block;
         font-size: 1.4vw;
@@ -520,7 +535,7 @@ pre {
     transform: translateX(-200%);
   }
   .www {
-    transform: translateX(200%);
+    transform: translateX(180%);
   }
   &.step-1 {
     .n95 {
@@ -532,12 +547,12 @@ pre {
       transform: translateX(-300%);
     }
     .n95 {
-      transform: translateX(-50%) rotateY(-180deg);
+      transform: translateX(-60%) rotateY(-180deg);
       transition-duration: TRANSITION_DURATION_SHORT;
     }
     .iphone {
       opacity: 1;
-      transform: translateX(50%);
+      transform: translateX(60%);
     }
   }
   &.step-3 {
@@ -595,13 +610,14 @@ pre {
   }
   .diagram {
     bottom: 50%;
-    left: 48%;
+    height: 12vw;
+    left: 50%;
     opacity: 0;
     position: absolute;
-    transform: scale(2.5);
     transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+    width: 12vw;
     &.old {
-      transform: translateY(0) scale(0.5);
+      transform: translateX(-50%) scale(0.5);
     }
     &.new-api {
       .api-2 {
@@ -636,8 +652,8 @@ pre {
     }
   }
   .old-aside {
-    bottom: 50%;
-    left: 48%;
+    bottom: 55%;
+    left: 50%;
     transform: translateX(-175%)
   }
   &.show {
@@ -654,7 +670,7 @@ pre {
     }
     .old {
       opacity: 1;
-      transform: translateY(0) scale(2.5);
+      transform: translateX(-50%);
     }
   }
   &.step-2 {
@@ -665,10 +681,10 @@ pre {
   &.step-3 {
     .old {
       opacity: 0.5;
-      transform: translate(-600%, 0) scale(2.5);
+      transform: translate(-300%, 0);
     }
     .old-aside {
-      opacity: 0  ;
+      opacity: 0;
     }
   }
   &.step-4 {
@@ -678,26 +694,23 @@ pre {
   }
   &.step-5 {
     .new-data {
-      transform: translate(0, -250%) scale(2.5);
+      transform: translate(-50%, -100%);
     }
     .new-api,
     .new-renderer {
       opacity: 1;
-      transform: translate(150%, -25%) scale(2.5);
+      transform: translate(50%, -25%);
     }
   }
   &.step-6 {
-    .new-data {
-      transform: translate(-50%, -275%) scale(2.5);
-    }
     .new-api {
-      transform: translate(200%, -150%) scale(2.5);
+      transform: translate(50%, -50%);
       .api-2 {
         opacity: 1;
       }
     }
     .new-renderer {
-      transform: translate(0, 0) scale(2.5);
+      transform: translate(-50%, 0);
       .ring {
         opacity: 0.4;
       }
@@ -877,12 +890,14 @@ pre {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
+  }
+  &.step-6 {
     .runtime {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
   }
-  &.step-6 {
+  &.step-7 {
     .bg {
       opacity: 1;
     }
@@ -894,8 +909,6 @@ pre {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
-  }
-  &.step-7 {
   }
   &.hide {
     opacity: 0;
