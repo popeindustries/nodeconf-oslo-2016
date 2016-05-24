@@ -30,7 +30,7 @@ body {
   height: 100%;
 }
 html {
-  background-color: white;
+  background-color: BLACK;
 }
 body {
   color: BLACK;
@@ -116,7 +116,11 @@ pre {
   }
 }
 .slides {
-  full();
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  transform-origin: top left;
+  top: 0;
 }
 .notes {
   background-color: white;

@@ -112,6 +112,8 @@ _m_['src/index.js']=(function(module,exports){
 
   'use strict';
   
+  var TARGET_HEIGHT = 1080;
+  var TARGET_WIDTH = 1920;
   var TOUCH_THRESHOLD = 100;
   
   var elSlides = document.querySelector('.slides');
@@ -322,6 +324,13 @@ _m_['src/index.js']=(function(module,exports){
     document.documentElement.addEventListener('touchstart', onTouchStart, false);
     window.addEventListener('popstate', onPopState, false);
     window.history.replaceState({}, document.title, window.location.pathname);
+  
+    if (elSlides.clientWidth / elSlides.clientHeight != TARGET_WIDTH / TARGET_HEIGHT) {
+      console.log('fix', elSlides.clientWidth, elSlides.clientHeight);
+      elSlides.style.width = TARGET_WIDTH + 'px';
+      elSlides.style.height = TARGET_HEIGHT + 'px';
+      elSlides.style.transform = 'scale(' + document.documentElement.clientWidth / TARGET_WIDTH + ')';
+    }
   
     hljs.initHighlightingOnLoad();
   

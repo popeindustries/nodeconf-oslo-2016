@@ -119,7 +119,7 @@ body {
   height: 100%;
 }
 html {
-  background-color: #fff;
+  background-color: #050a07;
 }
 body {
   color: #050a07;
@@ -205,10 +205,10 @@ pre code {
   background-color: transparent !important;
 }
 .slides {
-  bottom: 0;
   left: 0;
+  overflow: hidden;
   position: absolute;
-  right: 0;
+  transform-origin: top left;
   top: 0;
 }
 .notes {
