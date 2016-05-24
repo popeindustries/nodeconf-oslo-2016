@@ -462,6 +462,7 @@ pre {
     top: 50%;
     transform-style: preserve-3d;
     width: 500px;
+    will-change: transform, opacity;
     &.n95 {
       z-index: 1;
     }
@@ -513,6 +514,7 @@ pre {
     }
     .n95 {
       transform: translateX(-50%) rotateY(-180deg);
+      transition-duration: TRANSITION_DURATION_SHORT;
     }
     .iphone {
       opacity: 1;
@@ -522,6 +524,7 @@ pre {
   &.step-3 {
     .iphone {
       transform: translateX(50%) rotateY(180deg);
+      transition-duration: TRANSITION_DURATION_SHORT;
     }
   }
   &.step-4 {
@@ -535,11 +538,18 @@ pre {
     }
   }
   &.hide {
+    opacity: 0;
     .m,
     .www,
     .n95,
     .iphone {
       opacity: 0;
+    }
+    .n95 {
+      transform: translateX(-5%) rotateY(-90deg);
+    }
+    .iphone {
+      transform: translateX(5%) rotateY(90deg);
     }
   }
 }
@@ -620,8 +630,8 @@ pre {
   }
   &.step-1 {
     .bg {
-      -webkit-filter: blur(10px) brightness(1);
-      filter: blur(10px) brightness(1);
+      -webkit-filter: blur(5px) brightness(1);
+      filter: blur(5px) brightness(1);
     }
     .old {
       opacity: 1;
@@ -677,8 +687,8 @@ pre {
   &.hide {
     opacity: 0;
     .bg {
-      -webkit-filter: blur(10px) brightness(4);
-      filter: blur(10px) brightness(4);
+      -webkit-filter: blur(5px) brightness(4);
+      filter: blur(5px) brightness(4);
     }
   }
 }
@@ -742,7 +752,22 @@ pre {
       &::first-letter {
         color: #FEF1B5;
         font-weight: 600;
+        padding-right: 1vw;
       }
+    }
+    .point-2 {
+      transition-delay: 25ms;
+    }
+    .point-3 {
+      transition-delay: 100ms;
+    }
+    .point-4 {
+      transition-delay: 150ms;
+    }
+  }
+  &.step-6 {
+    .point {
+      opacity: 0;
     }
   }
   &.hide {
@@ -761,9 +786,16 @@ pre {
   background-color: #1A0F09;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
+  .bg {
+    bg('src/images/nodeconf-12.jpg');
+    full();
+    -webkit-filter: brightness(0);
+    filter: brightness(0);
+    transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
+    z-index: -1;
+  }
   .code,
-  .coverage,
-  .thought {
+  .coverage {
     opacity: 0;
     left: 50%;
     position: absolute;
@@ -771,8 +803,7 @@ pre {
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
     transform: translate(-50%, 50%);
   }
-  .coverage,
-  .thought {
+  .coverage {
     color: #e6db74;
     font-size: 4vw;
     line-height: 1;
@@ -781,22 +812,24 @@ pre {
   }
   &.show {
     opacity: 1;
-    .app {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
   }
   &.step-1 {
     .app {
-      opacity: 0;
-      transform: translate(-50%, -150%);
-    }
-    .middleware {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
   }
   &.step-2 {
+    .app {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .middleware {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-3 {
     .middleware {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -806,7 +839,7 @@ pre {
       transform: translate(-50%, -50%);
     }
   }
-  &.step-3 {
+  &.step-4 {
     .param {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -816,7 +849,11 @@ pre {
       transform: translate(-50%, -50%);
     }
   }
-  &.step-4 {
+  &.step-5 {
+    .bg {
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+    }
     .route {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -826,7 +863,10 @@ pre {
       transform: translate(-50%, -50%);
     }
   }
-  &.step-5 {
+  &.step-6 {
+    .bg {
+      opacity: 1;
+    }
     .runtime {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -836,23 +876,24 @@ pre {
       transform: translate(-50%, -50%);
     }
   }
-  &.step-6 {
-    .coverage {
-      transform: translate(-50%, -150%);
-    }
-    .thought {
-      opacity: 1;
-    transform: translate(-50%, -25%);
-    }
+  &.step-7 {
   }
   &.hide {
     opacity: 0;
+    .bg {
+      -webkit-filter: brightness(0);
+      filter: brightness(0);
+    }
     .coverage,
     .thought {
       opacity: 0;
     }
   }
 }
+
+
+
+
 
 #caveats {
   opacity: 0;
