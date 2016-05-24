@@ -148,7 +148,7 @@ h2 {
   font-weight: 400;
 }
 h3 {
-  font-size: 1.4vw;
+  font-size: 1.8vw;
   font-weight: 400;
 }
 ul {
@@ -156,7 +156,7 @@ ul {
   padding: 0 0 0 0.5vw;
 }
 li {
-  font-size: 1.2vw;
+  font-size: 1.6vw;
   list-style-type: none;
   padding: 0.5vw 0;
 }
@@ -231,7 +231,7 @@ pre code {
 .dev .notes {
   background-color: transparent;
   display: block;
-  font-size: 1vw;
+  font-size: 1.3vw;
   top: initial;
 }
 .notes .note {
@@ -360,7 +360,7 @@ pre code {
   width: 100%;
 }
 #history .partner-logos .logo {
-  margin: 0 4vw;
+  margin: 0 3vw;
 }
 #history .partner-logos .logo--nrk {
   height: 12vw;
@@ -429,7 +429,7 @@ pre code {
   right: 10vw;
 }
 #history.step-1 .logo--yr {
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -125%);
 }
 #history.step-1 .partner-logos {
   opacity: 1;
@@ -591,7 +591,7 @@ pre code {
 }
 #mobile .phone figure figcaption {
   display: block;
-  font-size: 1.4vw;
+  font-size: 1.8vw;
   margin-top: 1vw;
 }
 #mobile .m,
@@ -601,16 +601,13 @@ pre code {
   top: 30%;
 }
 #mobile .m {
-  transform: translateX(-200%);
+  transform: translateX(-240%);
 }
 #mobile .www {
-  transform: translateX(180%);
+  transform: translateX(130%);
 }
 #mobile.step-1 .n95 {
   transform: rotateY(-180deg);
-}
-#mobile.step-2 .m {
-  transform: translateX(-300%);
 }
 #mobile.step-2 .n95 {
   transform: translateX(-60%) rotateY(-180deg);
@@ -629,6 +626,10 @@ pre code {
 }
 #mobile.step-5 .www {
   opacity: 1;
+}
+#mobile.step-6 .m,
+#mobile.step-6 .www {
+  opacity: 0;
 }
 #mobile.hide {
   opacity: 0;

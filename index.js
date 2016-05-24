@@ -116,7 +116,7 @@ _m_['src/index.js']=(function(module,exports){
   
   var elSlides = document.querySelector('.slides');
   var isProduction = 'development' == 'production';
-  var isDevelopment = 'development' == 'development';
+  var isDevelopment = !isProduction && window.location.hostname == 'localhost';
   var isNotes = window.name == 'notes';
   var startingSlide = isProduction ? 0 : getUrlSlide();
   var model = window.model = parse({
@@ -176,7 +176,7 @@ _m_['src/index.js']=(function(module,exports){
     }
     changeNote(model.slideIndex, slideIndex, noteIndex);
     model.slideIndex = slideIndex;
-    window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, '/' + slideIndex));
+    if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, '/' + slideIndex));
   }
   
   /**
@@ -323,8 +323,6 @@ _m_['src/index.js']=(function(module,exports){
   if (!isNotes) {
     document.addEventListener('keyup', onKeyDown, false, { passive: true });
     document.documentElement.addEventListener('touchstart', onTouchStart, false);
-    window.addEventListener('popstate', onPopState, false);
-    window.history.replaceState({}, document.title, window.location.pathname);
   
     hljs.initHighlightingOnLoad();
   
@@ -334,7 +332,11 @@ _m_['src/index.js']=(function(module,exports){
         changeSlide(startingSlide);
       }, 1000);
     } else {
-      if (isDevelopment) document.documentElement.classList.add('dev');
+      if (isDevelopment) {
+        document.documentElement.classList.add('dev');
+        window.addEventListener('popstate', onPopState, false);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
       changeSlide(startingSlide);
     }
   } else {

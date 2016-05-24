@@ -61,7 +61,7 @@ h2 {
   font-weight: 400;
 }
 h3 {
-  font-size: 1.4vw;
+  font-size: 1.8vw;
   font-weight: 400;
 }
 ul {
@@ -69,7 +69,7 @@ ul {
   padding: 0 0 0 0.5vw;
 }
 li {
-  font-size: 1.2vw;
+  font-size: 1.6vw;
   list-style-type: none;
   padding: 0.5vw 0;
   &::before {
@@ -139,7 +139,7 @@ pre {
   .dev & {
     background-color: transparent;
     display: block;
-    font-size: 1vw;
+    font-size: 1.3vw;
     top: initial;
   }
   .note {
@@ -266,7 +266,7 @@ pre {
     top: 35%;
     width: 100%;
     .logo {
-      margin: 0 4vw;
+      margin: 0 3vw;
     }
     .logo--nrk {
       height: 12vw;
@@ -337,7 +337,7 @@ pre {
   }
   &.step-1 {
     .logo--yr {
-      transform: translate(-50%, -150%);
+      transform: translate(-50%, -125%);
     }
     .partner-logos {
       opacity: 1;
@@ -520,7 +520,7 @@ pre {
       }
       figcaption {
         display: block;
-        font-size: 1.4vw;
+        font-size: 1.8vw;
         margin-top: 1vw;
       }
     }
@@ -532,10 +532,10 @@ pre {
     top: 30%;
   }
   .m {
-    transform: translateX(-200%);
+    transform: translateX(-240%);
   }
   .www {
-    transform: translateX(180%);
+    transform: translateX(130%);
   }
   &.step-1 {
     .n95 {
@@ -543,9 +543,6 @@ pre {
     }
   }
   &.step-2 {
-    .m {
-      transform: translateX(-300%);
-    }
     .n95 {
       transform: translateX(-60%) rotateY(-180deg);
       transition-duration: TRANSITION_DURATION_SHORT;
@@ -569,6 +566,12 @@ pre {
   &.step-5 {
     .www {
       opacity: 1;
+    }
+  }
+  &.step-6 {
+    .m,
+    .www {
+      opacity: 0;
     }
   }
   &.hide {

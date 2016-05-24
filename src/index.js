@@ -4,7 +4,7 @@ const TOUCH_THRESHOLD = 100;
 
 const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
-const isDevelopment = process.env.NODE_ENV == 'development';
+const isDevelopment = !isProduction && window.location.hostname == 'localhost';
 const isNotes = window.name == 'notes';
 const startingSlide = isProduction ? 0 : getUrlSlide();
 let model = window.model = parse({
@@ -64,7 +64,7 @@ function changeSlide (slideIndex, back) {
   }
   changeNote(model.slideIndex, slideIndex, noteIndex);
   model.slideIndex = slideIndex;
-  window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
+  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
 
 /**
@@ -221,8 +221,6 @@ function onTransitionEnd (evt) {
 if (!isNotes) {
   document.addEventListener('keyup', onKeyDown, false, { passive: true });
   document.documentElement.addEventListener('touchstart', onTouchStart, false);
-  window.addEventListener('popstate', onPopState, false);
-  window.history.replaceState({}, document.title, window.location.pathname);
 
   hljs.initHighlightingOnLoad();
 
@@ -232,7 +230,11 @@ if (!isNotes) {
       changeSlide(startingSlide);
     }, 1000);
   } else {
-    if (isDevelopment) document.documentElement.classList.add('dev');
+    if (isDevelopment) {
+      document.documentElement.classList.add('dev');
+      window.addEventListener('popstate', onPopState, false);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
     changeSlide(startingSlide);
   }
 } else {
