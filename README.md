@@ -76,7 +76,7 @@ Specifically, it's...
 
 [STEP] ...resilient. The browser is hostile territory, and bad things happen all the time, so being able to show content when things are blowing up is an advantage. And it's...
 
-[STEP] ...accessible. Not all devices are created equal (in 2015 we had visits from 11,996 different devices), and server-side rendering allows us to deliver content to as many of them as possible. And lastly, it's...
+[STEP] ...accessible. Not all devices are created equal (in 2015 we had visits from 11,996 different ones), and server-side rendering allows us to deliver content to as many of them as possible. And lastly, it's...
 
 [STEP] ...progressive. Delivering a decent baseline experience allows us to add additional features, and improve that experience, if a device supports it
 
@@ -85,7 +85,7 @@ Specifically, it's...
 ### express
 As a developer, this universal JavaScript thing is fantastic because it really minimizes the costs associated with context switching, while at the same time giving you full control over your content
 
-At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser (I'll just let that sync in a little...)
+At the time, I thought this was such an amazing idea, and I was so excited, that I ended up porting Express.js to run in the browser (I'll just let that sink in a little...)
 
 So whether it's initializing an application...
 
@@ -107,7 +107,7 @@ The initial trigger is different, of course (the HTTP pipeline in Node, and the 
 
 That's wonderful for us as developers, but it's also CRAP for our users (remembering of course that CRAP is awesome). 
 
-By representing state as URLs, and by using anchor tags to link between sections, disabling JavaScript, or using a low end device that doesn't pass our mustard test, just works
+By representing state as URLs, and by using anchor tags to link between sections, disabling JavaScript, or using a device that doesn't pass our mustard test, just works
 
 <!-- ### caveats
 Of course, it's not *all* sunsets and rainbows
@@ -122,8 +122,6 @@ It may be the same language, and we can impose similar abstractions, but the ser
   - 641 different screen resolutions
 - universal
   - many concurrent short sessions vs. single long session (updated)
-- routing
-  - history api
 - data
   - mutable vs. immutable
 - render

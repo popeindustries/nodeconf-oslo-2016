@@ -1,9 +1,16 @@
 'use strict';
 
 const elSlides = document.querySelector('.slides');
+const isProduction = process.env.NODE_ENV == 'production';
+const isNotes = window.name == 'notes';
+const startingSlide = isProduction ? 0 : getUrlSlide();
+let startingNote = 0;
 let model = window.model = parse({
-  slideIndex: 0,
+  notes: [],
+  noteIndex: 0,
+  notesWindow: null,
   slides: [],
+  slideIndex: 0,
   stepIndex: 0,
   stepTotal: 0
 });
@@ -17,8 +24,21 @@ function parse (model) {
   model.slides = Array.prototype.slice.call(elSlides.children).filter((element) => {
     return element.tagName == 'HEADER' || element.tagName == 'SECTION';
   });
+  if (isNotes) {
+    model.notes = model.slides.reduce((notes, element, idx) => {
+      if (startingSlide == idx) startingNote = notes.length;
+      return notes.concat(Array.prototype.slice.call(element.querySelectorAll('.note')));
+    }, []);
+  }
 
   return model;
+}
+
+/**
+ * Open notes window
+ */
+function openNotes () {
+  if (!isProduction) model.notesWindow = window.open(window.location.href, 'notes');
 }
 
 /**
@@ -61,25 +81,48 @@ function changeStep (stepIndex) {
 }
 
 /**
- * Advance to next step/slide
+ * Display note at 'noteIndex'
+ * @param {Number} noteIndex
+ */
+function changeNote (noteIndex) {
+  const current = model.notes[model.noteIndex];
+  const next = model.notes[noteIndex];
+
+  if (current) current.style.opacity = 0;
+  if (next) next.style.opacity = 1;
+  model.noteIndex = noteIndex;
+}
+
+/**
+ * Advance to next step/slide/note
+ * @returns {null}
  */
 function next () {
+  if (isNotes) return changeNote(model.noteIndex + 1);
   if (model.stepTotal && model.stepIndex + 1 <= model.stepTotal) {
     changeStep(model.stepIndex + 1);
   } else if (model.slideIndex + 1 < model.slides.length) {
     changeSlide(model.slideIndex + 1);
+  } else {
+    return;
   }
+  if (model.notesWindow) model.notesWindow.next();
 }
 
 /**
- * Advance to previous step/slide
+ * Advance to previous step/slide/note
+ * @returns {null}
  */
 function prev () {
+  if (isNotes) return changeNote(model.noteIndex - 1);
   if (model.stepTotal && model.stepIndex - 1 >= 0) {
     changeStep(model.stepIndex - 1);
   } else if (model.slideIndex - 1 >= 0) {
     changeSlide(model.slideIndex - 1);
+  } else {
+    return;
   }
+  if (model.notesWindow) model.notesWindow.prev();
 }
 
 /**
@@ -115,6 +158,7 @@ function onKeyDown (evt) {
     || key === 'pageup')  {
       prev();
   }
+  if (key === 'n') openNotes();
 }
 
 /**
@@ -140,9 +184,17 @@ function onTransitionEnd (evt) {
   }
 }
 
-document.addEventListener('keyup', onKeyDown, false);
-window.addEventListener('popstate', onPopState, false);
-window.history.replaceState({}, document.title, window.location.pathname);
-hljs.initHighlightingOnLoad();
+if (!isNotes) {
+  document.addEventListener('keyup', onKeyDown, false);
+  window.addEventListener('popstate', onPopState, false);
+  window.history.replaceState({}, document.title, window.location.pathname);
+  hljs.initHighlightingOnLoad();
 
-changeSlide(getUrlSlide());
+  changeSlide(startingSlide);
+} else {
+  window.next = next;
+  window.prev = prev;
+  document.documentElement.classList.add('presentation-notes');
+
+  changeNote(startingNote);
+}

@@ -113,9 +113,16 @@ _m_['src/index.js']=(function(module,exports){
   'use strict';
   
   var elSlides = document.querySelector('.slides');
+  var isProduction = undefined == 'production';
+  var isNotes = window.name == 'notes';
+  var startingSlide = isProduction ? 0 : getUrlSlide();
+  var startingNote = 0;
   var model = window.model = parse({
-    slideIndex: 0,
+    notes: [],
+    noteIndex: 0,
+    notesWindow: null,
     slides: [],
+    slideIndex: 0,
     stepIndex: 0,
     stepTotal: 0
   });
@@ -129,8 +136,21 @@ _m_['src/index.js']=(function(module,exports){
     model.slides = Array.prototype.slice.call(elSlides.children).filter(function (element) {
       return element.tagName == 'HEADER' || element.tagName == 'SECTION';
     });
+    if (isNotes) {
+      model.notes = model.slides.reduce(function (notes, element, idx) {
+        if (startingSlide == idx) startingNote = notes.length;
+        return notes.concat(Array.prototype.slice.call(element.querySelectorAll('.note')));
+      }, []);
+    }
   
     return model;
+  }
+  
+  /**
+   * Open notes window
+   */
+  function openNotes() {
+    if (!isProduction) model.notesWindow = window.open(window.location.href, 'notes');
   }
   
   /**
@@ -173,25 +193,48 @@ _m_['src/index.js']=(function(module,exports){
   }
   
   /**
-   * Advance to next step/slide
+   * Display note at 'noteIndex'
+   * @param {Number} noteIndex
+   */
+  function changeNote(noteIndex) {
+    var current = model.notes[model.noteIndex];
+    var next = model.notes[noteIndex];
+  
+    if (current) current.style.opacity = 0;
+    if (next) next.style.opacity = 1;
+    model.noteIndex = noteIndex;
+  }
+  
+  /**
+   * Advance to next step/slide/note
+   * @returns {null}
    */
   function next() {
+    if (isNotes) return changeNote(model.noteIndex + 1);
     if (model.stepTotal && model.stepIndex + 1 <= model.stepTotal) {
       changeStep(model.stepIndex + 1);
     } else if (model.slideIndex + 1 < model.slides.length) {
       changeSlide(model.slideIndex + 1);
+    } else {
+      return;
     }
+    if (model.notesWindow) model.notesWindow.next();
   }
   
   /**
-   * Advance to previous step/slide
+   * Advance to previous step/slide/note
+   * @returns {null}
    */
   function prev() {
+    if (isNotes) return changeNote(model.noteIndex - 1);
     if (model.stepTotal && model.stepIndex - 1 >= 0) {
       changeStep(model.stepIndex - 1);
     } else if (model.slideIndex - 1 >= 0) {
       changeSlide(model.slideIndex - 1);
+    } else {
+      return;
     }
+    if (model.notesWindow) model.notesWindow.prev();
   }
   
   /**
@@ -217,6 +260,7 @@ _m_['src/index.js']=(function(module,exports){
     if (key === 'arrowleft' || key === 'arrowdown' || key === 'left' || key === 'down' || key === 'pageup') {
       prev();
     }
+    if (key === 'n') openNotes();
   }
   
   /**
@@ -242,12 +286,20 @@ _m_['src/index.js']=(function(module,exports){
     }
   }
   
-  document.addEventListener('keyup', onKeyDown, false);
-  window.addEventListener('popstate', onPopState, false);
-  window.history.replaceState({}, document.title, window.location.pathname);
-  hljs.initHighlightingOnLoad();
+  if (!isNotes) {
+    document.addEventListener('keyup', onKeyDown, false);
+    window.addEventListener('popstate', onPopState, false);
+    window.history.replaceState({}, document.title, window.location.pathname);
+    hljs.initHighlightingOnLoad();
   
-  changeSlide(getUrlSlide());
+    changeSlide(startingSlide);
+  } else {
+    window.next = next;
+    window.prev = prev;
+    document.documentElement.classList.add('presentation-notes');
+  
+    changeNote(startingNote);
+  }
 
   return module.exports;
 }).call({exports:{}});

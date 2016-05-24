@@ -182,6 +182,12 @@ section {
   visibility: hidden;
   width: 100%;
 }
+.presentation-notes section > .notes {
+  display: block;
+}
+.presentation-notes section > *:not(.notes) {
+  display: none;
+}
 section.show {
   visibility: visible;
 }
@@ -197,6 +203,29 @@ pre code {
   padding: 0 !important;
   overflow: hidden !important;
   background-color: transparent !important;
+}
+.notes {
+  color: #050a07;
+  display: none;
+  font-size: 3vw;
+  font-weight: 400;
+  text-align: left;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.notes .note {
+  left: 50%;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  width: 60%;
 }
 #title {
   color: #9fb26d;
@@ -478,7 +507,7 @@ pre code {
 #geography.step-2 .no-users {
   opacity: 1;
 }
-#geography.step-3 .nk-users {
+#geography.step-4 .nk-users {
   opacity: 1;
 }
 #geography.hide .map,

@@ -11,6 +11,19 @@ TRANSITION_DURATION_SHORT = 200ms;
 TRANSITION_DURATION_LONG = 800ms;
 TRANSITION_TIMING_CUBIC_OUT = cubic-bezier(0.215, 0.61, 0.355, 1);
 
+full() {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+bg(path) {
+  background-image: url(path);
+  background-position: bottom center;
+  background-size: cover;
+}
+
 html,
 body {
   width: 100%;
@@ -79,6 +92,12 @@ section {
   transition: all TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT;
   visibility: hidden;
   width: 100%;
+  .presentation-notes & > .notes {
+    display: block;
+  }
+  .presentation-notes & > *:not(.notes) {
+    display: none;
+  }
   &.show {
     visibility: visible;
   }
@@ -96,18 +115,24 @@ pre {
     background-color: transparent !important;
   }
 }
-
-full() {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-bg(path) {
-  background-image: url(path);
-  background-position: bottom center;
-  background-size: cover;
+.notes {
+  color: BLACK;
+  display: none;
+  font-size: 3vw;
+  font-weight: 400;
+  text-align: left;
+  full();
+  .note {
+    left: 50%;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+    width: 60%;
+  }
 }
 
 #title {
@@ -406,7 +431,7 @@ bg(path) {
       opacity: 1;
     }
   }
-  &.step-3 {
+  &.step-4 {
     .nk-users {
       opacity: 1;
     }

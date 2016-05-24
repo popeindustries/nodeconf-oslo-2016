@@ -15,6 +15,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "NODE_ENV=production buddy --serve watch",
     "watch": "buddy --reload --serve watch"
   },
   "buddy": {
