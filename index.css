@@ -156,7 +156,7 @@ ul {
   padding: 0 0 0 0.5vw;
 }
 li {
-  font-size: 1.6vw;
+  font-size: 1.8vw;
   list-style-type: none;
   padding: 0.5vw 0;
 }
@@ -171,6 +171,14 @@ li.good::before {
 li.bad::before {
   content: '—';
   color: #d21111;
+}
+p {
+  font-size: 1.8vw;
+}
+a {
+  color: #fff;
+  font-size: 1.8vw;
+  text-decoration: none;
 }
 section {
   height: 100%;
@@ -231,7 +239,6 @@ pre code {
 .dev .notes {
   background-color: transparent;
   display: block;
-  font-size: 1.3vw;
   top: initial;
 }
 .notes .note {
@@ -248,6 +255,7 @@ pre code {
 .dev .notes .note {
   background-color: rgba(255,255,255,0.8);
   bottom: 0;
+  font-size: 1.2vw;
   left: 0;
   top: initial;
   transform: none;
@@ -1045,7 +1053,7 @@ pre code {
   opacity: 0;
 }
 #express {
-  background-color: #1a0f09;
+  background-color: #050a07;
   opacity: 0;
   transition-duration: 800ms;
 }
@@ -1149,12 +1157,24 @@ pre code {
   -webkit-filter: brightness(0);
   filter: brightness(0);
 }
-#caveats {
+#render {
+  background-color: #050a07;
+  opacity: 0;
+}
+#render.show {
+  opacity: 1;
+}
+#bye {
+  align-items: center;
+  color: #231f36;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   opacity: 0;
   transition-duration: 800ms;
 }
-#caveats .bg {
-  background-image: url("src/images/nodeconf-6.jpg");
+#bye .bg {
+  background-image: url("src/images/nodeconf-16.jpg");
   background-position: bottom center;
   background-size: cover;
   bottom: 0;
@@ -1162,24 +1182,43 @@ pre code {
   position: absolute;
   right: 0;
   top: 0;
-  -webkit-filter: brightness(0);
-  filter: brightness(0);
+  -webkit-filter: brightness(4);
+  filter: brightness(4);
   transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
   z-index: -1;
 }
-#caveats.show {
+#bye h1 {
+  margin-bottom: 2vw;
+}
+#bye a {
+  color: inherit;
+  display: block;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+#bye footer {
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  position: absolute;
+  text-align: right;
+  width: 100%;
+}
+#bye footer p {
+  font-size: 1.2vw;
+  margin: 1vw;
+  opacity: 0.5;
+}
+#bye.show {
   opacity: 1;
 }
-#caveats.show .bg {
+#bye.show .bg {
   -webkit-filter: brightness(1);
   filter: brightness(1);
 }
-#caveats.hide {
-  opacity: 0;
-}
-#caveats.hide .bg {
-  -webkit-filter: brightness(4);
-  filter: brightness(4);
+#bye.step-1 a {
+  opacity: 1;
 }
 @-moz-keyframes loadBounce {
   0% {

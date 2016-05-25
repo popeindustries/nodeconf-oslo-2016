@@ -77,7 +77,7 @@ ul {
   padding: 0 0 0 0.5vw;
 }
 li {
-  font-size: 1.6vw;
+  font-size: 1.8vw;
   list-style-type: none;
   padding: 0.5vw 0;
   &::before {
@@ -92,6 +92,14 @@ li {
     content: '—';
     color: RED;
   }
+}
+p {
+  font-size: 1.8vw;
+}
+a {
+  color: white;
+  font-size: 1.8vw;
+  text-decoration: none;
 }
 section {
   height: 100%;
@@ -147,7 +155,6 @@ pre {
   .dev & {
     background-color: transparent;
     display: block;
-    font-size: 1.3vw;
     top: initial;
   }
   .note {
@@ -163,6 +170,7 @@ pre {
     .dev & {
       background-color: rgba(255,255,255,0.8);
       bottom: 0;
+      font-size: 1.2vw;
       left: 0;
       top: initial;
       transform: none;
@@ -1015,7 +1023,7 @@ pre {
 }
 
 #express {
-  background-color: #1A0F09;
+  background-color: #050A07;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
   .bg {
@@ -1128,20 +1136,55 @@ pre {
   }
 }
 
+#render {
+  background-color: #050A07;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+  }
+
+}
 
 
 
-
-#caveats {
+#bye {
+  align-items: center;
+  color: #231F36;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
   .bg {
-    bg('src/images/nodeconf-6.jpg');
+    bg('src/images/nodeconf-16.jpg');
     full();
-    -webkit-filter: brightness(0);
-    filter: brightness(0);
+    -webkit-filter: brightness(4);
+    filter: brightness(4);
     transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
     z-index: -1;
+  }
+  h1 {
+    margin-bottom: 2vw;
+  }
+  a {
+    color: inherit;
+    display: block;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity TRANSITION_DURATION_SHORT linear;
+  }
+  footer {
+    bottom: 0;
+    color: white;
+    left: 0;
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    p {
+      font-size: 1.2vw;
+      margin: 1vw;
+      opacity: 0.5;
+    }
   }
   &.show {
     opacity: 1;
@@ -1150,11 +1193,9 @@ pre {
       filter: brightness(1);
     }
   }
-  &.hide {
-    opacity: 0;
-    .bg {
-      -webkit-filter: brightness(4);
-      filter: brightness(4);
+  &.step-1 {
+    a {
+      opacity: 1;
     }
   }
 }

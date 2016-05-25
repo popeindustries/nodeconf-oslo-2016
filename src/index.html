@@ -242,7 +242,7 @@
       </div>
       <div class="notes">
         <p class="note">The easy way at this point would have been to go full-steam ahead with a Single Page App that renders most of the HTML in the browser</p>
-        <p class="note step">In 2014, this sounded like a <em>reasonable</em> choice, but I don't think it has ever been a <em>great</em> one</p>
+        <p class="note step">In 2014, this was relatively common practice, but I don't think it should have ever been considered <em>best</em> practice</p>
         <p class="note step">Server-side rendering is definitely more work if you also plan on rendering things on the client, but it has major advantages:</p>
         <p class="note step">It's cacheable: server generated content can be cached close to your users. This is good for speed, good for sudden traffic spikes, and good insurance against a server meltdown</p>
         <p class="note step">It's resilient: the browser is hostile territory, almost as hostile as the network, and delivering rendered content is good insurance against client-side meltdowns</p>
@@ -298,18 +298,59 @@
         <p class="note step">So I wondered: would it be possible to initialize an application...</p>
         <p class="note step">...to add middleware...</p>
         <p class="note step">...to add request parameter validation...</p>
-        <p class="note step">...and to handle a request, in the browser, just like Express does on the server?</p>
+        <p class="note step">...and to handle a request, in the browser, just like Express.js does on the server?</p>
         <p class="note step">Well, it is possible!</p>
         <p class="note step">And not only <em>is</em> it possible, it's a great way to think about program logic: URLs are fantastic for encapsulating state; anchor tags are great triggers for transitioning between those states; and Express is a simple and elegant way to convert that state into HTML</p>
         <p class="note">As a bonus, good URLs help make applications <em>very</em> crappy</p>
-        <p class="note">Adopting the Express way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p>
+        <p class="note">Adopting the Express.js way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p>
       </div>
     </section>
 
     <section id="render">
       <div class="bg"></div>
+      <pre class="code">
+        <code class="js">
+          const html = ReactDOMServer.renderToString(pageContent(props));
+        </code>
+      </pre>
+      <div class="notes">
+        <p class="note">At about the same time as I was stuffing Express.js into the browser, I was looking for a good way to render data into HTML in both environments</p>
+        <p class="note">This was right around the time that the React.js hype-balloon was blowing up, and I had heard rumours that Instagram used it on the server, so I decided to give it a shot</p>
+        <p class="note">if client-side Express is a hack to make it more server-like, server-side React is a hack to make it more client-like</p>
+      </div>
+    </section>
+
+    <section id="lessons">
+      <div class="bg"></div>
+      <div class="do">
+        <h2>do</h2>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h2>don't</h2>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
       <div class="notes">
         <p class="note"></p>
+      </div>
+    </section>
+
+    <section id="bye">
+      <div class="bg"></div>
+      <h1>Thanks!</h1>
+      <a href="https://twitter.com/popeindustries">@popeindustries</a>
+      <a href="https://github.com/popeindustries">github.com/popeindustries</a>
+      <a href="https://github.com/YR">github.com/yr</a>
+      <footer>
+        <p>PHOTOS: Alexander Pope</p>
+      </footer>
+      <div class="notes">
+        <p class="note">Thanks for listening, and thanks to the organisers for having me</p>
+        <p class="note step">Feel free to reach out on Twitter or GitHub if you have any questions</p>
       </div>
     </section>
       <!-- <h2 class="coverage">80% shared code</h2> -->
