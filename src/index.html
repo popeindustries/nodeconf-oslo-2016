@@ -164,19 +164,36 @@
       <div class="notes">
         <p class="note">In 2013, I joined the 3 person strong developer team as a front-end developer and designer</p>
         <p class="note">Much of the code base at that time dated from the last redesign in 2010, though you could still find some code from the original version if you dug deep enough</p>
-        <p class="note step">...a giant blob of data lying under a layer of XML, with several view render layers handling requests for mobile pages, desktop pages, app embedded views, svgs, pdfs, and probably a lot more!</p>
-        <p class="note">It was a (largely) reliable system that had proven itself over several years...</p>
-        <p class="note step">...but it was also very scary to update or change: there were very few tests of any kind (email-driven-development: users would email error reports and regressions), and there was a 2 week delay to verify releases</p>
-        <p class="note step">Naturally, in our eagerness to "do things right", we decided to start from scratch...</p>
-        <p class="note step">...so the first thing we did was pull out all the place name data into it's own service. This represented some 80% of the existing code base, and was where we made our first serious mistake: it was too difficult to replace the existing implementation in our monolith, so both systems were destined to drift out of sync (though we didn't realize it at the time)</p>
-        <p class="note step">The next step was to build a REST API and new view renderer for the markup I was designing</p>
-        <p class="note">After spending some time with a workflow that consisted of me sending static markup changes to my colleague to implement, it became clear this just wasn't going work...</p>
-        <p class="note step">...so after a lot of prodding, and a skunkworks prototype, we split the API and view renderer into separate projects, and the front-end department became responsible for the render stack</p>
-        <p class="note step">now we have 4 monoliths</p>
+        <p class="note step">Picture a large data layer wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and probably a lot more!</p>
+        <p class="note">It's a bit unintuitive, but there is very little weather related stuff happening here. Weather data comes from Met, and is largely indexed by lat/long coordinate, so a large chunk of the application deals with matching a coordinate to a city, ski hill, your street, or any one of roughly 10 million places around the world</p>
+        <p class="note">The application was reliable, and had proven itself for many years, but obviously, it was difficult to update or change</p>
+        <p class="note step">To make things worse, there were very few tests of any kind (it was <em>email-driven-development</em>: users would send us error reports and regressions), and there was a 2 week delay to verify releases</p>
+        <p class="note step">Naturally, in our eagerness to "do it right this time", we decided to start over</p>
+        <p class="note step">The first job was to pull out all the place name data into it's own service. This also made it available for other projects at NRK to consume, and I think the plan is to eventually release it to the public</p>
+        <p class="note step">The next step, was to build a REST API and view renderer for the new, responsive layout</p>
+        <p class="note">Although this was already a big improvement, and we were using GIT and a CI server to run tests and deploy to the cloud, I was delivering static markup to my colleague, Bård, to implement, and that just felt wrong!</p>
+        <p class="note step">So after a lot of grumbling and a skunkworks prototype, we split the API and view renderer into separate projects</p>
+        <p class="note step">Now we each had our own monolith</p>
       </div>
     </section>
 
     <section id="universal">
+      <div class="bg"></div>
+      <div class="titles">
+        <h1 class="title title-1">JavaScript <span>up</span></h1>
+        <h1 class="title title-2">JavaScript <span>down</span></h1>
+        <h1 class="title title-3">JavaScript <span>all the way around</span></h1>
+      </div>
+      <div class="notes">
+        <p class="note">I'm no computer scientist, and I don't know much about <em>real</em> programming languages, but I have spent the last 18 years making things for the web, and I strongly believe in the costs associated with context switching, and the benefits of having full control over the content you create</p>
+        <p class="note step">JavaScript on the server and the client is a win-win on both counts, so since late 2014, the view render stack has been back-to-front JavaScript...</p>
+        <p class="note step">...or what I like to call: JavaScript Up...</p>
+        <p class="note step">...JavaScript Down...</p>
+        <p class="note step">...JavaScript All The Way Around</p>
+      </div>
+    </section>
+
+    <section id="crap">
       <div class="bg"></div>
       <div class="points">
         <h2 class="point point-1">Cacheable</h2>
@@ -185,7 +202,8 @@
         <h2 class="point point-4">Progressive</h2>
       </div>
       <div class="notes">
-        <p class="note">Since late 2014 we have been doing the whole thing in JavaScript with Node.js. At that time, it wouldn't have been totally crazy to opt for client-only rendering, but from the very beginning our goal has been to render on the server on first request, with subsequent requests handled directly by the client</p>
+        <p class="note">
+        At that time, it wouldn't have been totally crazy to opt for client-only rendering, but from the very beginning our goal has been to render on the server on first request, with subsequent requests handled directly by the client</p>
         <p class="note">We feel this pattern best matches our content while providing an optimal experience for all our users</p>
         <p class="note">Specifically, it's...</p>
         <p class="note step">...cacheable. Most of the forecast data we get from Met expires hourly, so the cost of that server render can be spread over many requests. It's also...</p>

@@ -252,7 +252,7 @@ pre code {
   top: initial;
   transform: none;
   padding: 1em;
-  width: 100%;
+  width: auto;
 }
 #title {
   color: #9fb26d;
@@ -705,12 +705,15 @@ pre code {
 }
 #architecture .diagram svg .api {
   fill: #dc7e0a;
+  stroke: #a55f08;
 }
 #architecture .diagram svg .data {
   fill: #f3da5e;
+  stroke: #dcb910;
 }
 #architecture .diagram svg .renderer {
   fill: #2c8190;
+  stroke: #256e7a;
 }
 #architecture .diagram svg .text {
   fill: #3b4e64;
@@ -793,6 +796,7 @@ pre code {
   filter: blur(5px) brightness(4);
 }
 #universal {
+  color: #4d3f3e;
   opacity: 0;
   transition-duration: 800ms;
 }
@@ -810,24 +814,33 @@ pre code {
   transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
   z-index: -1;
 }
-#universal .points {
+#universal .titles {
   bottom: 0;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
-  bottom: 10%;
-  color: #4d3f3e;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: opacity 400ms linear;
-}
-#universal .points .point {
-  font-size: 4vw;
-  margin: 0 0 0 40%;
-  opacity: 0;
   transition: all 200ms linear;
+}
+#universal .titles .title {
+  left: 25%;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  white-space: nowrap;
+}
+#universal .titles .title span {
+  color: #db1a7e;
+  font-weight: 600;
+  transition: all 200ms linear;
+}
+#universal .titles .title-1 {
+  transform: translate(60%, -50%);
+}
+#universal .titles .title-1 span {
+  opacity: 0;
 }
 #universal.show {
   opacity: 1;
@@ -836,37 +849,31 @@ pre code {
   -webkit-filter: brightness(1);
   filter: brightness(1);
 }
-#universal.step-1 .point-1 {
+#universal.step-1 .title-1 {
   opacity: 1;
 }
-#universal.step-2 .point-2 {
+#universal.step-2 .title-1 {
+  transform: translate(0, -50%);
+}
+#universal.step-2 .title-1 span {
   opacity: 1;
 }
-#universal.step-3 .point-3 {
+#universal.step-3 .title-1 {
+  transform: translate(0, -150%);
+}
+#universal.step-3 .title-2 {
   opacity: 1;
+  transform: translate(0, -50%);
 }
-#universal.step-4 .point-4 {
+#universal.step-4 .title-1 {
+  transform: translate(0, -250%);
+}
+#universal.step-4 .title-2 {
+  transform: translate(0, -150%);
+}
+#universal.step-4 .title-3 {
   opacity: 1;
-}
-#universal.step-5 .point {
-  color: #82665e;
-}
-#universal.step-5 .point::first-letter {
-  color: #fef1b5;
-  font-weight: 600;
-  padding-right: 1vw;
-}
-#universal.step-5 .point-2 {
-  transition-delay: 25ms;
-}
-#universal.step-5 .point-3 {
-  transition-delay: 100ms;
-}
-#universal.step-5 .point-4 {
-  transition-delay: 150ms;
-}
-#universal.step-6 .point {
-  opacity: 0;
+  transform: translate(0, -50%);
 }
 #universal.hide {
   opacity: 0;
@@ -875,7 +882,93 @@ pre code {
   -webkit-filter: brightness(0);
   filter: brightness(0);
 }
-#universal.hide .points {
+#universal.hide .titles {
+  opacity: 0;
+}
+#crap {
+  color: #524944;
+  opacity: 0;
+  transition-duration: 800ms;
+}
+#crap .bg {
+  background-image: url("src/images/nodeconf-9.jpg");
+  background-position: bottom center;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-filter: brightness(4);
+  filter: brightness(4);
+  transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: -1;
+}
+#crap .points {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: opacity 400ms linear;
+}
+#crap .points .point {
+  font-size: 4vw;
+  margin: 0 0 0 40%;
+  opacity: 0;
+  transition: all 200ms linear;
+}
+#crap.show {
+  opacity: 1;
+}
+#crap.show .bg {
+  -webkit-filter: brightness(1);
+  filter: brightness(1);
+}
+#crap.step-1 .point-1 {
+  opacity: 1;
+}
+#crap.step-2 .point-2 {
+  opacity: 1;
+}
+#crap.step-3 .point-3 {
+  opacity: 1;
+}
+#crap.step-4 .point-4 {
+  opacity: 1;
+}
+#crap.step-5 .point {
+  color: #796c65;
+}
+#crap.step-5 .point::first-letter {
+  color: #db1a7e;
+  font-weight: 900;
+  padding-right: 0.8vw;
+}
+#crap.step-5 .point-2 {
+  transition-delay: 25ms;
+}
+#crap.step-5 .point-3 {
+  transition-delay: 100ms;
+}
+#crap.step-5 .point-4 {
+  transition-delay: 150ms;
+}
+#crap.step-6 .point {
+  opacity: 0;
+}
+#crap.hide {
+  opacity: 0;
+}
+#crap.hide .bg {
+  -webkit-filter: brightness(0);
+  filter: brightness(0);
+}
+#crap.hide .points {
   opacity: 0;
 }
 #express {
