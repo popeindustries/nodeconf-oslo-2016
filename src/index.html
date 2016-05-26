@@ -311,7 +311,7 @@
       </pre>
       <div class="notes">
         <p class="note">Once I decided to make things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
-        <p class="note step">On the server, you take a URL, use it to route to a logic handler, fetch and munge some data, and render some HTML</p>
+        <p class="note step">The logic flow on the server starts with a URL, routes that URL to a logic handler, where you might fetch and munge some data, to finally render some HTML</p>
         <p class="note">This also seemed like a reasonable abstraction for the client</p>
         <p class="note step">So I wondered: would it be possible to initialize an application...</p>
         <p class="note step">...to add middleware...</p>
@@ -321,15 +321,18 @@
         <p class="note step">And not only <em>is</em> it possible, it's a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
-        <p class="note step">...and Express.js is a simple and elegant way to route state to handling logic</p>
-        <p class="note step">As an added bonus, remember that good URLs help make applications <em>extra</em> crappy!</p>
-        <!-- <p class="note">Adopting the Express.js way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p> -->
+        <p class="note step">...and Express is a simple and elegant way to route state to handling logic</p>
+        <p class="note step">As an added bonus, remember that good URLs help make applications <em>super</em> crappy!</p>
       </div>
     </section>
 
     <section id="data">
-      <div class="bg"></div>
-      <pre class="code">
+      <pre class="code shrug">
+        <code class="js">
+          const data = { ¯\_(ツ)_/¯ };
+        </code>
+      </pre>
+      <pre class="code superagent">
         <code class="js">
           const request = require('superagent');
 
@@ -345,25 +348,48 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">If you're familiar with Express.js, then you know that it has no opinions about how you manage the data you might need to render a view</p>
+        <p class="note">As far as data is concerned, if you're familiar with Express, then you know that it has few opinions about how you manage the data you might need to render a view</p>
         <p class="note step">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I will say that it's easier to share data loading code between the server and client if you use a request library, like SuperAgent, that seemlessly supports both environments</p>
       </div>
     </section>
 
     <section id="render">
       <div class="bg"></div>
-      <pre class="code">
+      <pre class="code render">
         <code class="js">
-          const html = ReactDOMServer.renderToString(pageContent(props));
+          res.render('search', data, (err, html) => {
+            res.send(html);
+          });
+        </code>
+      </pre>
+      <pre class="code react-server">
+        <code class="js">
+          const pageContent = require('./pageContentComponent');
+
+          // Server
+          res.send(ReactDOMServer.renderToString(pageContent(props)));
+        </code>
+      </pre>
+      <pre class="code react-client">
+        <code class="js">
+          // Client
+          ReactDOM.render(pageContent(props), pageElement);
+        </code>
+      </pre>
+      <pre class="code mixins">
+        <code class="js">
+          const mixins = runtime.isBrowser
+            ? [require('./mixin')]
+            : [];
         </code>
       </pre>
       <div class="notes">
-        <p class="note">If you're familiar with Express.js, then you know that it has no opinions about how you manage the data you might need to render HTML</p>
-        <p class="note">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I will say that it's easier to share data loading code between the server and client if you use a request library, like SuperAgent.js, that supports both environments</p>
-
-
-        <p class="note">This was right around the time that the React.js hype-balloon was blowing up, and I had heard rumours that Instagram used it on the server, so I decided to give it a shot</p>
-        <p class="note">if client-side Express is a hack to make it more server-like, server-side React is a hack to make it more client-like</p>
+        <p class="note">Express does have opinions about rendering, but they are, fortunately, optional and easy to ignore</p>
+        <p class="note step">The client-side Express experiment would have died an early death if I had to choose between classic templating languages like Jade or Handlbars</p>
+        <p class="note step">2014 was the year of the component and React.js, and although they tried to ruin things with .jsx, they <em>did</em> support server-side rendering...</p>
+        <p class="note step">...and the opportunity to use the exact same component code on the server and client was too tempting to pass up</p>
+        <p class="note">At the time, they also favoured extending component behaviour with optional "mixins"...</p>
+        <p class="note step">...which made it easy to ignore logic for handling clicking, scrolling, and other interaction on the server</p>
       </div>
     </section>
 
@@ -374,6 +400,9 @@
       <figure>
         <img src="src/images/render-graph.png">
       </figure>
+      <div class="notes">
+        <p class="note">if client-side Express is a hack to make things more server-like, server-side React is a hack to make things more client-like</p>
+      </div>
     </section>
 
     <section id="present">
@@ -429,6 +458,7 @@
       </div>
     </section>
       <!-- <h2 class="coverage">80% shared code</h2> -->
+        <!-- <p class="note">Adopting the Express.js way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p> -->
   </div>
   <script src="src/lib/highlight.js"></script>
   <script src="index.js"></script>
