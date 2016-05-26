@@ -64,7 +64,7 @@ function changeSlide (slideIndex, back) {
   }
   changeNote(model.slideIndex, slideIndex, noteIndex);
   model.slideIndex = slideIndex;
-  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d$/, `/${slideIndex}`));
+  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
 
 /**
