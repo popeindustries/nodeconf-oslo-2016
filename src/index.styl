@@ -1036,7 +1036,7 @@ pre {
     z-index: -1;
   }
   .abstract,
-  .thunder,
+  .lightning,
   .coverage {
     color: #e6db74;
     font-size: 4vw;
@@ -1047,7 +1047,7 @@ pre {
   }
   .abstract,
   .code,
-  .thunder,
+  .lightning,
   .coverage {
     opacity: 0;
     left: 50%;
@@ -1057,8 +1057,13 @@ pre {
     transform: translate(-50%, 50%);
   }
   .abstract,
-  .thunder {
+  .lightning {
     font-size: 3vw;
+  }
+  .url,
+  .anchor,
+  .handler {
+    transform: translate(-50%, -50%);
   }
   &.show {
     opacity: 1;
@@ -1118,13 +1123,42 @@ pre {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
-    .thunder {
+    .lightning {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
   }
   &.step-7 {
-    .thunder {
+    .lightning {
+      opacity: 0;
+    }
+  }
+  &.step-8 {
+    .bg {
+      opacity: 0.5;
+    }
+    .url {
+      opacity: 1;
+    }
+  }
+  &.step-9 {
+    .url {
+      opacity: 0;
+    }
+    .anchor {
+      opacity: 1;
+    }
+  }
+  &.step-10 {
+    .anchor {
+      opacity: 0;
+    }
+    .handler {
+      opacity: 1;
+    }
+  }
+  &.step-11 {
+    .handler {
       opacity: 0;
     }
   }
@@ -1143,7 +1177,10 @@ pre {
   &.show {
     opacity: 1;
   }
+}
 
+#data {
+  background-color: BLACK;
 }
 
 #react {

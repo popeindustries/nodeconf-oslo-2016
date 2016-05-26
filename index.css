@@ -1073,7 +1073,7 @@ pre code {
   z-index: -1;
 }
 #express .abstract,
-#express .thunder,
+#express .lightning,
 #express .coverage {
   color: #e6db74;
   font-size: 4vw;
@@ -1084,7 +1084,7 @@ pre code {
 }
 #express .abstract,
 #express .code,
-#express .thunder,
+#express .lightning,
 #express .coverage {
   opacity: 0;
   left: 50%;
@@ -1094,8 +1094,13 @@ pre code {
   transform: translate(-50%, 50%);
 }
 #express .abstract,
-#express .thunder {
+#express .lightning {
   font-size: 3vw;
+}
+#express .url,
+#express .anchor,
+#express .handler {
+  transform: translate(-50%, -50%);
 }
 #express.show {
   opacity: 1;
@@ -1144,11 +1149,32 @@ pre code {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#express.step-6 .thunder {
+#express.step-6 .lightning {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
-#express.step-7 .thunder {
+#express.step-7 .lightning {
+  opacity: 0;
+}
+#express.step-8 .bg {
+  opacity: 0.5;
+}
+#express.step-8 .url {
+  opacity: 1;
+}
+#express.step-9 .url {
+  opacity: 0;
+}
+#express.step-9 .anchor {
+  opacity: 1;
+}
+#express.step-10 .anchor {
+  opacity: 0;
+}
+#express.step-10 .handler {
+  opacity: 1;
+}
+#express.step-11 .handler {
   opacity: 0;
 }
 #express.hide {
@@ -1164,6 +1190,9 @@ pre code {
 }
 #render.show {
   opacity: 1;
+}
+#data {
+  background-color: #050a07;
 }
 #react {
   background-color: #050a07;

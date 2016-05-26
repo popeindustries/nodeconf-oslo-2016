@@ -64,7 +64,7 @@ function changeSlide (slideIndex, back) {
   }
   changeNote(model.slideIndex, slideIndex, noteIndex);
   model.slideIndex = slideIndex;
-  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
+  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d$/, `/${slideIndex}`));
 }
 
 /**
@@ -91,7 +91,7 @@ function changeNote (currentSlideIndex, nextSlideIndex, noteIndex) {
  */
 function changeStep (slideIndex, stepIndex) {
   const slide = model.slides[slideIndex];
-  let classStr = slide.getAttribute('class').replace(/\s?step-\d\s?/g, '');
+  let classStr = slide.getAttribute('class').replace(/\s?step-\d*\s?/g, '');
 
   for (let i = 1; i <= stepIndex; i++) {
     classStr += ` step-${i}`;
@@ -100,6 +100,13 @@ function changeStep (slideIndex, stepIndex) {
   model.stepIndex = stepIndex;
 }
 
+/**
+ * Display note in remote window
+ * @param {Number} currentSlideIndex
+ * @param {Number} nextSlideIndex
+ * @param {Number} currentNoteIndex
+ * @param {Number} nextNoteIndex
+ */
 function changeRemoteNote (currentSlideIndex, nextSlideIndex, currentNoteIndex, nextNoteIndex) {
   const currentSlide = model.slides[currentSlideIndex];
   const nextSlide = model.slides[nextSlideIndex];

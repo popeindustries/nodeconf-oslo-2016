@@ -1171,7 +1171,25 @@
           });
         </code>
       </pre>
-      <h2 class="thunder">[ applause ]</h2>
+      <h2 class="lightning">[ applause ]</h2>
+      <pre class="code url">
+        <code class="js">
+          "/en/search?q=foo"
+        </code>
+      </pre>
+      <pre class="code anchor">
+        <code class="html">
+          &lt;a href="/en/search?q=foo"&gt;&lt;/a&gt;
+        </code>
+      </pre>
+      <pre class="code handler">
+        <code class="js">
+          app.get('/en/search', function (req, res, next) {
+            const searchQuery = req.query.q;
+            //...
+          });
+        </code>
+      </pre>
       <div class="notes">
         <p class="note">Once I decided to make things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
         <p class="note step">On the server, you take a URL, use it to route to a logic handler, fetch and munge some data, and render some HTML</p>
@@ -1181,9 +1199,35 @@
         <p class="note step">...to add request parameter validation...</p>
         <p class="note step">...and to handle a request, in the browser, just like Express.js does on the server?</p>
         <p class="note step">Well, it is possible!</p>
-        <p class="note step">And not only <em>is</em> it possible, it's a great way to think about program logic: URLs are fantastic for encapsulating state; anchor tags are great triggers for transitioning between those states; and Express is a simple and elegant way to convert that state into HTML</p>
-        <p class="note">As a bonus, good URLs help make applications <em>extra</em> crappy</p>
+        <p class="note step">And not only <em>is</em> it possible, it's a great way to think about program logic:</p>
+        <p class="note step">URLs are fantastic for encapsulating state...</p>
+        <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
+        <p class="note step">...and Express.js is a simple and elegant way to route state to handling logic</p>
+        <p class="note step">As an added bonus, remember that good URLs help make applications <em>extra</em> crappy!</p>
         <!-- <p class="note">Adopting the Express.js way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p> -->
+      </div>
+    </section>
+
+    <section id="data">
+      <div class="bg"></div>
+      <pre class="code">
+        <code class="js">
+          const request = require('superagent');
+
+          app.get(pattern, function (req, res, next) {
+            //...
+            request
+              .get('path/to/api')
+              .end((err, response) => {
+                res.data = response.body;
+                //...
+              });
+          });
+        </code>
+      </pre>
+      <div class="notes">
+        <p class="note">If you're familiar with Express.js, then you know that it has no opinions about how you manage the data you might need to render a view</p>
+        <p class="note step">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I will say that it's easier to share data loading code between the server and client if you use a request library, like SuperAgent, that seemlessly supports both environments</p>
       </div>
     </section>
 
@@ -1195,7 +1239,10 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">At about the same time as I was stuffing Express.js into the browser, I was looking for a good way to render data into HTML in both environments</p>
+        <p class="note">If you're familiar with Express.js, then you know that it has no opinions about how you manage the data you might need to render HTML</p>
+        <p class="note">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I will say that it's easier to share data loading code between the server and client if you use a request library, like SuperAgent.js, that supports both environments</p>
+
+
         <p class="note">This was right around the time that the React.js hype-balloon was blowing up, and I had heard rumours that Instagram used it on the server, so I decided to give it a shot</p>
         <p class="note">if client-side Express is a hack to make it more server-like, server-side React is a hack to make it more client-like</p>
       </div>
