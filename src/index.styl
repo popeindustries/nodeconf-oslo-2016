@@ -137,14 +137,14 @@ blockquote {
   font-size: 2vw;
   font-weight: 400;
   line-height: 1.6;
-  max-width: 80vw;
-  padding: 0 2vw;
+  margin: 0;
+  padding: 0 2vw 0 3vw;
   position: relative;
   &:before {
     content: '‟';
     display: inline-block;
     font-size: 300%;
-    left: -1vw;
+    left: 0;
     position: absolute;
     top: -1.5vw;
   }
@@ -192,6 +192,58 @@ blockquote {
       transform: none;
       padding: 1em;
       width: auto;
+    }
+  }
+}
+.phone {
+  height: 40vw;
+  left: 50%;
+  margin: -22vw 0 0 -10vw;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  width: 20vw;
+  will-change: transform, opacity;
+  figure {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    &.front {
+      z-index: 2;
+    }
+    &.back {
+      transform: rotateY(180deg);
+    }
+    img {
+      height: 100%;
+    }
+    figcaption {
+      display: block;
+      font-size: 2.2vw;
+      margin-top: 1vw;
+    }
+    .anim,
+    .frame {
+      position: absolute;
+    }
+    .anim {
+      height: 74%;
+      left: 6%;
+      top: 13%;
+    }
+    .frame {
+      left: 0;
+      height: 100%;
+      top: 0;
     }
   }
 }
@@ -513,50 +565,16 @@ blockquote {
   perspective: 60rem;
   transition-duration: TRANSITION_DURATION_LONG;
   .m,
-  .www,
-  .phone {
+  .www {
     position: absolute;
     transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
   }
   .phone {
-    height: 40vw;
-    left: 50%;
-    margin: -22vw 0 0 -10vw;
-    opacity: 1;
-    top: 50%;
-    transform-style: preserve-3d;
-    width: 20vw;
-    will-change: transform, opacity;
     &.n95 {
       z-index: 1;
     }
     &.iphone {
       opacity: 0;
-    }
-    figure {
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      height: 100%;
-      left: 0;
-      margin: 0;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      width: 100%;
-      &.front {
-        z-index: 2;
-      }
-      &.back {
-        transform: rotateY(180deg);
-      }
-      img {
-        height: 100%;
-      }
-      figcaption {
-        display: block;
-        font-size: 2.2vw;
-        margin-top: 1vw;
-      }
     }
   }
   .m,
@@ -566,7 +584,7 @@ blockquote {
     top: 30%;
   }
   .m {
-    transform: translateX(-240%);
+    transform: translateX(-230%);
   }
   .www {
     transform: translateX(130%);
@@ -588,7 +606,7 @@ blockquote {
   }
   &.step-3 {
     .iphone {
-      transform: translateX(50%) rotateY(180deg);
+      transform: translateX(60%) rotateY(180deg);
       transition-duration: TRANSITION_DURATION_SHORT;
     }
   }
@@ -1283,8 +1301,41 @@ blockquote {
 }
 
 #react {
-  background-color: BLACK;
-  color: white;
+  background-color: white;
+  opacity: 0;
+  transition-duration: TRANSITION_DURATION_LONG;
+  .bg {
+    bg('src/images/nodeconf-11.jpg');
+    full();
+    -webkit-filter: brightness(0);
+    filter: brightness(0);
+    opacity: 0;
+    transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
+    z-index: -1;
+  }
+  .iphone {
+    z-index: 1;
+  }
+  .title {
+    opacity: 0;
+  }
+  .quotes {
+    full();
+    .quote {
+      opacity: 0;
+    }
+  }
+  &.show {
+    opacity: 1;
+  }
+  &.step-1 {
+    .iphone {
+      transform: rotateY(-180deg);
+    }
+  }
+  &.hide {
+    opacity: 0;
+  }
 }
 
 #present {

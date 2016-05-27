@@ -394,15 +394,25 @@
     </section>
 
     <section id="react">
-      <h2>React and the economics of dynamic web interfaces - Nicholas C. Zakas</h2>
-      <blockquote cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">The cost of each render remains relatively consistent and is based only on the parts of the page that have changed, so there's little difference between manually re-rendering just the part of the page that has changed and re-rendering the entire page. Those are effectively the same operations.</blockquote>
-      <blockquote cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code.</blockquote>
-      <blockquote cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">[...] it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side.</blockquote>
+      <div class="bg"></div>
+      <div class="phone iphone">
+        <figure class="back">
+          <img class="anim" src="src/images/iphone-paint.gif">
+          <img class="frame" src="src/images/iphone-frame.png">
+        </figure>
+      </div>
+      <h2 class="title">React and the economics of dynamic web interfaces - <span>Nicholas C. Zakas</span></h2>
+      <div class="quotes">
+        <blockquote class="quote quote-1" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">The cost of each render remains relatively consistent and is based only on the parts of the page that have changed, so there's little difference between manually re-rendering just the part of the page that has changed and re-rendering the entire page. Those are effectively the same operations.</blockquote>
+        <blockquote class="quote quote-2" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code.</blockquote>
+        <blockquote class="quote quote-3" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">[...] it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side.</blockquote>
+      </div>
       <div class="notes">
-        <p class="note">React's killer feature for me has always been that it reduces the cost of rendering the whole tree on each state change</p>
-        <p class="note">This makes it possible to render from the root even when only a small part of our big blob of data is updated</p>
-        <p class="note">This is essentially what we do on the server, and by abstracting away the underlying DOM changes, React let's us do this on the client as well</p>
-        <p class="note">Although I considered this the best part of React, it wasn't until January of this year that I understood why</p>
+        <p class="note">React's killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
+        <p class="note step">This makes it possible to render from the root even when only a small part of our big blob of data has updated</p>
+        <!-- <p class="note">This is essentially what we do on the server, and by abstracting away the underlying DOM changes, React let's us do this on the client as well</p> -->
+        <p class="note">Here we are rendering the full page on each keypress, and after new data is fetched from our search api, but the DOM repaint (in Green) is contained to the affected components</p>
+        <p class="note step">Although I considered this the best part of React, it wasn't until recently that I understood why</p>
         <p class="note">At the end of January, Nicholas C. Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
         <p class="note">if client-side Express is a hack to make things more server-like, server-side React is a hack to make things more client-like</p>
       </div>
