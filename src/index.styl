@@ -66,7 +66,7 @@ h1 {
 }
 h2 {
   font-size: 2.2vw;
-  font-weight: 400;
+  font-weight: 500;
 }
 h3 {
   font-size: 2vw;
@@ -131,6 +131,22 @@ pre {
     padding: 0 !important;
     overflow: hidden !important;
     background-color: transparent !important;
+  }
+}
+blockquote {
+  font-size: 2vw;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 80vw;
+  padding: 0 2vw;
+  position: relative;
+  &:before {
+    content: '‟';
+    display: inline-block;
+    font-size: 300%;
+    left: -1vw;
+    position: absolute;
+    top: -1.5vw;
   }
 }
 .slides {
@@ -1268,6 +1284,7 @@ pre {
 
 #react {
   background-color: BLACK;
+  color: white;
 }
 
 #present {
