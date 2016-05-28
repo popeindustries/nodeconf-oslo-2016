@@ -1611,11 +1611,7 @@ blockquote {
 
 
 #bye {
-  align-items: center;
-  color: #231F36;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  color: white;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
   .bg {
@@ -1627,14 +1623,27 @@ blockquote {
     z-index: -1;
   }
   h1 {
-    margin-bottom: 2vw;
+    color: #EA735B;
+    bottom: 4vw;
+    position: absolute;
+    right: 40vw;
+    text-align: center;
   }
   a {
     color: inherit;
     display: block;
-    font-weight: 600;
+    font-weight: 400;
+  }
+  .references {
+    left: 5vw;
     opacity: 0;
+    position: absolute;
+    top: 5vw;
     transition: opacity TRANSITION_DURATION_SHORT linear;
+    width: 100%;
+    h3:last-of-type {
+      margin-top: 2vw;
+    }
   }
   footer {
     bottom: 0;
@@ -1657,7 +1666,7 @@ blockquote {
     }
   }
   &.step-1 {
-    a {
+    .references {
       opacity: 1;
     }
   }
