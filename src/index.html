@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" type="text/css" href="src/lib/monokai.css">
+  <link rel="stylesheet" type="text/css" href="src/lib/monokai-sublime.css">
 </head>
 <body>
   <div class="slides">
@@ -30,10 +31,10 @@
         <img class="logo logo--nrk" inline src="src/images/logo-nrk.svg">
         <img class="logo logo--met" inline src="src/images/logo-met.svg">
       </div>
-      <h2 class="max-users">9,000,000 users/week</h2>
+      <h3 class="max-users">9,000,000 users/week</h3>
       <img class="stats" inline src="src/images/stats.svg">
-      <h2 class="launch-date">Sept 19, 2007</h2>
-      <h2 class="mobile-users">60% mobile</h2>
+      <h3 class="launch-date">Sept 19, 2007</h3>
+      <h3 class="mobile-users">60% mobile</h3>
       <div class="notes">
         <p class="note">Yr (or Y-R in English, I guess) is a Norwegian weather service</p>
         <p class="note step">I's a collaboration between Norway's state broadcaster, NRK, (where I work) and the state Meteorological Institute, Met</p>
@@ -77,7 +78,7 @@
         </figure>
       </div>
       <div class="m">
-        <h2>m.yr.no</h2>
+        <h3>m.yr.no</h3>
         <ul>
           <li class="good">light on bandwidth</li>
           <li class="good">flexible width</li>
@@ -85,7 +86,7 @@
         </ul>
       </div>
       <div class="www">
-        <h2>www.yr.no</h2>
+        <h3>www.yr.no</h3>
         <ul>
           <li class="good">heavy on features</li>
           <li class="bad">heavy on bandwidth</li>
@@ -235,10 +236,10 @@
         </svg>
       </div>
       <div class="points">
-        <h2 class="point point-1">Cacheable</h2>
-        <h2 class="point point-2">Resilient</h2>
-        <h2 class="point point-3">Accessible</h2>
-        <h2 class="point point-4">Progressive</h2>
+        <h3 class="point point-1">Cacheable</h3>
+        <h3 class="point point-2">Resilient</h3>
+        <h3 class="point point-3">Accessible</h3>
+        <h3 class="point point-4">Progressive</h3>
       </div>
       <div class="notes">
         <p class="note">The easy way at this point would have been to go full-steam ahead with a Single Page App that renders most of the HTML in the browser</p>
@@ -401,31 +402,78 @@
           <img class="frame" src="src/images/iphone-frame.png">
         </figure>
       </div>
-      <h2 class="title">React and the economics of dynamic web interfaces - <span>Nicholas C. Zakas</span></h2>
+      <h3 class="title">React and the economics of dynamic web interfaces<span>Nicholas C. Zakas</span></h3>
       <div class="quotes">
-        <blockquote class="quote quote-1" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">The cost of each render remains relatively consistent and is based only on the parts of the page that have changed, so there's little difference between manually re-rendering just the part of the page that has changed and re-rendering the entire page. Those are effectively the same operations.</blockquote>
-        <blockquote class="quote quote-2" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code.</blockquote>
-        <blockquote class="quote quote-3" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">[...] it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side.</blockquote>
+        <blockquote class="quote quote-1" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code.</blockquote>
+        <blockquote class="quote quote-2" cite="https://www.nczonline.net/blog/2016/01/react-and-the-economics-of-dynamic-web-interfaces">[...] it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side.</blockquote>
       </div>
+      <h2 class="coverage">80% shared code</h2>
       <div class="notes">
         <p class="note">React's killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
-        <p class="note step">This makes it possible to render from the root even when only a small part of our big blob of data has updated</p>
-        <!-- <p class="note">This is essentially what we do on the server, and by abstracting away the underlying DOM changes, React let's us do this on the client as well</p> -->
-        <p class="note">Here we are rendering the full page on each keypress, and after new data is fetched from our search api, but the DOM repaint (in Green) is contained to the affected components</p>
-        <p class="note step">Although I considered this the best part of React, it wasn't until recently that I understood why</p>
-        <p class="note">At the end of January, Nicholas C. Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
-        <p class="note">if client-side Express is a hack to make things more server-like, server-side React is a hack to make things more client-like</p>
+        <p class="note step">This makes it possible to render from the root component even when only a small part of our data has changed</p>
+        <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our api call, but the DOM repaint (shown here in Green) is contained to the affected components</p>
+        <p class="note">Although I considered this the best part of React, it wasn't until recently that I understood why</p>
+        <p class="note step">At the end of January, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
+        <p class="note">In it, he outlined his thoughts about how React has changed the performance, efficiency, and complexity costs associated with dynamic DOM updates</p>
+        <p class="note step">[QUOTE]</p>
+        <p class="note step">[QUOTE]</p>
+        <p class="note step">If client-side Express was the lightning, this was the thunder</p>
+        <p class="note step">I'm not suggesting that this is the answer to everyone's prayers, but for me, applying a server-centric model to the client is an elegant solution...</p>
+        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client</p>
       </div>
     </section>
 
-    <section>
-      <figure>
+    <section id="caveats">
+      <div class="charts">
         <img src="src/images/render-list.png">
-      </figure>
-      <figure>
         <img src="src/images/render-graph.png">
-      </figure>
-
+      </div>
+      <pre class="code render">
+        <code class="js">
+          ReactDOMServer.renderToString(pageContent(props));
+        </code>
+      </pre>
+      <ul class="tips">
+        <li class="tip tip-1 good">
+          <h3>Set production mode</h3>
+          <pre class="code">
+            <code class="bash">
+              $ NODE_ENV=production node index.js
+            </code>
+          </pre>
+        </li>
+        <li class="tip tip-2 good">
+          <h3>Use minified React</h3>
+          <pre class="code">
+            <code class="js">
+              const React = require('react/dist/react.min');
+            </code>
+          </pre>
+        </li>
+        <li class="tip tip-3 good">
+          <h3>Render components as "stateless functions"</h3>
+          <pre class="code">
+            <code class="js">
+              const render = (props) => {
+                return React.DOM.h1(props.title);
+              };
+            </code>
+          </pre>
+        </li>
+      </ul>
+      <h3 class="issue">Proposal: ReactDOMServer render to Stream <span>#6420</span></h3>
+      <div class="notes">
+        <p class="note">Now, this make for a nice story, but real life - and by real life I mean <em>production</em> - is not always so pretty</p>
+        <p class="note step">It turns out that server-side React is <em>slow</em></p>
+        <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
+        <p class="note step">This is not great, but it's downright horrible when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
+        <p class="note step">There are a few tricks you can employ to improve things:</p>
+        <p class="note step">...be sure to run in <em>production</em> mode (generally good practice for all libraries, not just React)</p>
+        <p class="note step">...use the minified version</p>
+        <p class="note step">...and render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or be created via React.createClass)</p>
+        <p class="note">But what React really needs is an asynchronous renderer</p>
+        <p class="note step">Fortunately, work has begun on an asynchronous, streaming renderer, and although some React core team members are sceptical, it looks like React may eventually get improved server-side rendering</p>
+      </div>
     </section>
 
     <section id="present">
@@ -480,8 +528,6 @@
         <p class="note step">Feel free to reach out on Twitter or GitHub if you have any questions</p>
       </div>
     </section>
-      <!-- <h2 class="coverage">80% shared code</h2> -->
-        <!-- <p class="note">Adopting the Express.js way of doing things on the client is an idea that struck like a bolt of lightning, but lightning is nothing without some thunder, and sometimes that doesn't hit you until much later</p> -->
   </div>
   <script src="src/lib/highlight.js"></script>
   <script src="index.js"></script>

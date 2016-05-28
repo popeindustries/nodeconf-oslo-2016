@@ -65,12 +65,12 @@ h1 {
   font-weight: 900;
 }
 h2 {
-  font-size: 2.2vw;
-  font-weight: 500;
+  font-size: 3vw;
+  font-weight: 600;
 }
 h3 {
-  font-size: 2vw;
-  font-weight: 400;
+  font-size: 2.2vw;
+  font-weight: 500;
 }
 ul {
   margin: 0;
@@ -186,7 +186,7 @@ blockquote {
     .dev & {
       background-color: rgba(255,255,255,0.8);
       bottom: 0;
-      font-size: 1.2vw;
+      font-size: 1.4vw;
       left: 0;
       top: initial;
       transform: none;
@@ -1307,8 +1307,8 @@ blockquote {
   .bg {
     bg('src/images/nodeconf-11.jpg');
     full();
-    -webkit-filter: brightness(0);
-    filter: brightness(0);
+    -webkit-filter: brightness(4);
+    filter: brightness(4);
     opacity: 0;
     transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
     z-index: -1;
@@ -1316,14 +1316,40 @@ blockquote {
   .iphone {
     z-index: 1;
   }
-  .title {
+  .title,
+  .quote {
+    left: 50%;
     opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+  }
+  .title {
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    span {
+      display: block;
+      font-size: 80%;
+      font-weight: 400;
+    }
   }
   .quotes {
     full();
     .quote {
-      opacity: 0;
+      margin-top: -6vw;
+      transform: translateX(-100%);
+      width: 50%;
     }
+  }
+  .coverage {
+    color: #FA5C48;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity TRANSITION_DURATION_SHORT linear;
   }
   &.show {
     opacity: 1;
@@ -1331,6 +1357,164 @@ blockquote {
   &.step-1 {
     .iphone {
       transform: rotateY(-180deg);
+    }
+  }
+  &.step-2 {
+    .iphone {
+      opacity: 0;
+    }
+    .title {
+      opacity: 1;
+    }
+  }
+  &.step-3 {
+    .title {
+      transform: translate(-50%, -300%);
+    }
+    .quote-1 {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+  &.step-4 {
+    .quote-1 {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    .quote-2 {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+  &.step-5 {
+    .bg {
+      opacity: 1;
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+    }
+  }
+  &.step-6 {
+    .title,
+    .quote-2 {
+      opacity: 0;
+    }
+  }
+  &.step-7 {
+    .coverage {
+      opacity: 1;
+    }
+  }
+  &.hide {
+    opacity: 0;
+    .bg {
+      -webkit-filter: brightness(0);
+      filter: brightness(0);
+    }
+  }
+}
+
+#caveats {
+  background-color: BLACK;
+  color: white;
+  opacity: 0;
+  .charts {
+    full()
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: all TRANSITION_DURATION linear;
+    img {
+      width: 100%;
+    }
+  }
+  .render {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+    transform: translate(-50%, -50%);
+  }
+  .tips {
+    left: 15%;
+    position: absolute;
+    top: 45%;
+    transition: transform TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
+    width: 80%;
+    .tip {
+      opacity: 0;
+      transition: all TRANSITION_DURATION_SHORT linear;
+      h3 {
+        display: inline-block;
+      }
+      .code {
+        margin: -4vw 0 -4vw -8vw;
+      }
+    }
+  }
+  .issue {
+    opacity: 0;
+    left: 0
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    transition: all TRANSITION_DURATION_SHORT linear;
+    width: 100%;
+    span {
+      font-weight: 400;
+      opacity: 0.5;
+    }
+  }
+  &.show {
+    opacity: 1;
+  }
+  &.step-1 {
+    .charts {
+      opacity: 1;
+    }
+  }
+  &.step-2 {
+    .charts {
+      opacity: 0;
+    }
+    .render {
+      opacity: 1;
+    }
+  }
+  &.step-3 {
+    .render {
+      opacity: 0;
+    }
+  }
+  &.step-4 {
+    .tip-1 {
+      opacity: 1;
+    }
+  }
+  &.step-5 {
+    .tips {
+      transform: translateY(-10vw);
+    }
+    .tip-2 {
+      opacity: 1;
+    }
+  }
+  &.step-6 {
+    .tips {
+      transform: translateY(-18vw);
+    }
+    .tip-3 {
+      opacity: 1;
+    }
+  }
+  &.step-7 {
+    .tips {
+      opacity: 0;
+    }
+    .issue {
+      opacity: 1;
     }
   }
   &.hide {
