@@ -4,7 +4,7 @@ const TOUCH_THRESHOLD = 100;
 
 const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
-const isDevelopment = !isProduction && window.location.hostname == 'localhost';
+const isDevelopment = !isProduction/* && window.location.hostname == 'localhost'*/;
 const isNotes = window.name == 'notes';
 const startingSlide = isProduction ? 0 : getUrlSlide();
 let model = window.model = parse({

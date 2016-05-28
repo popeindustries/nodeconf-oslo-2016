@@ -116,7 +116,7 @@ _m_['src/index.js']=(function(module,exports){
   
   var elSlides = document.querySelector('.slides');
   var isProduction = undefined == 'production';
-  var isDevelopment = !isProduction && window.location.hostname == 'localhost';
+  var isDevelopment = !isProduction /* && window.location.hostname == 'localhost'*/;
   var isNotes = window.name == 'notes';
   var startingSlide = isProduction ? 0 : getUrlSlide();
   var model = window.model = parse({
