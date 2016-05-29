@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 const isDevelopment = !isProduction
 const isLocal = window.location.hostname == 'localhost';
 const isNotes = window.name == 'notes';
-const startingSlide = isProduction ? 0 : getUrlSlide();
+const startingSlide = isProduction && !isLocal ? 0 : getUrlSlide();
 let model = window.model = parse({
   notes: [],
   noteIndex: 0,
@@ -240,10 +240,10 @@ if (!isNotes) {
   } else {
     if (isDevelopment) {
       document.documentElement.classList.add('dev');
-      if (isLocal) {
-        window.addEventListener('popstate', onPopState, false);
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
+    }
+    if (isLocal) {
+      window.addEventListener('popstate', onPopState, false);
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
     changeSlide(startingSlide);
   }

@@ -242,11 +242,14 @@ blockquote:before {
   top: 0;
   width: 100%;
 }
+.presentation-notes .slides {
+  height: 100%;
+}
 .notes {
   background-color: #fff;
   color: #050a07;
   display: none;
-  font-size: 3vw;
+  font-size: 4vw;
   font-weight: 400;
   text-align: left;
   z-index: 1000;
@@ -262,6 +265,7 @@ blockquote:before {
   top: initial;
 }
 .notes .note {
+  font-size: inherit;
   left: 50%;
   margin: 0;
   opacity: 0;
@@ -270,7 +274,7 @@ blockquote:before {
   top: 50%;
   transform: translate(-50%, -50%);
   visibility: visible;
-  width: 60%;
+  width: 80%;
 }
 .dev .notes .note {
   background-color: rgba(255,255,255,0.8);
@@ -1383,11 +1387,11 @@ blockquote:before {
   -webkit-filter: brightness(1);
   filter: brightness(1);
 }
-#react.step-6 .title,
-#react.step-6 .quote-2 {
+#react.step-5 .title,
+#react.step-5 .quote-2 {
   opacity: 0;
 }
-#react.step-7 .coverage {
+#react.step-6 .coverage {
   opacity: 1;
 }
 #react.hide {

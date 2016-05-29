@@ -163,12 +163,15 @@ blockquote {
   transform-origin: top left;
   top: 0;
   width: 100%;
+  .presentation-notes & {
+    height: 100%;
+  }
 }
 .notes {
   background-color: white;
   color: BLACK;
   display: none;
-  font-size: 3vw;
+  font-size: 4vw;
   font-weight: 400;
   text-align: left;
   z-index: 1000;
@@ -179,6 +182,7 @@ blockquote {
     top: initial;
   }
   .note {
+    font-size: inherit;
     left: 50%;
     margin: 0;
     opacity: 0;
@@ -187,7 +191,7 @@ blockquote {
     top: 50%;
     transform: translate(-50%, -50%);
     visibility: visible;
-    width: 60%;
+    width: 80%;
     .dev & {
       background-color: rgba(255,255,255,0.8);
       bottom: 0;
@@ -1382,14 +1386,12 @@ blockquote {
       -webkit-filter: brightness(1);
       filter: brightness(1);
     }
-  }
-  &.step-6 {
     .title,
     .quote-2 {
       opacity: 0;
     }
   }
-  &.step-7 {
+  &.step-6 {
     .coverage {
       opacity: 1;
     }

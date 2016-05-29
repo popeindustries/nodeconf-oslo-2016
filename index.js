@@ -115,11 +115,11 @@ _m_['src/index.js']=(function(module,exports){
   var TOUCH_THRESHOLD = 100;
   
   var elSlides = document.querySelector('.slides');
-  var isProduction = undefined == 'production';
+  var isProduction = 'production' == 'production';
   var isDevelopment = !isProduction;
   var isLocal = window.location.hostname == 'localhost';
   var isNotes = window.name == 'notes';
-  var startingSlide = isProduction ? 0 : getUrlSlide();
+  var startingSlide = isProduction && !isLocal ? 0 : getUrlSlide();
   var model = window.model = parse({
     notes: [],
     noteIndex: 0,
@@ -342,10 +342,10 @@ _m_['src/index.js']=(function(module,exports){
     } else {
       if (isDevelopment) {
         document.documentElement.classList.add('dev');
-        if (isLocal) {
-          window.addEventListener('popstate', onPopState, false);
-          window.history.replaceState({}, document.title, window.location.pathname);
-        }
+      }
+      if (isLocal) {
+        window.addEventListener('popstate', onPopState, false);
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
       changeSlide(startingSlide);
     }
