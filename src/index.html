@@ -174,7 +174,7 @@
         <p class="note step">The next step, was to build a REST API and view renderer for the new, responsive layout</p>
         <p class="note">Although this was already a big improvement, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really inefficient for such a small team: I was delivering static versions of the front-end markup to my colleague to implement in the back-end, and we ended up duplicating a lot of the work associated with generating HTML strings</p>
         <p class="note step">So after a lot of grumbling on my part, and a skunkworks prototype while our project manager was on summer holiday, we were able to split the API and view renderer into separate projects</p>
-        <p class="note step">Now we each had our own monolith to look after</p>
+        <p class="note step">Now we had one monolith per developer</p>
       </div>
     </section>
 
@@ -186,9 +186,9 @@
         <h1 class="title title-3">JavaScript <span>all the way around</span></h1>
       </div>
       <div class="notes">
-        <p class="note">I'm no scientist - just a web developer - but I've been sending formatted text strings to web browsers for a long time now, and I'm positive you can get more done with less</p>
+        <p class="note">I'm no scientist - just a web developer - but I've been sending formatted text strings to web browsers for some time now, and I'm convinced you can usually get more done with less</p>
         <p class="note">Less time spent duplicating work, less time spent switching between contexts/platforms/languages/frameworks, and less time spent getting content to users, is more time you can spend on making them happier</p>
-        <p class="note step">Running JavaScript on the server Node isn't really going to change the world, but it does give you more time to try</p>
+        <p class="note step">Running JavaScript on the server with Node isn't really going to change the world, but it does give you more time to try</p>
         <p class="note">Running the same code on the server and client has the potential to save the most time of all</p>
         <p class="note">Some call this isomorphic, or universal...</p>
         <p class="note step">...but I like to call it: JavaScript Up...</p>
@@ -254,7 +254,7 @@
         <p class="note step">And it's progressive: delivering a baseline experience to all allows us to add additional features, and improve that experience, for those devices that <em>can</em> handle it. It's also easier to not worry about those that can't</p>
         <p class="note step">Add it all up, and it's <strong>CRAP</strong>! Having to do all this is a real pain in the ass</p>
         <p class="note">Caching is nightmare; worrying about the resiliency of the network and our code is a headache; making content accessible on all those devices is impossible; and building things that can be progressively enhanced is hard</p>
-        <p class="note">But let's be honest, most of us love crap: we eat crap, we watch crap, and we spend a lot of time looking at crap on our phones</p>
+        <p class="note">But honestly, most of us love crap: we eat crap, we watch crap, and we spend a lot of time looking at crap on our phones</p>
         <p class="note step">So, do your users a favour, and make it CRAP, not shit. They'll love you for it</p>
       </div>
     </section>
@@ -313,8 +313,8 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">Once I commited to making things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
-        <p class="note step">The logic flow on the server starts with a URL, routes that URL to a logic handler, where you might fetch and munge some data, before finally rendering some HTML</p>
+        <p class="note">Once I committed to making things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
+        <p class="note step">The logic flow on the server starts with a URL, routes that URL to a handler, where you might fetch and munge some data, before finally rendering a string of HTML</p>
         <p class="note">This also seemed like a reasonable abstraction for the client</p>
         <p class="note step">So I wondered: would it be possible to initialize an application...</p>
         <p class="note step">...to add middleware...</p>
@@ -350,8 +350,8 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">As far as data is concerned, if you're familiar with Express, then you know that it has few opinions about how you manage the data you might need to render a view</p>
-        <p class="note step">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I will say that it's easier to share data loading code between the server and client if you use a request library, like SuperAgent, that seemlessly supports both environments</p>
+        <p class="note">As far as data is concerned, if you're familiar with Express, then you know that it has few opinions about how you manage any data you might need to render a view</p>
+        <p class="note step">I don't have very strong opinions about it either, since data tends to be quite domain specific anyway, but I do recommend using a request library, like SuperAgent, that seamlessly supports both environments, as it makes sharing code between the server and client much easier</p>
       </div>
     </section>
 
@@ -386,8 +386,7 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">Express does have opinions about rendering, but they are, fortunately, optional and easy to ignore</p>
-        <p class="note step">The client-side Express experiment would have died an early death if I had to choose between templating languages like Jade or Handlbars</p>
+        <p class="note">Express does have opinions about rendering, but they are, fortunately, entirely optional</p>
         <p class="note step">2014 was the year of the component and React.js, and although they tried to ruin things with .jsx, they <em>did</em> support server-side rendering...</p>
         <p class="note step">...and the opportunity to use the exact same component code on the server and client was too tempting to pass up</p>
         <p class="note">At the time, they also favoured extending component behaviour with optional "mixins"...</p>
@@ -419,8 +418,9 @@
         <p class="note step">QUOTE: React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code</p>
         <p class="note step">QUOTE: it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side</p>
         <p class="note step">If client-side Express was the lightning, this, for me, was the thunder</p>
-        <p class="note step">I'm not suggesting that this is the answer to everyone's prayers, but I think that applying a server-centric model to the client is a really elegant solution...</p>
-        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and energy switching between the two</p>
+        <p class="note">The one-two punch of Express and React made it possible to understand and manage program flow on the client just as you would on the server, and that was a very powerful idea</p>
+        <p class="note">I'm not suggesting that this is the answer to everyone's prayers, but I think that applying a server model to the client can be a really elegant solution...</p>
+        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and mental energy switching between the two</p>
       </div>
     </section>
 
@@ -480,8 +480,8 @@
         <p class="note step">There are a few tricks you can try to improve things:</p>
         <p class="note step">...be sure to run in <em>production</em> mode (generally good practice for all libraries, not just React)</p>
         <p class="note step">...use the minified version of React</p>
-        <p class="note step">...render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or created via React.createClass)</p>
-        <p class="note step">...and maybe render components in a child process? I haven't tried this yet, but I'm tempted, though there are probably costs associated with serializing/deserializing data</p>
+        <p class="note step">...render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or React.createClass)</p>
+        <p class="note step">...and maybe render components in a child process? I haven't tried this yet, but I'm tempted, though there are probably costs associated with serializing/de-serializing data</p>
         <p class="note">What React badly needs is an asynchronous renderer</p>
         <p class="note step">Fortunately, work has begun on an asynchronous, streaming renderer, and although some core team members are sceptical, it looks like React may eventually get improved server-side rendering</p>
       </div>
@@ -499,11 +499,12 @@
           <img src="src/images/n95-new.png">
         </figure>
       </div>
-      <h2 class="crap">CRAP</h2>
       <div class="notes">
-        <p class="note">It's been a long journey, and a little rough weather on the way was to be expected, but things are looking up</p>
-        <p class="note step">Server-side rendering with Node helps keep things CRAP (cacheable, resilient, accessible, and progressive)</p>
-        <p class="note step">Express and React make it possible to use the same mental model on the client as we do on the server</p>
+        <p class="note">It's been a long journey, and a little rough weather on the way was to be expected, but things are looking bright</p>
+        <p class="note">Server-side rendering with Node is keeping things CRAP (cacheable, resilient, accessible, and progressive)...</p>
+        <p class="note">...Express and React are making it possible to use the same mental model on both sides of the wire...</p>
+        <p class="note">...and there are a lot of exciting things on the horizon</p>
+        <p class="note">I'm forecasting sunny days ahead!</p>
       </div>
     </section>
 

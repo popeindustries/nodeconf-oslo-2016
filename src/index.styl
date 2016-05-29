@@ -569,7 +569,6 @@ blockquote {
 #mobile {
   opacity: 0;
   perspective: 60rem;
-  transition-duration: TRANSITION_DURATION_LONG;
   .m,
   .www {
     position: absolute;
@@ -607,7 +606,6 @@ blockquote {
   &.step-2 {
     .n95 {
       transform: translateX(-60%);
-      transition-duration: TRANSITION_DURATION_SHORT;
     }
     .iphone {
       opacity: 1;
@@ -617,7 +615,6 @@ blockquote {
   &.step-3 {
     .iphone {
       transform: translateX(60%) rotateY(180deg);
-      transition-duration: TRANSITION_DURATION_SHORT;
     }
   }
   &.step-4 {
@@ -640,7 +637,13 @@ blockquote {
     opacity: 0;
     .n95,
     .iphone {
+    }
+    .n95 {
+      transform: translateX(0);
+    }
+    .iphone {
       opacity: 0;
+      transform: translateX(0) rotateY(180deg);
     }
   }
 }
@@ -710,7 +713,7 @@ blockquote {
         circle,
         line {
           stroke-dasharray: 2 2;
-          opacity: 0.4
+          opacity: 0.6
         }
         text {
           stroke: none;
@@ -1253,14 +1256,12 @@ blockquote {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
-  }
-  &.step-2 {
     .react-server {
       opacity: 1;
       transform: translate(-50%, -50%);
     }
   }
-  &.step-3 {
+  &.step-2 {
     .react-server {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -1270,7 +1271,7 @@ blockquote {
       transform: translate(-50%, -50%);
     }
   }
-  &.step-4 {
+  &.step-3 {
     .react-client {
       opacity: 0;
       transform: translate(-50%, -150%);
@@ -1541,21 +1542,14 @@ blockquote {
       transform: translateX(60%);
     }
   }
-  &.step-1 {
-    .iphone {
-      transform: translateX(40%);
-    }
-    .n95 {
-      transform: translateX(160%);
-    }
-  }
-  &.step-2 {
-  }
   &.hide {
     opacity: 0;
-    .n95,
     .iphone {
+      transform: translateX(0);
+    }
+    .n95 {
       opacity: 0;
+      transform: translateX(0);
     }
   }
 }
@@ -1620,5 +1614,8 @@ blockquote {
     .references {
       opacity: 1;
     }
+  }
+  &.hide {
+    opacity: 0;
   }
 }

@@ -628,7 +628,6 @@ blockquote:before {
 #mobile {
   opacity: 0;
   perspective: 60rem;
-  transition-duration: 800ms;
 }
 #mobile .m,
 #mobile .www {
@@ -662,7 +661,6 @@ blockquote:before {
 }
 #mobile.step-2 .n95 {
   transform: translateX(-60%);
-  transition-duration: 200ms;
 }
 #mobile.step-2 .iphone {
   opacity: 1;
@@ -670,7 +668,6 @@ blockquote:before {
 }
 #mobile.step-3 .iphone {
   transform: translateX(60%) rotateY(180deg);
-  transition-duration: 200ms;
 }
 #mobile.step-4 .m {
   opacity: 1;
@@ -685,9 +682,12 @@ blockquote:before {
 #mobile.hide {
   opacity: 0;
 }
-#mobile.hide .n95,
+#mobile.hide .n95 {
+  transform: translateX(0);
+}
 #mobile.hide .iphone {
   opacity: 0;
+  transform: translateX(0) rotateY(180deg);
 }
 #architecture {
   color: #3b4e64;
@@ -764,7 +764,7 @@ blockquote:before {
 #architecture .diagram svg .text circle,
 #architecture .diagram svg .text line {
   stroke-dasharray: 2 2;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 #architecture .diagram svg .text text {
   stroke: none;
@@ -1262,23 +1262,23 @@ blockquote:before {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#render.step-2 .react-server {
+#render.step-1 .react-server {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
-#render.step-3 .react-server {
+#render.step-2 .react-server {
   opacity: 0;
   transform: translate(-50%, -150%);
+}
+#render.step-2 .react-client {
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
 #render.step-3 .react-client {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-#render.step-4 .react-client {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#render.step-4 .mixins {
+#render.step-3 .mixins {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
@@ -1524,18 +1524,15 @@ blockquote:before {
 #summary.show .n95 {
   transform: translateX(60%);
 }
-#summary.step-1 .iphone {
-  transform: translateX(40%);
-}
-#summary.step-1 .n95 {
-  transform: translateX(160%);
-}
 #summary.hide {
   opacity: 0;
 }
-#summary.hide .n95,
 #summary.hide .iphone {
+  transform: translateX(0);
+}
+#summary.hide .n95 {
   opacity: 0;
+  transform: translateX(0);
 }
 #bye {
   color: #fff;
@@ -1601,6 +1598,9 @@ blockquote:before {
 }
 #bye.step-1 .references {
   opacity: 1;
+}
+#bye.hide {
+  opacity: 0;
 }
 @-moz-keyframes loadBounce {
   0% {
