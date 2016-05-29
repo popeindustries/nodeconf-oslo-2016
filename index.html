@@ -21,7 +21,7 @@
         <h1>Lightning</h1>
       </div>
       <div class="notes">
-        <p class="note">Hi, I'm Alex, and I'm here today to talk about thunder, lightning, and the weather</p>
+        <p class="note">Hi, I'm Alex, and today I wanted to talk to you about thunder, lightning, and a Norwegian weather service called Yr</p>
       </div>
     </section>
 
@@ -134,13 +134,13 @@
       <h3 class="launch-date">Sept 19, 2007</h3>
       <h3 class="mobile-users">60% mobile</h3>
       <div class="notes">
-        <p class="note">Yr (or Y-R in English, I guess) is a Norwegian weather service</p>
-        <p class="note step">I's a collaboration between Norway's state broadcaster, NRK, (where I work) and the state Meteorological Institute, Met</p>
+        <p class="note"></p>
+        <p class="note step">Yr is a collaboration between Norway's state broadcaster, NRK, (where I work) and the state Meteorological Institute, Met</p>
         <p class="note">NRK and Met have collaborated to deliver weather reports to Norwegians since forever, first via radio, then TV</p>
         <p class="note">In 2007, shortly after Met committed itself to making all it's data freely available to everyone, they released yr.no</p>
         <p class="note step">The service quickly became one of the most used in Norway...</p>
         <p class="note step">...and last summer had 9 million (unique) visitors per week...</p>
-        <p class="note step">...of which roughly 60% was mobile traffic (evenly split between web and native apps)</p>
+        <p class="note step">...of which roughly 60% was mobile traffic (evenly split between web and native apps), on 11,996 different devices</p>
       </div>
     </section>
 
@@ -935,15 +935,15 @@
       <div class="notes">
         <p class="note">Now, there are only 5 million people living in Norway, so the question is "where did all this traffic come from?"</p>
         <p class="note step">According to Google, the answer would be everywhere except, apparently, Western Sahara</p>
-        <p class="note step">Norway accounts for a little under 50% of traffic, with most of the remaining top 10 coming from northern Europe. </p>
-        <p class="note">Strangely, we are big with South African farmers, and though we are <em>not</em> so big in Japan...</p>
-        <p class="note step">...we did record 31 sessions from North Korea, so maybe that counts as big in North Korea</p>
+        <p class="note step">Norway accounts for a little under 50% of the traffic, with most of the remaining top 10 coming from northern Europe. </p>
+        <p class="note">Strangely, Yr is big with South African farmers, and though it's <em>not</em> so big in Japan...</p>
+        <p class="note step">...31 sessions were recorded from North Korea, so maybe that counts as big in North Korea</p>
       </div>
     </section>
 
     <section id="mobile">
       <div class="phone n95">
-        <figure class="back ">
+        <figure class="front ">
           <img src="src/images/n95-old.png">
           <figcaption>2007</figcaption>
         </figure>
@@ -951,11 +951,11 @@
       <div class="phone iphone">
         <figure class="front">
           <img src="src/images/iphone-old.png">
-          <figcaption>2012</figcaption>
+          <figcaption>2013</figcaption>
         </figure>
         <figure class="back">
           <img src="src/images/iphone-old-www.png">
-          <figcaption>2012</figcaption>
+          <figcaption>2013</figcaption>
         </figure>
       </div>
       <div class="m">
@@ -976,13 +976,13 @@
       </div>
       <div class="notes">
         <p class="note"></p>
-        <p class="note step">In 2007, if you fired-up out your top-of-the-line Nokia N95, the website would have looked something like this</p>
-        <p class="note step">Unfortunately, in 2012, if you fired-up your top-of-the-line iPhone, it would still have looked something like this...</p>
+        <p class="note step">In 2007, if you fired-up your top-of-the-line Nokia N95, the website would have looked something like this</p>
+        <p class="note step">Unfortunately, in 2013, if you fired-up your top-of-the-line iPhone, it would still have looked something like this...</p>
         <p class="note step">...though with a little bit of work, you could opt for the desktop version instead</p>
         <p class="note step">The mobile version had a lot going for it: it was light on bandwidth, and it worked well on small screens, but it was also very light on features</p>
         <p class="note step">The desktop version, on the other hand: is heavy on features and content, but also heavy on bandwidth, and not responsive to screen size at all</p>
-        <p class="note step">Although mobile represented only 1/3 of traffic at that time, it was obvious that Yr needed to do a better job for mobile web users</p>
-        <p class="note">A plan was made to make the web offering more mobile friendly, starting with a mobile site optimized for the devices of the day, and eventually growing to replace the traditional "desktop" version</p>
+        <p class="note step">Mobile traffic was growing quickly, and it was obvious that Yr needed to offer a better experience for it's mobile web users</p>
+        <p class="note">A project was soon started to make the web offering more mobile friendly, starting with a mobile site optimized for the devices of the day, and eventually growing to replace the traditional "desktop" version</p>
       </div>
     </section>
 
@@ -1048,14 +1048,14 @@
         <p class="note">Much of the code base at that time dated from the last redesign in 2010</p>
         <p class="note step">And it looked something like this: picture a large blob of data wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and probably a lot more!</p>
         <p class="note">It's a bit unintuitive, but there was actually very little weather related stuff happening in there. Weather data comes from Met, and is mostly indexed by lat/long coordinate, so a large chunk of the application deals with matching a coordinate to a city, ski hill, your street, or any one of ten million places around the world</p>
-        <p class="note">This application was reliable, and had proven itself for many years, but obviously, it was going to be difficult to update or change</p>
+        <p class="note">The application was reliable, and had proven itself for many years, but obviously, it was going to be difficult to update or change</p>
         <p class="note step">To make things worse, there were very few tests of any kind (it was <em>email-driven-development</em>: users would email errors and regressions they discovered), and there was a two week delay to verify releases</p>
-        <p class="note step">Naturally, in our eagerness to "do it right this time", and in our fear of breaking things, we decided to start over</p>
-        <p class="note step">The first job was to pull out all the place name data into it's own service. This also made it available for other projects at NRK to consume, and I think the plan is to eventually release it to the public</p>
+        <p class="note step">Naturally, driven by a fear of <em>not</em> breaking things, we decided to start over</p>
+        <p class="note step">The first job was to pull out all the place name data into it's own service. This also made it available for other projects at NRK to consume (I think the plan is to eventually release it to the public)</p>
         <p class="note step">The next step, was to build a REST API and view renderer for the new, responsive layout</p>
         <p class="note">Although this was already a big improvement, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really inefficient for such a small team: I was delivering static versions of the front-end markup to my colleague to implement in the back-end, and we ended up duplicating a lot of the work associated with generating HTML strings</p>
         <p class="note step">So after a lot of grumbling on my part, and a skunkworks prototype while our project manager was on summer holiday, we were able to split the API and view renderer into separate projects</p>
-        <p class="note step">Now we each had our own monolith</p>
+        <p class="note step">Now we each had our own monolith to look after</p>
       </div>
     </section>
 
@@ -1067,9 +1067,12 @@
         <h1 class="title title-3">JavaScript <span>all the way around</span></h1>
       </div>
       <div class="notes">
-        <p class="note">I'm no computer scientist, and I don't know much about <em>real</em> programming languages, but I have spent the last 18 years making things for the web, and I strongly believe in the costs associated with context switching, and the benefits of having full control over the content you create</p>
-        <p class="note step">JavaScript on the server and the client is a win-win on both counts, so since late 2014, the view render stack has been back-to-front JavaScript...</p>
-        <p class="note step">...or what I like to call: JavaScript Up...</p>
+        <p class="note">I'm no scientist - just a web developer - but I've been sending formatted text strings to web browsers for a long time now, and I'm certain you can achieve more with less</p>
+        <p class="note">Less time spent duplicating work, less time spent switching between contexts/platforms/languages/frameworks, and less time spent getting content to users, is more time you can spend on making them happier</p>
+        <p class="note step">Running JavaScript on the server isn't really going to change the world, but it does give you more time to try</p>
+        <p class="note">Running the same code on the server and client has the potential to save the most time of all</p>
+        <p class="note">Some call this isomorphic, or universal...</p>
+        <p class="note step">...but I like to call it: JavaScript Up...</p>
         <p class="note step">...JavaScript Down...</p>
         <p class="note step">...JavaScript All The Way Around</p>
       </div>
@@ -1123,12 +1126,12 @@
         <h3 class="point point-4">Progressive</h3>
       </div>
       <div class="notes">
-        <p class="note">The easy way at this point would have been to go full-steam ahead with a Single Page App that renders most of the HTML in the browser</p>
-        <p class="note step">In 2014, this was relatively common practice, but I don't think it should have ever been considered <em>best</em> practice</p>
+        <p class="note">In 2014, I found it curious that server-side rendering was sometimes considered controversial</p>
+        <p class="note step">At that time, Single Page Apps, and client-side rendering, were relatively common practice, but I don't think it should ever have been considered <em>best</em> practice</p>
         <p class="note step">Server-side rendering is definitely more work if you also plan on rendering things on the client, but it has major advantages:</p>
         <p class="note step">It's cacheable: server generated content can be cached close to your users. This is good for speed, good for sudden traffic spikes, and good insurance against a server meltdown</p>
         <p class="note step">It's resilient: the browser is hostile territory, almost as hostile as the network, and delivering rendered content is good insurance against client-side meltdowns</p>
-        <p class="note step">It's accessible: not all devices are created equal (last year we had visits from 11,996 different ones), and server rendering makes it easier to deliver content to as many as possible</p>
+        <p class="note step">It's accessible: not all devices are created equal, and server rendering makes it easier to deliver content to as many as possible</p>
         <p class="note step">And it's progressive: delivering a baseline experience to all allows us to add additional features, and improve that experience, for those devices that <em>can</em> handle it. It's also easier to not worry about those that can't</p>
         <p class="note step">Add it all up, and it's <strong>CRAP</strong>! Having to do all this is a real pain in the ass</p>
         <p class="note">Caching is nightmare; worrying about the resiliency of the network and our code is a headache; making content accessible on all those devices is impossible; and building things that can be progressively enhanced is hard</p>
@@ -1172,7 +1175,6 @@
           });
         </code>
       </pre>
-      <h2 class="lightning">[ applause ]</h2>
       <pre class="code url">
         <code class="js">
           "/en/search?q=foo"
@@ -1192,19 +1194,18 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">Once I decided to make things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
-        <p class="note step">The logic flow on the server starts with a URL, routes that URL to a logic handler, where you might fetch and munge some data, to finally render some HTML</p>
+        <p class="note">Once I commited to making things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
+        <p class="note step">The logic flow on the server starts with a URL, routes that URL to a logic handler, where you might fetch and munge some data, before finally rendering some HTML</p>
         <p class="note">This also seemed like a reasonable abstraction for the client</p>
         <p class="note step">So I wondered: would it be possible to initialize an application...</p>
         <p class="note step">...to add middleware...</p>
         <p class="note step">...to add request parameter validation...</p>
         <p class="note step">...and to handle a request, in the browser, just like Express.js does on the server?</p>
-        <p class="note step">Well, it is possible!</p>
-        <p class="note step">And not only <em>is</em> it possible, it's a great way to think about program logic:</p>
+        <p class="note step">Well, it <em>is</em> possible, and it's actually a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
         <p class="note step">...and Express is a simple and elegant way to route state to handling logic</p>
-        <p class="note step">As an added bonus, remember that good URLs help make applications <em>super</em> crappy!</p>
+        <p class="note step">As an added bonus, good URLs help make applications <em>super</em> crappy!</p>
       </div>
     </section>
 
@@ -1267,18 +1268,18 @@
       </pre>
       <div class="notes">
         <p class="note">Express does have opinions about rendering, but they are, fortunately, optional and easy to ignore</p>
-        <p class="note step">The client-side Express experiment would have died an early death if I had to choose between classic templating languages like Jade or Handlbars</p>
+        <p class="note step">The client-side Express experiment would have died an early death if I had to choose between templating languages like Jade or Handlbars</p>
         <p class="note step">2014 was the year of the component and React.js, and although they tried to ruin things with .jsx, they <em>did</em> support server-side rendering...</p>
         <p class="note step">...and the opportunity to use the exact same component code on the server and client was too tempting to pass up</p>
         <p class="note">At the time, they also favoured extending component behaviour with optional "mixins"...</p>
-        <p class="note step">...which made it easy to ignore logic for clicking, scrolling, and other interaction on the server</p>
+        <p class="note step">...which made it really easy to ignore logic for clicking, scrolling, and other interaction on the server</p>
       </div>
     </section>
 
     <section id="react">
       <div class="bg"></div>
       <div class="phone iphone">
-        <figure class="back">
+        <figure class="front">
           <img class="anim" src="src/images/iphone-paint.gif">
           <img class="frame" src="src/images/iphone-frame.png">
         </figure>
@@ -1290,17 +1291,17 @@
       </div>
       <h2 class="coverage">80% shared code</h2>
       <div class="notes">
-        <p class="note">React's killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
+        <p class="note">The technical parts of React are interesting, but the killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
         <p class="note step">This makes it possible to render from the root component even when only a small part of our data has changed</p>
         <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our api call, but the DOM repaint (shown here in Green) is contained to the affected components</p>
         <p class="note">Although I considered this the best part of React, it wasn't until recently that I understood why</p>
-        <p class="note step">At the end of January, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
+        <p class="note step">At the end of January this year, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
         <p class="note">In it, he outlined his thoughts about how React has changed the performance, efficiency, and complexity costs associated with dynamic DOM updates</p>
-        <p class="note step">[QUOTE]</p>
-        <p class="note step">[QUOTE]</p>
-        <p class="note step">If client-side Express was the lightning, this was the thunder</p>
-        <p class="note step">I'm not suggesting that this is the answer to everyone's prayers, but for me, applying a server-centric model to the client is an elegant solution...</p>
-        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client</p>
+        <p class="note step">QUOTE: React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code</p>
+        <p class="note step">QUOTE: it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side</p>
+        <p class="note step">If client-side Express was the lightning, this, for me, was the thunder</p>
+        <p class="note step">I'm not suggesting that this is the answer to everyone's prayers, but I think that applying a server-centric model to the client is a really elegant solution...</p>
+        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and energy switching between the two</p>
       </div>
     </section>
 
@@ -1341,25 +1342,35 @@
             </code>
           </pre>
         </li>
+        <li class="tip tip-4 maybe">
+          <h3>Render components in a child process</h3>
+          <pre class="code">
+            <code class="js">
+              const renderer = require('child_process')
+                .fork('./renderer.js');
+            </code>
+          </pre>
+        </li>
       </ul>
       <h3 class="issue">Proposal: ReactDOMServer render to Stream <span>#6420</span></h3>
       <div class="notes">
-        <p class="note">Now, this make for a nice story, but real life - and by real life I mean <em>production</em> - is not always so pretty</p>
-        <p class="note step">It turns out that server-side React is <em>slow</em></p>
+        <p class="note">Now, this make for a nice story, but real life - and by real life I mean <em>production</em> - is not always so neat and tidy</p>
+        <p class="note step">It turns out that server-side React is actually very <em>slow</em></p>
         <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
-        <p class="note step">This is not great, but it's downright horrible when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
-        <p class="note step">There are a few tricks you can employ to improve things:</p>
+        <p class="note step">This is quite bad, but it's actually worse when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
+        <p class="note step">There are a few tricks you can try to improve things:</p>
         <p class="note step">...be sure to run in <em>production</em> mode (generally good practice for all libraries, not just React)</p>
-        <p class="note step">...use the minified version</p>
-        <p class="note step">...and render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or be created via React.createClass)</p>
-        <p class="note">But what React really needs is an asynchronous renderer</p>
-        <p class="note step">Fortunately, work has begun on an asynchronous, streaming renderer, and although some React core team members are sceptical, it looks like React may eventually get improved server-side rendering</p>
+        <p class="note step">...use the minified version of React</p>
+        <p class="note step">...render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or created via React.createClass)</p>
+        <p class="note step">...and maybe render components in a child process? I haven't tried this yet, but I'm tempted, though there are probably costs associated with serializing/deserializing data</p>
+        <p class="note">What React badly needs is an asynchronous renderer</p>
+        <p class="note step">Fortunately, work has begun on an asynchronous, streaming renderer, and although some core team members are sceptical, it looks like React may eventually get improved server-side rendering</p>
       </div>
     </section>
 
     <section id="present">
       <div class="phone iphone">
-        <figure class="back">
+        <figure class="front">
           <img class="anim" src="src/images/iphone-screencap.gif">
           <img class="frame" src="src/images/iphone-frame.png">
         </figure>
@@ -1371,6 +1382,7 @@
       </div>
       <div class="notes">
         <p class="note"></p>
+        <p class="note">It's been a long process, but I think Yr users have a lot to look forward to. We have a lot of features planned and in the pipeline</p>
         <p class="note step">iPhone</p>
         <p class="note step">our old friend the Nokia N95</p>
       </div>

@@ -6,6 +6,7 @@ YR_BLUE = #00b9f1;
 DARK_BLUE = darken(YR_BLUE, 60%);
 GREEN = #41d041;
 RED = #d21111;
+YELLOW = #E8D733;
 RATIO = 16/9;
 RATIO_INVERT = 9/16;
 TRANSITION_DURATION = 400ms;
@@ -82,11 +83,15 @@ li {
   padding: 0.5vw 0;
   &::before {
     display: inline-block;
-    padding-right: 0.5vw;
+    width: 2vw;
   }
   &.good::before {
     content: '+';
     color: GREEN;
+  }
+  &.maybe::before {
+    content: '?';
+    color: YELLOW;
   }
   &.bad::before {
     content: '—';
@@ -562,6 +567,7 @@ blockquote {
 }
 
 #mobile {
+  opacity: 0;
   perspective: 60rem;
   transition-duration: TRANSITION_DURATION_LONG;
   .m,
@@ -571,6 +577,7 @@ blockquote {
   }
   .phone {
     &.n95 {
+      opacity: 0;
       z-index: 1;
     }
     &.iphone {
@@ -589,14 +596,17 @@ blockquote {
   .www {
     transform: translateX(130%);
   }
+  &.show {
+    opacity: 1;
+  }
   &.step-1 {
     .n95 {
-      transform: rotateY(-180deg);
+      opacity: 1;
     }
   }
   &.step-2 {
     .n95 {
-      transform: translateX(-60%) rotateY(-180deg);
+      transform: translateX(-60%);
       transition-duration: TRANSITION_DURATION_SHORT;
     }
     .iphone {
@@ -628,17 +638,9 @@ blockquote {
   }
   &.hide {
     opacity: 0;
-    .m,
-    .www,
     .n95,
     .iphone {
       opacity: 0;
-    }
-    .n95 {
-      transform: translateX(-5%) rotateY(-90deg);
-    }
-    .iphone {
-      transform: translateX(5%) rotateY(90deg);
     }
   }
 }
@@ -1069,30 +1071,22 @@ blockquote {
     transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
     z-index: -1;
   }
-  .abstract,
-  .lightning,
-  .coverage {
+  .abstract {
     color: #e6db74;
-    font-size: 4vw;
+    font-size: 3vw;
     line-height: 1;
     font-weight: 600;
     text-align: center;
     white-space: nowrap;
   }
   .abstract,
-  .code,
-  .lightning,
-  .coverage {
+  .code {
     opacity: 0;
     left: 50%;
     position: absolute;
     top: 50%;
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
     transform: translate(-50%, 50%);
-  }
-  .abstract,
-  .lightning {
-    font-size: 3vw;
   }
   .url,
   .anchor,
@@ -1157,17 +1151,8 @@ blockquote {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
-    .lightning {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
   }
   &.step-7 {
-    .lightning {
-      opacity: 0;
-    }
-  }
-  &.step-8 {
     .bg {
       opacity: 0.5;
     }
@@ -1175,7 +1160,7 @@ blockquote {
       opacity: 1;
     }
   }
-  &.step-9 {
+  &.step-8 {
     .url {
       opacity: 0;
     }
@@ -1183,7 +1168,7 @@ blockquote {
       opacity: 1;
     }
   }
-  &.step-10 {
+  &.step-9 {
     .anchor {
       opacity: 0;
     }
@@ -1191,7 +1176,10 @@ blockquote {
       opacity: 1;
     }
   }
-  &.step-11 {
+  &.step-10 {
+    .bg {
+      opacity: 1;
+    }
     .handler {
       opacity: 0;
     }
@@ -1314,6 +1302,7 @@ blockquote {
     z-index: -1;
   }
   .iphone {
+    opacity: 0;
     z-index: 1;
   }
   .title,
@@ -1356,7 +1345,7 @@ blockquote {
   }
   &.step-1 {
     .iphone {
-      transform: rotateY(-180deg);
+      opacity: 1;
     }
   }
   &.step-2 {
@@ -1450,7 +1439,7 @@ blockquote {
         display: inline-block;
       }
       .code {
-        margin: -4vw 0 -4vw -8vw;
+        margin: -4vw 0 -6vw -8vw;
       }
     }
   }
@@ -1495,7 +1484,7 @@ blockquote {
   }
   &.step-5 {
     .tips {
-      transform: translateY(-10vw);
+      transform: translateY(-8vw);
     }
     .tip-2 {
       opacity: 1;
@@ -1503,13 +1492,21 @@ blockquote {
   }
   &.step-6 {
     .tips {
-      transform: translateY(-18vw);
+      transform: translateY(-14vw);
     }
     .tip-3 {
       opacity: 1;
     }
   }
   &.step-7 {
+    .tips {
+      transform: translateY(-20vw);
+    }
+    .tip-4 {
+      opacity: 1;
+    }
+  }
+  &.step-8 {
     .tips {
       opacity: 0;
     }

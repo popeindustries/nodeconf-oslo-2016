@@ -162,11 +162,15 @@ li {
 }
 li::before {
   display: inline-block;
-  padding-right: 0.5vw;
+  width: 2vw;
 }
 li.good::before {
   content: '+';
   color: #41d041;
+}
+li.maybe::before {
+  content: '?';
+  color: #e8d733;
 }
 li.bad::before {
   content: '—';
@@ -622,6 +626,7 @@ blockquote:before {
   opacity: 0;
 }
 #mobile {
+  opacity: 0;
   perspective: 60rem;
   transition-duration: 800ms;
 }
@@ -631,6 +636,7 @@ blockquote:before {
   transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
 }
 #mobile .phone.n95 {
+  opacity: 0;
   z-index: 1;
 }
 #mobile .phone.iphone {
@@ -648,11 +654,14 @@ blockquote:before {
 #mobile .www {
   transform: translateX(130%);
 }
+#mobile.show {
+  opacity: 1;
+}
 #mobile.step-1 .n95 {
-  transform: rotateY(-180deg);
+  opacity: 1;
 }
 #mobile.step-2 .n95 {
-  transform: translateX(-60%) rotateY(-180deg);
+  transform: translateX(-60%);
   transition-duration: 200ms;
 }
 #mobile.step-2 .iphone {
@@ -676,17 +685,9 @@ blockquote:before {
 #mobile.hide {
   opacity: 0;
 }
-#mobile.hide .m,
-#mobile.hide .www,
 #mobile.hide .n95,
 #mobile.hide .iphone {
   opacity: 0;
-}
-#mobile.hide .n95 {
-  transform: translateX(-5%) rotateY(-90deg);
-}
-#mobile.hide .iphone {
-  transform: translateX(5%) rotateY(90deg);
 }
 #architecture {
   color: #3b4e64;
@@ -1104,30 +1105,22 @@ blockquote:before {
   transition: all 800ms cubic-bezier(0.215, 0.61, 0.355, 1);
   z-index: -1;
 }
-#express .abstract,
-#express .lightning,
-#express .coverage {
+#express .abstract {
   color: #e6db74;
-  font-size: 4vw;
+  font-size: 3vw;
   line-height: 1;
   font-weight: 600;
   text-align: center;
   white-space: nowrap;
 }
 #express .abstract,
-#express .code,
-#express .lightning,
-#express .coverage {
+#express .code {
   opacity: 0;
   left: 50%;
   position: absolute;
   top: 50%;
   transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translate(-50%, 50%);
-}
-#express .abstract,
-#express .lightning {
-  font-size: 3vw;
 }
 #express .url,
 #express .anchor,
@@ -1181,32 +1174,28 @@ blockquote:before {
   opacity: 0;
   transform: translate(-50%, -150%);
 }
-#express.step-6 .lightning {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-#express.step-7 .lightning {
-  opacity: 0;
-}
-#express.step-8 .bg {
+#express.step-7 .bg {
   opacity: 0.5;
 }
-#express.step-8 .url {
+#express.step-7 .url {
   opacity: 1;
 }
-#express.step-9 .url {
+#express.step-8 .url {
   opacity: 0;
+}
+#express.step-8 .anchor {
+  opacity: 1;
 }
 #express.step-9 .anchor {
-  opacity: 1;
-}
-#express.step-10 .anchor {
   opacity: 0;
 }
-#express.step-10 .handler {
+#express.step-9 .handler {
   opacity: 1;
 }
-#express.step-11 .handler {
+#express.step-10 .bg {
+  opacity: 1;
+}
+#express.step-10 .handler {
   opacity: 0;
 }
 #express.hide {
@@ -1320,6 +1309,7 @@ blockquote:before {
   z-index: -1;
 }
 #react .iphone {
+  opacity: 0;
   z-index: 1;
 }
 #react .title,
@@ -1365,7 +1355,7 @@ blockquote:before {
   opacity: 1;
 }
 #react.step-1 .iphone {
-  transform: rotateY(-180deg);
+  opacity: 1;
 }
 #react.step-2 .iphone {
   opacity: 0;
@@ -1451,7 +1441,7 @@ blockquote:before {
   display: inline-block;
 }
 #caveats .tips .tip .code {
-  margin: -4vw 0 -4vw -8vw;
+  margin: -4vw 0 -6vw -8vw;
 }
 #caveats .issue {
   opacity: 0;
@@ -1485,21 +1475,27 @@ blockquote:before {
   opacity: 1;
 }
 #caveats.step-5 .tips {
-  transform: translateY(-10vw);
+  transform: translateY(-8vw);
 }
 #caveats.step-5 .tip-2 {
   opacity: 1;
 }
 #caveats.step-6 .tips {
-  transform: translateY(-18vw);
+  transform: translateY(-14vw);
 }
 #caveats.step-6 .tip-3 {
   opacity: 1;
 }
 #caveats.step-7 .tips {
+  transform: translateY(-20vw);
+}
+#caveats.step-7 .tip-4 {
+  opacity: 1;
+}
+#caveats.step-8 .tips {
   opacity: 0;
 }
-#caveats.step-7 .issue {
+#caveats.step-8 .issue {
   opacity: 1;
 }
 #caveats.hide {
