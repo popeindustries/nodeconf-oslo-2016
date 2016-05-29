@@ -116,7 +116,8 @@ _m_['src/index.js']=(function(module,exports){
   
   var elSlides = document.querySelector('.slides');
   var isProduction = undefined == 'production';
-  var isDevelopment = !isProduction /* && window.location.hostname == 'localhost'*/;
+  var isDevelopment = !isProduction;
+  var isLocal = window.location.hostname == 'localhost';
   var isNotes = window.name == 'notes';
   var startingSlide = isProduction ? 0 : getUrlSlide();
   var model = window.model = parse({
@@ -176,7 +177,7 @@ _m_['src/index.js']=(function(module,exports){
     }
     changeNote(model.slideIndex, slideIndex, noteIndex);
     model.slideIndex = slideIndex;
-    if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, '/' + slideIndex));
+    if (isLocal) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, '/' + slideIndex));
   }
   
   /**
@@ -341,8 +342,10 @@ _m_['src/index.js']=(function(module,exports){
     } else {
       if (isDevelopment) {
         document.documentElement.classList.add('dev');
-        window.addEventListener('popstate', onPopState, false);
-        window.history.replaceState({}, document.title, window.location.pathname);
+        if (isLocal) {
+          window.addEventListener('popstate', onPopState, false);
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       }
       changeSlide(startingSlide);
     }

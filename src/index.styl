@@ -1519,83 +1519,37 @@ blockquote {
   }
 }
 
-#present {
-  perspective: 60rem;
+#summary {
+  opacity: 0;
   .phone {
     position: absolute;
     transition: transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT, opacity TRANSITION_DURATION_SHORT linear;
-  }
-  .phone {
-    height: 40vw;
-    left: 50%;
-    margin: -22vw 0 0 -10vw;
-    opacity: 1;
-    top: 50%;
-    transform-style: preserve-3d;
-    width: 20vw;
-    will-change: transform, opacity;
+    opacity: 0;
     &.iphone {
       z-index: 1;
-      .anim,
-      .frame {
-        position: absolute;
-      }
-      .anim {
-        height: 73%;
-        left: 7%;
-        top: 14%;
-      }
-      .frame {
-        left: 0;
-        height: 100%;
-        top: 0;
-      }
-    }
-    &.n95 {
-      opacity: 0;
-      img {
-        height: 100%;
-      }
-    }
-    figure {
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      height: 100%;
-      left: 0;
-      margin: 0;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      width: 100%;
-      &.front {
-        z-index: 2;
-      }
-      &.back {
-        transform: rotateY(180deg);
-      }
-      figcaption {
-        display: block;
-        font-size: 2.2vw;
-        margin-top: 1vw;
-      }
     }
   }
   &.show {
-
+    opacity: 1;
+    .phone {
+      opacity: 1;
+    }
+    .iphone {
+      transform: translateX(-60%);
+    }
+    .n95 {
+      transform: translateX(60%);
+    }
   }
   &.step-1 {
     .iphone {
-      transform: rotateY(-180deg);
+      transform: translateX(40%);
+    }
+    .n95 {
+      transform: translateX(160%);
     }
   }
   &.step-2 {
-    .iphone {
-      transform: translateX(-60%) rotateY(-180deg);
-    }
-    .n95 {
-      opacity: 1;
-      transform: translateX(60%);
-    }
   }
   &.hide {
     opacity: 0;

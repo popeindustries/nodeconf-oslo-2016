@@ -1501,83 +1501,40 @@ blockquote:before {
 #caveats.hide {
   opacity: 0;
 }
-#present {
-  perspective: 60rem;
+#summary {
+  opacity: 0;
 }
-#present .phone {
+#summary .phone {
   position: absolute;
   transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1), opacity 200ms linear;
+  opacity: 0;
 }
-#present .phone {
-  height: 40vw;
-  left: 50%;
-  margin: -22vw 0 0 -10vw;
-  opacity: 1;
-  top: 50%;
-  transform-style: preserve-3d;
-  width: 20vw;
-  will-change: transform, opacity;
-}
-#present .phone.iphone {
+#summary .phone.iphone {
   z-index: 1;
 }
-#present .phone.iphone .anim,
-#present .phone.iphone .frame {
-  position: absolute;
-}
-#present .phone.iphone .anim {
-  height: 73%;
-  left: 7%;
-  top: 14%;
-}
-#present .phone.iphone .frame {
-  left: 0;
-  height: 100%;
-  top: 0;
-}
-#present .phone.n95 {
-  opacity: 0;
-}
-#present .phone.n95 img {
-  height: 100%;
-}
-#present .phone figure {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  height: 100%;
-  left: 0;
-  margin: 0;
-  position: absolute;
-  text-align: center;
-  top: 0;
-  width: 100%;
-}
-#present .phone figure.front {
-  z-index: 2;
-}
-#present .phone figure.back {
-  transform: rotateY(180deg);
-}
-#present .phone figure figcaption {
-  display: block;
-  font-size: 2.2vw;
-  margin-top: 1vw;
-}
-#present.step-1 .iphone {
-  transform: rotateY(-180deg);
-}
-#present.step-2 .iphone {
-  transform: translateX(-60%) rotateY(-180deg);
-}
-#present.step-2 .n95 {
+#summary.show {
   opacity: 1;
+}
+#summary.show .phone {
+  opacity: 1;
+}
+#summary.show .iphone {
+  transform: translateX(-60%);
+}
+#summary.show .n95 {
   transform: translateX(60%);
 }
-#present.hide {
+#summary.step-1 .iphone {
+  transform: translateX(40%);
+}
+#summary.step-1 .n95 {
+  transform: translateX(160%);
+}
+#summary.hide {
   opacity: 0;
 }
-#present.hide .n95,
-#present.hide .iphone {
+#summary.hide .n95,
+#summary.hide .iphone {
   opacity: 0;
 }
 #bye {

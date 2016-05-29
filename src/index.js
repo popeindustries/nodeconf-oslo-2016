@@ -4,7 +4,8 @@ const TOUCH_THRESHOLD = 100;
 
 const elSlides = document.querySelector('.slides');
 const isProduction = process.env.NODE_ENV == 'production';
-const isDevelopment = !isProduction/* && window.location.hostname == 'localhost'*/;
+const isDevelopment = !isProduction
+const isLocal = window.location.hostname == 'localhost';
 const isNotes = window.name == 'notes';
 const startingSlide = isProduction ? 0 : getUrlSlide();
 let model = window.model = parse({
@@ -64,7 +65,7 @@ function changeSlide (slideIndex, back) {
   }
   changeNote(model.slideIndex, slideIndex, noteIndex);
   model.slideIndex = slideIndex;
-  if (isDevelopment) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
+  if (isLocal) window.history.pushState({}, '', window.location.pathname.replace(/\/\d*$/, `/${slideIndex}`));
 }
 
 /**
@@ -239,8 +240,10 @@ if (!isNotes) {
   } else {
     if (isDevelopment) {
       document.documentElement.classList.add('dev');
-      window.addEventListener('popstate', onPopState, false);
-      window.history.replaceState({}, document.title, window.location.pathname);
+      if (isLocal) {
+        window.addEventListener('popstate', onPopState, false);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
     }
     changeSlide(startingSlide);
   }
