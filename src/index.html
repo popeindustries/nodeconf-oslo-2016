@@ -269,7 +269,7 @@
       </pre>
       <pre class="code middleware">
         <code class="js">
-          app.use(function (req, res, next) {
+          app.<span class="function">use</span>(function (req, res, next) {
             log('request from: ' + req.originalUrl);
             next();
           });
@@ -277,7 +277,7 @@
       </pre>
       <pre class="code param">
         <code class="js">
-          app.param('localeCode', function (req, res, next, localeCode) {
+          app.<span class="function">param</span>('localeCode', function (req, res, next, localeCode) {
             if (valid(localeCode)) return next();
             return next(Error('invalid locale code'));
           });
@@ -287,7 +287,7 @@
         <code class="js">
           const pattern = '/:localeCode({localeCode})/:page({page})';
 
-          app.get(pattern, function (req, res, next) {
+          app.<span class="function">get</span>(pattern, function (req, res, next) {
             const localeCode = req.params.localeCode;
             const query = req.query;
             //...
@@ -306,7 +306,7 @@
       </pre>
       <pre class="code handler">
         <code class="js">
-          app.get('/en/search', function (req, res, next) {
+          app.<span class="function">get</span>('/en/search', function (req, res, next) {
             const searchQuery = req.query.q;
             //...
           });
@@ -338,11 +338,11 @@
         <code class="js">
           const request = require('superagent');
 
-          app.get(pattern, function (req, res, next) {
+          app.<span class="function">get</span>(pattern, (req, res, next) => {
             //...
             request
-              .get('path/to/api')
-              .end((err, response) => {
+              .<span class="function">get</span>('path/to/api')
+              .<span class="function">end</span>((err, response) => {
                 res.data = response.body;
                 //...
               });
@@ -359,8 +359,8 @@
       <div class="bg"></div>
       <pre class="code render">
         <code class="js">
-          res.render('search', data, (err, html) => {
-            res.send(html);
+          res.<span class="function">render</span>('search', data, (err, html) => {
+            res.<span class="function">send</span>(html);
           });
         </code>
       </pre>
@@ -369,13 +369,13 @@
           const pageContent = require('./pageContentComponent');
 
           // Server
-          res.send(ReactDOMServer.renderToString(pageContent(props)));
+          res.<span class="function">send</span>(ReactDOMServer.<span class="function">renderToString</span>(pageContent(props)));
         </code>
       </pre>
       <pre class="code react-client">
         <code class="js">
           // Client
-          ReactDOM.render(pageContent(props), pageElement);
+          ReactDOM.<span class="function">render</span>(pageContent(props), pageElement);
         </code>
       </pre>
       <pre class="code mixins">
@@ -431,7 +431,7 @@
       </div>
       <pre class="code render">
         <code class="js">
-          ReactDOMServer.renderToString(pageContent(props));
+          ReactDOMServer.<span class="function">renderToString</span>(pageContent(props));
         </code>
       </pre>
       <ul class="tips">
@@ -456,7 +456,7 @@
           <pre class="code">
             <code class="js">
               const render = (props) => {
-                return React.DOM.h1(props.title);
+                return React.DOM.<span class="function">h1</span>(props.title);
               };
             </code>
           </pre>
@@ -466,7 +466,7 @@
           <pre class="code">
             <code class="js">
               const renderer = require('child_process')
-                .fork('./renderer.js');
+                .<span class="function">fork</span>('./renderer.js');
             </code>
           </pre>
         </li>
