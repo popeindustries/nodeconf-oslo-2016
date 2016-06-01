@@ -748,8 +748,8 @@ blockquote {
   }
   &.step-1 {
     .bg {
-      -webkit-filter: blur(5px) brightness(1);
-      filter: blur(5px) brightness(1);
+      -webkit-filter: blur(3px) brightness(1);
+      filter: blur(3px) brightness(1);
     }
     .old {
       opacity: 1;
@@ -914,59 +914,6 @@ blockquote {
     transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
     z-index: -1;
   }
-  .diagram {
-    fill: none;
-    height: 10vw
-    left: 50%;
-    position: absolute;
-    stroke-width: 1px;
-    stroke: black;
-    top: 20%;
-    transition: all TRANSITION_DURATION_SHORT ease-out;
-    width: 10vw;
-    svg {
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-  }
-  .server {
-    transform: translateX(-175%);
-  }
-  .client {
-    transform: translateX(50%);
-  }
-  .document {
-    fill: white;
-    opacity: 0;
-    transform: translate(-175%, 0%) scale(0.6);
-    transition: opacity TRANSITION_DURATION_SHORT linear, transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT;
-  }
-  .document-1 {
-    .loader {
-      fill: black;
-      transition: visibility 10ms TRANSITION_DURATION_LONG linear;
-      visibility: hidden;
-      circle {
-        animation: loadBounce 0.4s linear 0s infinite alternate-reverse;
-      }
-      circle + circle {
-        animation: loadBounce 0.4s linear -0.2s infinite alternate-reverse;
-      }
-      circle + circle + circle{
-        animation: loadBounce 0.4s linear -0.4s infinite alternate-reverse;
-      }
-    }
-    .content {
-      transition: visibility 10ms TRANSITION_DURATION_LONG * 3 linear;
-      visibility: hidden;
-    }
-  }
-  .document-2 {
-    transition-delay: TRANSITION_DURATION_LONG;
-  }
   .points {
     full();
     bottom: 15%;
@@ -989,52 +936,26 @@ blockquote {
     }
   }
   &.step-1 {
-    .document-1 {
-      opacity: 1;
-      transform: translate(50%, 0);
-      .loader {
-        visibility: visible;
-      }
-      .content {
-        visibility: visible;
-      }
-    }
-  }
-  &.step-2 {
-    .document-1 {
-      display: none;
-    }
-    .document-2 {
-      opacity: 1;
-      transform: translate(50%, 0);
-    }
-  }
-  &.step-3 {
-    .server,
-    .client,
-    .document-2 {
-      display: none;
-    }
     .point-1 {
       opacity: 1;
     }
   }
-  &.step-4 {
+  &.step-2 {
     .point-2 {
       opacity: 1;
     }
   }
-  &.step-5 {
+  &.step-3 {
     .point-3 {
       opacity: 1;
     }
   }
-  &.step-6 {
+  &.step-4 {
     .point-4 {
       opacity: 1;
     }
   }
-  &.step-7 {
+  &.step-5 {
     .point {
       color: lighten(#524944, 20%);
       &::first-letter {
@@ -1053,7 +974,7 @@ blockquote {
       transition-delay: 150ms;
     }
   }
-  &.step-8 {
+  &.step-6 {
     .point {
       opacity: 0;
     }
@@ -1213,18 +1134,30 @@ blockquote {
     top: 50%;
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
   }
-  .shrug {
+  .shrug,
+  .freeze,
+  .superagent {
     transform: translate(-50%, -50%);
   }
+  .freeze,
   .superagent {
     opacity: 0;
-    transform: translate(-50%, 50%);
   }
   &.show {
     opacity: 1;
   }
   &.step-1 {
     .shrug {
+      opacity: 0;
+      transform: translate(-50%, -150%);
+    }
+    .freeze {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &.step-2 {
+    .freeze {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
