@@ -1279,7 +1279,40 @@
       </div>
     </section>
 
+    <section id="serviceWorker">
+      <div class="bg"></div>
+      <pre class="code service-worker">
+        <code class="js">
+          if ('serviceWorker' in navigator) {
+            // Node all the things!
+          }
+        </code>
+      </pre>
+      <pre class="code express-worker">
+        <code class="js">
+          navigator.serviceWorker.<span class="function">register</span>('/sw.js')
+            .then(function(registration) {
+              const app = express();
+            });
+        </code>
+      </pre>
+      <div class="notes">
+        <p class="note">Predicting the future, and trying to pick a winning horse, is a dangerous game, but it's hard to ignore the obvious signs that the font-end is coming to look a lot more like the back-end</p>
+        <p class="note step">If you were at Nolan Lawson's great talk on Thursday, and if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser</p>
+        <p class="note">The opportunity to properly handle offline, background sync, and notifications, as well as offload processing from the main UI thread, is huge for the web, and I'm betting it will be huge for Yr</p>
+        <p class="note step">I'm not exactly sure what this will look like, but I'm excited</p>
+      </div>
+    </section>
+
     <section id="caveats">
+      <div class="stats">
+        <h3>Node in production (last 7 days)</h3>
+        <ul>
+          <li><span>5.66</span> million requests</li>
+          <li><span>1000</span>ms response latency (95th percentile)</li>
+          <li><span>0.05</span>% error rate</li>
+        </ul>
+      </div>
       <div class="charts">
         <img src="src/images/render-list.png">
         <img src="src/images/render-graph.png">
@@ -1328,10 +1361,14 @@
       </ul>
       <h3 class="issue">Proposal: ReactDOMServer render to Stream <span>#6420</span></h3>
       <div class="notes">
-        <p class="note">Now, this make for a nice story, but real life - and by real life I mean <em>production</em> - is not always so neat and tidy</p>
-        <p class="note step">It turns out that server-side React is actually very <em>slow</em></p>
+        <p class="note">When planning this talk, I kept struggling with the fact that, since this is NodeConf, I should talk about Node, but Node is actually the most boring part of our story</p>
+        <p class="note step">Running Node in production has so far been largely uneventful. Last week we processed 5.66 million requests, our response latency was around 1000ms for the 95th percentile, and our error rate was 0.05%</p>
+        <p class="note">I've tried to spice things up a little by running the latest version of Node 6, with all the native es6 goodness it supports, but it's still a rather boring story</p>
+        <p class="note step">Boring is good for production, of course, and production is great for data and being able to understand exactly how things work in real life...</p>
+        <p class="note">...and real life has taught me that server-side React is actually very <em>slow</em></p>
         <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
         <p class="note step">This is quite bad, but it's actually worse when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
+        <p class="note">So our hack to make the server look a little more like the client could end up hurting us</p>
         <p class="note step">There are a few tricks you can try to improve things:</p>
         <p class="note step">...be sure to run in <em>production</em> mode (generally good practice for all libraries, not just React)</p>
         <p class="note step">...use the minified version of React</p>
