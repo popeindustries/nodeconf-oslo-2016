@@ -70,6 +70,7 @@ h1 {
 h2 {
   font-size: 3vw;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 h3 {
   font-size: 2.2vw;
@@ -85,6 +86,7 @@ li {
   padding: 0.5vw 0;
   &::before {
     display: inline-block;
+    font-size: 2vw;
     width: 2vw;
   }
   &.good::before {
@@ -92,7 +94,7 @@ li {
     color: GREEN;
   }
   &.maybe::before {
-    content: '?';
+    content: '±';
     color: YELLOW;
   }
   &.bad::before {
@@ -168,6 +170,14 @@ blockquote {
   .presentation-notes & {
     height: 100%;
   }
+}
+.clock {
+  font-size: 4vw;
+  opacity: 0.25;
+  position: absolute;
+  right: 1vw;
+  top: 0.5vw;
+  z-index: 100;
 }
 .notes {
   background-color: white;
@@ -1087,7 +1097,8 @@ blockquote {
   }
   &.step-7 {
     .bg {
-      opacity: 0.5;
+      -webkit-filter: brightness(0.5);
+      filter: brightness(0.5);
     }
     .url {
       opacity: 1;
@@ -1111,7 +1122,8 @@ blockquote {
   }
   &.step-10 {
     .bg {
-      opacity: 1;
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
     }
     .handler {
       opacity: 0;
@@ -1399,7 +1411,7 @@ blockquote {
   }
 }
 
-#caveats {
+#node {
   background-color: BLACK;
   color: white;
   opacity: 0;
@@ -1550,6 +1562,18 @@ blockquote {
       z-index: 1;
     }
   }
+  .lessons {
+    left: 8vw;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-2vw);
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+    width: 50vw;
+    .lesson {
+      opacity: 0;
+      transition: opacity TRANSITION_DURATION_SHORT linear;
+    }
+  }
   &.show {
     opacity: 1;
     .phone {
@@ -1562,6 +1586,105 @@ blockquote {
       transform: translateX(60%);
     }
   }
+  &.step-1 {
+    .iphone {
+      transform: translateX(110%);
+    }
+    .n95 {
+      transform: translateX(180%);
+    }
+    .lesson-1 {
+      opacity: 1;
+    }
+  }
+  &.step-2 {
+    .lessons {
+      transform: translateY(-4vw);
+    }
+    .lesson-2 {
+      opacity: 1;
+    }
+  }
+  &.step-3 {
+    .lessons {
+      transform: translateY(-6vw);
+    }
+    .lesson-3 {
+      opacity: 1;
+    }
+  }
+  &.step-4 {
+    .lessons {
+      transform: translateY(-8vw);
+    }
+    .lesson-4 {
+      opacity: 1;
+    }
+  }
+  &.step-5 {
+    .lessons {
+      transform: translateY(-10vw);
+    }
+    .lesson-5 {
+      opacity: 1;
+    }
+  }
+  &.step-6 {
+    .lessons {
+      transform: translateY(-12vw);
+    }
+    .lesson-6 {
+      opacity: 1;
+    }
+  }
+  &.step-7 {
+    .lessons {
+      transform: translateY(-14vw);
+    }
+    .lesson-7 {
+      opacity: 1;
+    }
+  }
+  &.step-8 {
+    .lessons {
+      transform: translateY(-16vw);
+    }
+    .lesson-8 {
+      opacity: 1;
+    }
+  }
+  &.step-9 {
+    .lessons {
+      transform: translateY(-18vw);
+    }
+    .lesson-9 {
+      opacity: 1;
+    }
+  }
+  &.step-10 {
+    .lessons {
+      transform: translateY(-20vw);
+    }
+    .lesson-10 {
+      opacity: 1;
+    }
+  }
+  &.step-11 {
+    .lessons {
+      transform: translateY(-22vw);
+    }
+    .lesson-11 {
+      opacity: 1;
+    }
+  }
+  &.step-12 {
+    .lessons {
+      transform: translateY(-24vw);
+    }
+    .lesson-12 {
+      opacity: 1;
+    }
+  }
   &.hide {
     opacity: 0;
     .iphone {
@@ -1571,9 +1694,11 @@ blockquote {
       opacity: 0;
       transform: translateX(0);
     }
+    .lessons {
+      opacity: 0;
+    }
   }
 }
-
 
 #bye {
   color: white;

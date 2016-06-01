@@ -3,10 +3,12 @@
 const TOUCH_THRESHOLD = 100;
 
 const elSlides = document.querySelector('.slides');
+const elClock = document.querySelector('.clock');
 const isProduction = process.env.NODE_ENV == 'production';
 const isDevelopment = !isProduction
 const isLocal = window.location.hostname == 'localhost';
 const isNotes = window.name == 'notes';
+const start = Date.now();
 const startingSlide = isProduction && !isLocal ? 0 : getUrlSlide();
 let model = window.model = parse({
   notes: [],
@@ -123,6 +125,7 @@ function changeRemoteNote (currentSlideIndex, nextSlideIndex, currentNoteIndex, 
   }
   if (currentNote) currentNote.style.opacity = 0;
   if (nextNote) nextNote.style.opacity = 1;
+  updateClock();
 }
 
 /**
@@ -148,6 +151,19 @@ function prev () {
     changeSlide(model.slideIndex - 1, true);
   } else {
     return;
+  }
+}
+
+/**
+ * Update clock
+ */
+function updateClock () {
+  if (isNotes) {
+    const diff = Date.now() - start;
+    const m = Math.floor(diff / 60000);
+    const s = ((diff % 60000) / 1000).toFixed(0);
+
+    elClock.innerHTML = `${m}:${s < 10 ? 0 : ''}${s}`;
   }
 }
 

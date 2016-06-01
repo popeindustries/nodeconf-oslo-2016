@@ -115,10 +115,12 @@ _m_['src/index.js']=(function(module,exports){
   var TOUCH_THRESHOLD = 100;
   
   var elSlides = document.querySelector('.slides');
-  var isProduction = undefined == 'production';
+  var elClock = document.querySelector('.clock');
+  var isProduction = 'production' == 'production';
   var isDevelopment = !isProduction;
   var isLocal = window.location.hostname == 'localhost';
   var isNotes = window.name == 'notes';
+  var start = Date.now();
   var startingSlide = isProduction && !isLocal ? 0 : getUrlSlide();
   var model = window.model = parse({
     notes: [],
@@ -235,6 +237,7 @@ _m_['src/index.js']=(function(module,exports){
     }
     if (currentNote) currentNote.style.opacity = 0;
     if (nextNote) nextNote.style.opacity = 1;
+    updateClock();
   }
   
   /**
@@ -260,6 +263,19 @@ _m_['src/index.js']=(function(module,exports){
       changeSlide(model.slideIndex - 1, true);
     } else {
       return;
+    }
+  }
+  
+  /**
+   * Update clock
+   */
+  function updateClock() {
+    if (isNotes) {
+      var diff = Date.now() - start;
+      var m = Math.floor(diff / 60000);
+      var s = (diff % 60000 / 1000).toFixed(0);
+  
+      elClock.innerHTML = m + ':' + (s < 10 ? 0 : '') + s;
     }
   }
   

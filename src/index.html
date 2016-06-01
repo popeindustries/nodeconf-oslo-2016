@@ -412,18 +412,19 @@
           navigator.serviceWorker.<span class="function">register</span>('/sw.js')
             .then(function(registration) {
               const app = express();
+              // ...
             });
         </code>
       </pre>
       <div class="notes">
         <p class="note">Predicting the future, and trying to pick a winning horse, is a dangerous game, but it's hard to ignore the obvious signs that the font-end is coming to look a lot more like the back-end</p>
-        <p class="note step">If you were at Nolan Lawson's great talk on Thursday, and if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser</p>
-        <p class="note">The opportunity to properly handle offline, background sync, and notifications, as well as offload processing from the main UI thread, is huge for the web, and I'm betting it will be huge for Yr</p>
-        <p class="note step">I'm not exactly sure what this will look like, but I'm excited</p>
+        <p class="note step">If you were at Nolan Lawson's great talk on Thursday, and if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser. They probably should have called it <em>Server</em> Worker</p>
+        <p class="note">Being able to properly handle offline, background sync, and notifications, as well as offload processing from the main UI thread, will probably be huge for the web, and I'm betting it will be huge for Yr</p>
+        <p class="note step">I'm not exactly sure what this will look like yet, but I'm excited that the future of the web is looking a lot like the past</p>
       </div>
     </section>
 
-    <section id="caveats">
+    <section id="node">
       <div class="stats">
         <h3>Node in production (last 7 days)</h3>
         <ul>
@@ -484,7 +485,7 @@
         <p class="note step">Running Node in production has so far been largely uneventful. Last week we processed 5.66 million requests, our response latency was around 1000ms for the 95th percentile, and our error rate was 0.05%</p>
         <p class="note">I've tried to spice things up a little by running the latest version of Node 6, with all the native es6 goodness it supports, but it's still a rather boring story</p>
         <p class="note step">Boring is good for production, of course, and production is great for data and being able to understand exactly how things work in real life...</p>
-        <p class="note">...and real life has taught me that server-side React is actually very <em>slow</em></p>
+        <p class="note">...and real life has taught me that server-side React is disappointingly <em>slow</em></p>
         <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
         <p class="note step">This is quite bad, but it's actually worse when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
         <p class="note">So our hack to make the server look a little more like the client could end up hurting us</p>
@@ -499,6 +500,19 @@
     </section>
 
     <section id="summary">
+      <ul class="lessons">
+        <li class="lesson lesson-1 good">weather is a growth industry</li>
+        <li class="lesson lesson-2 maybe">North Koreans agree: Yr is great!</li>
+        <li class="lesson lesson-3 bad">kill off your monolith slowly</li>
+        <li class="lesson lesson-4 good">Node.js is boring!</li>
+        <li class="lesson lesson-5 good">server-side rendering is CRAP!</li>
+        <li class="lesson lesson-6 good">CRAP is good for users</li>
+        <li class="lesson lesson-7 good">client-side Express.js works</li>
+        <li class="lesson lesson-8 good">client-side React.js changes the equation</li>
+        <li class="lesson lesson-9 bad">server-side React.js makes things slow</li>
+        <li class="lesson lesson-10 good">Express.js + React.js are like thunder + lightning</li>
+        <li class="lesson lesson-11 good">your <em>Server</em> Worker is here</li>
+      </ul>
       <div class="phone iphone">
         <figure class="front">
           <img class="anim" src="src/images/iphone-screencap.gif">
@@ -511,10 +525,18 @@
         </figure>
       </div>
       <div class="notes">
-        <p class="note">It's been a long journey, and a little rough weather on the way was to be expected, but things are looking bright</p>
-        <p class="note">Server-side rendering with Node is keeping things CRAP (cacheable, resilient, accessible, and progressive)...</p>
-        <p class="note">...Express and React are making it possible to use the same mental model on both sides of the wire...</p>
-        <p class="note">...and there are a lot of exciting things on the horizon</p>
+        <p class="note">It's been a long journey, so what have I learned?</p>
+        <p class="note step">Weather is a growth industry</p>
+        <p class="note step">Yr is big in North Korea</p>
+        <p class="note step">You should probably kill your monolith off slowly</p>
+        <p class="note step">Node.js is boring, and that's good</p>
+        <p class="note step">Server-side rendering is CRAP, and that's great</p>
+        <p class="note step">Cacheability, Reliability, Accessibility, and Progressiveness are good for users</p>
+        <p class="note step">Client-side Express.js is a great way to structure program logic</p>
+        <p class="note step">Client-side React.js changes the costs of rendering, which gives us the freedom to apply a server-side mental model</p>
+        <p class="note step">Server-side React.js is a nice hack to make the server more client-like, but it's slow</p>
+        <p class="note step">Together, Express.js and React.js shake me up like thunder and lightning</p>
+        <p class="note step">And finally, Service Worker is here to put even more server goodness in the browser</p>
       </div>
     </section>
 
@@ -539,12 +561,13 @@
       </footer>
       <div class="notes">
         <p class="note">I'm forecasting sunny days ahead!</p>
-        <p class="note">Thanks for listening, and thanks to the organisers for having me</p>
-        <p class="note step">You can find the presentation slides here, along with some relevant links</p>
-        <p class="note">Feel free to reach out on Twitter or GitHub if you have any questions, and if any of this sounds exciting, we're always looking for help!</p>
+        <p class="note">Thanks for listening, and thanks to the organisers for having me!</p>
+        <p class="note step">You can find the presentation slides here, along with some links</p>
+        <p class="note">Feel free to reach out on Twitter or GitHub if you have any questions, and if any of this sounds interesting, NRK is always looking for help!</p>
       </div>
     </section>
   </div>
+  <div class="clock"></div>
   <script src="src/lib/highlight.js"></script>
   <script src="index.js"></script>
 </body>
