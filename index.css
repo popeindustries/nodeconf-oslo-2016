@@ -1679,9 +1679,11 @@ blockquote:before {
 #bye h1 {
   color: #ea735b;
   bottom: 4vw;
+  opacity: 0;
   position: absolute;
   right: 40vw;
   text-align: center;
+  transition: opacity 200ms linear;
 }
 #bye a {
   color: inherit;
@@ -1719,7 +1721,10 @@ blockquote:before {
   -webkit-filter: brightness(1);
   filter: brightness(1);
 }
-#bye.step-1 .references {
+#bye.step-1 h1 {
+  opacity: 1;
+}
+#bye.step-2 .references {
   opacity: 1;
 }
 #bye.hide {

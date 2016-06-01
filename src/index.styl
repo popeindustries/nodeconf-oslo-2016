@@ -1715,9 +1715,11 @@ blockquote {
   h1 {
     color: #EA735B;
     bottom: 4vw;
+    opacity: 0;
     position: absolute;
     right: 40vw;
     text-align: center;
+    transition: opacity TRANSITION_DURATION_SHORT linear;
   }
   a {
     color: inherit;
@@ -1756,6 +1758,11 @@ blockquote {
     }
   }
   &.step-1 {
+    h1 {
+      opacity: 1;
+    }
+  }
+  &.step-2 {
     .references {
       opacity: 1;
     }

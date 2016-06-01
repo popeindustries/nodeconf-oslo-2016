@@ -39,7 +39,7 @@
         <p class="note"></p>
         <p class="note step">Yr is a collaboration between Norway's state broadcaster, NRK, (where I work) and the state Meteorological Institute, Met</p>
         <p class="note">NRK and Met have collaborated to deliver weather reports to Norwegians since forever, first via radio, then TV</p>
-        <p class="note">In 2006, Met decided to make it's data freely available to the public. North Americans have always enjoyed free access to weather data, but in Europe, that wasn't the case until the Norwegians made their move. Shortly after that, NRK and Met released Yr</p>
+        <p class="note">In 2006, Met decided to make it's data freely available to the public. North Americans have always enjoyed free access to weather data, but in Europe, that wasn't the case until the Norwegians shook things up. Shortly after that, NRK and Met released Yr</p>
         <p class="note step">The service quickly became one of the most used in Norway...</p>
         <p class="note step">...and last summer had 9 million (unique) visitors per week...</p>
         <p class="note step">...of which roughly 60% was mobile traffic (evenly split between web and native apps), on 11,996 different devices</p>
@@ -101,7 +101,7 @@
         <p class="note step">The mobile version had a lot going for it: it was light on bandwidth, and it worked well on small screens, but it was also very light on features</p>
         <p class="note step">The desktop version, on the other hand: is heavy on features and content, but also heavy on bandwidth, and not responsive to screen size at all</p>
         <p class="note">Mobile traffic was growing quickly, and it was obvious that Yr needed to offer a better experience for it's mobile web users</p>
-        <p class="note step">Unsurpisingly, it was decided that a single, responsive web site was the most future-proof strategy</p>
+        <p class="note step">Not surpisingly, it was decided that a single, responsive web site was the most future-proof strategy</p>
       </div>
     </section>
 
@@ -163,19 +163,21 @@
         </svg>
       </div>
       <div class="notes">
-        <p class="note">In 2013, I joined the team as a front-end developer and designer</p>
         <p class="note">Now, I should point out that the team at NRK responsible for the fifth most used weather service in the world, has never had more than 5 developers at any one time, and up to that point, there had never been more than 3</p>
-        <p class="note">So, much of the code base at that time dated from the last redesign in 2010...</p>
+        <p class="note">In 2013, I joined the team as a front-end developer and designer</p>
+        <p class="note">Much of the code base at that time dated from the last redesign in 2010...</p>
         <p class="note step">...and it was a classic monolith: picture a large blob of data wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and who know what else</p>
-        <p class="note">I wish I was here to tell you all about the clever strategies we used to carefully and precisely dismantle this beast, but the truth is: we were terrified of breaking anything, and the monster still lives</p>
-        <p class="note step">The application was reliable, and had proven itself for many years, but there were very few tests (the joke was that it was built with email-driven-development: users would report errors and regressions via email), and it took 2 weeks to prepare new releases</p>
-        <p class="note">This is a story plot we have heard many times, and I'm a little ashamed to say that we played to type...</p>
+        <p class="note">I wish I was here to tell you all about the clever strategies we used to carefully and precisely dismantle this beast, but the truth is: we were terrified of breaking anything, and the monster is still with us</p>
+        <p class="note step">The application is reliable, and has proven itself for many years, but there are very few tests (the joke is that it was built with email-driven-development: users would report errors and regressions via email), and it used to take 2 weeks to prepare new releases</p>
+        <p class="note">This is a story plot we have all heard many times, and I'm a little ashamed to say that we played to type...</p>
         <p class="note step">...by starting over</p>
         <p class="note step">The first step was pulling out all the place name data into it's own service</p>
-        <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening in there. Weather data comes from Met, and is mostly indexed by lat/long coordinate, so a large chunk of the application deals with matching a coordinate to a city, ski hill, your street, or any one of <strong>ten million</strong> places around the world</p>
-        <p class="note">It's great to be able to expose this data to others (there are plans on making it public), and we should have replaced the existing data with this new service, but we didn't, and we're now feeling the pain as old and new applications are slowly drifting out of sync</p>
-        <p class="note step">Instead, we pushed on and began building a REST API and view renderer for the new, responsive layout</p>
-        <p class="note">Although this was already a big improvement, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really inefficient for such a small team: I was delivering static versions of the front-end markup to my colleague to implement on the back-end, and we ended up duplicating a lot of the work associated with generating HTML</p>
+        <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening in there</p>
+        <p class="note">Weather data comes from Met, and is mostly indexed by lat/long coordinate, so a large chunk of the application deals with matching a coordinate to a city, ski hill, your street, or any one of <strong>ten million</strong> places around the world</p>
+        <p class="note">It's great to be able to expose this data to others (there are plans on making it public, for instance), but we should have replaced the existing data with this new service. We didn't, and now we're feeling the pain as old and new applications slowly drift out of sync</p>
+        <p class="note step">Instead of slowly killing off the monolith, we pushed on and began building a REST API and view renderer for the new, responsive layout</p>
+        <p class="note">Although this was already a big improvement, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really inefficient for such a small team:</p>
+        <p class="note">I was delivering static versions of the front-end markup to my colleague to implement on the back-end, and we ended up duplicating a lot of the work associated with generating HTML</p>
         <p class="note step">So after a lot of grumbling, and a skunkworks prototype while our project manager was on summer holiday, we decided to split the API and view renderer into separate projects</p>
         <p class="note step">Now we have 4 monoliths</p>
       </div>
@@ -191,11 +193,11 @@
       <div class="notes">
         <p class="note">This is NodeConf, so it shouldn't come as any surprise that the new Yr is powered by Node.js</p>
         <p class="note">And in 2016, this shouldn't come as a shock, but 18 months ago, at least at NRK, this wasn't the normal way to do things, certainly not for a site as popular as Yr</p>
-        <p class="note">Now, I'm no scientist - just a web developer - but I've been doing web stuff for some time now, and I'm convinced you can usually get more done with less</p>
+        <p class="note">Now, I'm no scientist - just a web developer - but I've been doing web stuff for some time now, and I'm convinced you can often get more done with less</p>
         <p class="note">Less time spent duplicating work, less time spent switching between contexts/platforms/languages, and less time spent getting content to users, is more time you can spend on making them happier</p>
         <p class="note step">Running JavaScript on the server with Node isn't really going to change the world, but it does give you more time to try</p>
         <p class="note">And it's given me, the front-end guy, the ability to control the UI rendering lifecyle, and the flexibility to decide where that rendering takes place</p>
-        <p class="note">I think that, because of our content, many of our users could benefit from client-side rendering (switching between different locations, or switching between different visualisations, for example), but I have 11,996 different reasons for wanting to be able to lean on server-side rendering</p>
+        <p class="note">I think that, given our content, client-side rendering can be a real benefit to our users (switching between different locations, or switching between different visualisations, for example), but I have 11,996 different reasons for wanting to be able to lean on server-side rendering</p>
         <p class="note">For us, rendering on the server on first request, and then rendering on the client for subsequent requests, is the fastest and most reliable way to get content to our users</p>
         <p class="note">Some call this isomorphic, or universal...</p>
         <p class="note step">...but I like to call it: JavaScript Up...</p>
@@ -289,9 +291,9 @@
         <p class="note step">Well, it <em>is</em> possible, and it's actually a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
-        <p class="note step">...and Express is a simple and elegant way to route this state to a logic handler</p>
+        <p class="note step">...and Express is a simple and elegant way to route that new state to a logic handler</p>
         <p class="note">Today, whether it's a request captured by Node on the server, or a request captured by the History API on the client, all routing, validation, and handling logic is powered by the same basic Express code</p>
-        <p class="note step">Treating program flow on the client in a similar way as on the server has reduced the cost for me of switching between contexts, and has had an added benefit of leveraging the power of URLs, which ultimately help make things super CRAP, which is super good</p>
+        <p class="note step">Treating program flow on the client in a similar way as on the server has reduced the cost, for me, of switching between contexts, and has allowed us to really leverage the power of URLs, which ultimately are the key to making things super CRAP, which is super good</p>
       </div>
     </section>
 
@@ -324,7 +326,7 @@
       <div class="notes">
         <p class="note">As far as data is concerned, if you're familiar with Express, then you know that it has few opinions about how you manage the data you might need to render a view</p>
         <p class="note">I don't have very strong opinions about it either. We've got lot's of it, and managing it can be really hard, but data is quite domain specific, so I won't bore you with the details</p>
-        <p class="note step">I will say, though, that using some sort of immutable data can be a smart thing to do, and it doesn't have to be more difficult than a recursive Object.freeze in dev mode</p>
+        <p class="note step">I will say, though, that using some sort of immutable data can be a smart thing to do, and it doesn't have to be more difficult than a recursive Object.freeze in dev mode, for instance</p>
         <p class="note step">I also recommend using a request library, like SuperAgent, that seamlessly supports both environments, as it makes sharing code between the server and client much easier</p>
       </div>
     </section>
@@ -385,7 +387,7 @@
       <div class="notes">
         <p class="note">The technical parts of React are interesting, but the killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
         <p class="note step">This makes it possible to render from the root component even when only a small part of our data has changed</p>
-        <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our api call, but the DOM repaint (shown here in Green) is contained to the affected components</p>
+        <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our API call, but the DOM repaint (shown here in green) is contained to the affected components</p>
         <p class="note">Although I considered this the best part of React, it wasn't until recently that I really appreciated why</p>
         <p class="note step">At the end of January this year, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
         <p class="note">In it, he outlined his thoughts about how React has changed the performance, efficiency, and complexity costs associated with dynamic DOM updates</p>
@@ -394,7 +396,7 @@
         <p class="note step">If client-side Express was the lightning, this, for me, was the thunder</p>
         <p class="note">The one-two punch of Express and React made it possible to understand and manage program flow on the client just as you would on the server, and that was a very powerful idea for me</p>
         <p class="note">I'm not suggesting that this is the answer to everyone's prayers, but I think that applying a server model to the client can be a really elegant solution...</p>
-        <p class="note step">...with a major practical benefit being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and mental energy switching between the two</p>
+        <p class="note step">...with the major practical benefit being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and mental energy switching between the two</p>
       </div>
     </section>
 
@@ -418,7 +420,7 @@
       </pre>
       <div class="notes">
         <p class="note">Predicting the future, and trying to pick a winning horse, is a dangerous game, but it's hard to ignore the obvious signs that the font-end is coming to look a lot more like the back-end</p>
-        <p class="note step">If you were at Nolan Lawson's great talk on Thursday, and if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser. They probably should have called it <em>Server</em> Worker</p>
+        <p class="note step">If you were at Nolan Lawson's great talk on Thursday, and if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser. They probably should have just called it <em>Server</em> Worker</p>
         <p class="note">Being able to properly handle offline, background sync, and notifications, as well as offload processing from the main UI thread, will probably be huge for the web, and I'm betting it will be huge for Yr</p>
         <p class="note step">I'm not exactly sure what this will look like yet, but I'm excited that the future of the web is looking a lot like the past</p>
       </div>
@@ -484,7 +486,7 @@
         <p class="note">When planning this talk, I kept struggling with the fact that, since this is NodeConf, I should talk about Node, but Node is actually the most boring part of our story</p>
         <p class="note step">Running Node in production has so far been largely uneventful. Last week we processed 5.66 million requests, our response latency was around 1000ms for the 95th percentile, and our error rate was 0.05%</p>
         <p class="note">I've tried to spice things up a little by running the latest version of Node 6, with all the native es6 goodness it supports, but it's still a rather boring story</p>
-        <p class="note step">Boring is good for production, of course, and production is great for data and being able to understand exactly how things work in real life...</p>
+        <p class="note step">Boring is good for production, of course, and production is great for generating data, which helps us to understand exactly how things behave in real life...</p>
         <p class="note">...and real life has taught me that server-side React is disappointingly <em>slow</em></p>
         <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
         <p class="note step">This is quite bad, but it's actually worse when you consider that the call to <em>renderToString</em> is a blocking, synchronous call! That effectively means our Node process is unable to handle any other requests while rendering</p>
@@ -533,9 +535,9 @@
         <p class="note step">Server-side rendering is CRAP, and that's great</p>
         <p class="note step">Cacheability, Reliability, Accessibility, and Progressiveness are good for users</p>
         <p class="note step">Client-side Express.js is a great way to structure program logic</p>
-        <p class="note step">Client-side React.js changes the costs of rendering, which gives us the freedom to apply a server-side mental model</p>
+        <p class="note step">Client-side React.js changes the costs of rendering, which gives us the freedom to think like a server</p>
         <p class="note step">Server-side React.js is a nice hack to make the server more client-like, but it's slow</p>
-        <p class="note step">Together, Express.js and React.js shake me up like thunder and lightning</p>
+        <p class="note step">Together, Express and React shake me up like thunder and lightning</p>
         <p class="note step">And finally, Service Worker is here to put even more server goodness in the browser</p>
       </div>
     </section>
@@ -561,7 +563,7 @@
       </footer>
       <div class="notes">
         <p class="note">I'm forecasting sunny days ahead!</p>
-        <p class="note">Thanks for listening, and thanks to the organisers for having me!</p>
+        <p class="note step">Thanks for listening, and thanks to the organisers for having me!</p>
         <p class="note step">You can find the presentation slides here, along with some links</p>
         <p class="note">Feel free to reach out on Twitter or GitHub if you have any questions, and if any of this sounds interesting, NRK is always looking for help!</p>
       </div>
