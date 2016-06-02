@@ -116,7 +116,7 @@ _m_['src/index.js']=(function(module,exports){
   
   var elSlides = document.querySelector('.slides');
   var elClock = document.querySelector('.clock');
-  var isProduction = 'production' == 'production';
+  var isProduction = null == 'production';
   var isDevelopment = !isProduction;
   var isLocal = window.location.hostname == 'localhost';
   var isNotes = window.name == 'notes';
