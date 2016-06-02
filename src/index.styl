@@ -70,7 +70,6 @@ h1 {
 h2 {
   font-size: 3vw;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 h3 {
   font-size: 2.2vw;
@@ -134,12 +133,14 @@ section {
 }
 pre {
   margin: 0 0 0 -8vw;
+  width: auto;
   code {
     font-family: 'Hack', monospace;
     font-size: 2.2vw;
     padding: 0 !important;
-    overflow: hidden !important;
+    // overflow: hidden !important;
     background-color: transparent !important;
+    width: auto;
   }
 }
 blockquote {
@@ -1148,11 +1149,9 @@ blockquote {
     transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
   }
   .shrug,
-  .freeze,
   .superagent {
     transform: translate(-50%, -50%);
   }
-  .freeze,
   .superagent {
     opacity: 0;
   }
@@ -1161,16 +1160,6 @@ blockquote {
   }
   &.step-1 {
     .shrug {
-      opacity: 0;
-      transform: translate(-50%, -150%);
-    }
-    .freeze {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-  }
-  &.step-2 {
-    .freeze {
       opacity: 0;
       transform: translate(-50%, -150%);
     }
@@ -1208,7 +1197,7 @@ blockquote {
   &.step-1 {
     .render {
       opacity: 0;
-      transform: translate(-50%, -150%);
+      transform: translate(-150%, -50%);
     }
     .react-server {
       opacity: 1;
@@ -1291,6 +1280,7 @@ blockquote {
     left: 50%;
     opacity: 0;
     position: absolute;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     top: 50%;
     transform: translate(-50%, -50%);
     transition: opacity TRANSITION_DURATION_SHORT linear;
@@ -1758,11 +1748,7 @@ blockquote {
     }
   }
   &.step-1 {
-    h1 {
-      opacity: 1;
-    }
-  }
-  &.step-2 {
+    h1,
     .references {
       opacity: 1;
     }
