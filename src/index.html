@@ -178,7 +178,7 @@
         <p class="note">Although this was already a big improvement, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really inefficient for such a small team:</p>
         <p class="note">I was delivering static versions of the front-end markup to my colleague to implement on the back-end, and we ended up duplicating a lot of the work associated with generating HTML</p>
         <p class="note step">So after a lot of grumbling, and a prototype while our project manager was on summer holiday, we decided to split the API and view renderer into separate projects</p>
-        <p class="note step">Today, we have 4 monoliths</p>
+        <p class="note step">Today, we have 4 monoliths instead of 1</p>
       </div>
     </section>
 
@@ -187,7 +187,7 @@
       <pre class="code more">
         <code class="js">
           const Node = function (less) {
-            return Math.pow(less, 2);
+            return less * less;
           };
         </code>
       </pre>
@@ -527,9 +527,9 @@
       </ul>
       <h3 class="issue">Proposal: ReactDOMServer render to Stream <span>#6420</span></h3>
       <div class="notes">
-        <p class="note">When planning this talk, I kept struggling with the fact that, since this is NodeConf, I should talk about Node, but Node is actually the most boring part of our story</p>
+        <p class="note">When planning this talk, I kept struggling with the fact that, since this is NodeConf, I should talk about Node, but Node is actually the most boring part of this story</p>
         <p class="note step">Running Node in production has so far been largely uneventful. Last week we processed 5.66 million requests, our response latency was around 1000ms for the 95th percentile, and our error rate was 0.05%</p>
-        <p class="note">I've tried to spice things up a little by running the latest version of Node 6, with all the new ES6 syntax it supports, but it's still a rather boring story</p>
+        <p class="note">I've tried to spice things up a little by running the latest version of Node 6, with all the new syntax it supports, but it's still a rather boring story</p>
         <p class="note step">Boring is good for production, of course, and production is great for generating data, which helps me understand exactly how things behave in the real world...</p>
         <p class="note">...and the real world has taught me that server-side React is disappointingly <em>slow</em></p>
         <p class="note">These charts capture an hour's worth of render times for the main page component of the List and Graph pages: times vary roughly between 50 and 100 ms</p>
@@ -606,8 +606,8 @@
         <p>PHOTOS: Alexander Pope</p>
       </footer>
       <div class="notes">
-        <p class="note">I'm forecasting sunny days ahead!</p>
-        <p class="note step">Thanks for listening, and thanks to the organisers for having me!</p>
+        <p class="note">Enjoy the weather...</p>
+        <p class="note step">...and thanks for listening!</p>
       </div>
     </section>
   </div>
