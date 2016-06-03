@@ -342,7 +342,7 @@ blockquote:before {
 .phone figure .anim {
   height: 74%;
   left: 6%;
-  top: 13%;
+  top: 14%;
 }
 .phone figure .frame {
   left: 0;
@@ -1169,12 +1169,13 @@ blockquote:before {
   transform: translate(-50%, -50%);
 }
 #express .crap {
-  left: 50%;
+  left: 20%;
   opacity: 0;
   position: absolute;
   top: 50%;
   transition: opacity 200ms linear;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
+  width: 100%;
 }
 #express .crap li {
   font-size: 2.2vw;

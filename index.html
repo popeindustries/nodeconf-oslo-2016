@@ -979,7 +979,7 @@
         <p class="note step">Unfortunately, in 2013, it would still have looked something like this...</p>
         <p class="note step">...though with a little bit of work, you could opt for the desktop version instead</p>
         <p class="note step">The mobile version had a lot going for it: it was light on bandwidth, and it worked well on small screens, but it was also very light on features</p>
-        <p class="note step">The desktop version, on the other hand: is heavy on features and content, but also heavy on bandwidth, and not responsive to screen size at all (960px FTW!)</p>
+        <p class="note step">The desktop version, on the other hand: is heavy on features and content, but also heavy on bandwidth, and not responsive to screen size at all</p>
         <p class="note">Mobile traffic was growing quickly, and it was obvious that Yr needed a better experience for it's mobile web users</p>
         <p class="note step">Not surpisingly, it was decided that a single, responsive web site was the most future-proof strategy</p>
       </div>
@@ -1214,7 +1214,7 @@
         <p class="note step">...to add middleware...</p>
         <p class="note step">...to add request parameter validation...</p>
         <p class="note step">...and to handle a request, in the browser, just like Express.js does on the server?</p>
-        <p class="note step">Well, it <em>is</em> possible, and it's actually a great way to think about program logic:</p>
+        <p class="note step">Well, it turns out that it <em>is</em> possible, and is actually a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
         <p class="note step">...and Express is a simple and elegant way to route that new state to your logic</p>
@@ -1223,8 +1223,8 @@
         <p class="note step">The server responds to all requests with rendered content</p>
         <p class="note">Anchor tags will still work without JavaScript, or with JavaScript that is behaving badly</p>
         <p class="note">All devices get the baseline content, and can follow links to other content</p>
-        <p class="note">Not all devices need to run in a dynamic, enhanced mode, and even then, not all pages need to be rendered on the client (if there's no route enabled, throw a 404 and let the server render the resource)</p>
-        <p class="note">That's some 4 star crap right there</p>
+        <p class="note">Not all devices need to run in a dynamic, enhanced mode, and even then, not all pages need to be rendered on the client: if there's no route enabled, for instance, throw a 404 and let the server render the resource</p>
+        <p class="note">That's some 4 star CRAP right there</p>
       </div>
     </section>
 
@@ -1312,7 +1312,7 @@
       <div class="notes">
         <p class="note">The technical parts of React are interesting, but the killer feature for me has always been that it makes it easy to render the whole tree on each state change</p>
         <p class="note step">This makes it possible to render from the root component even when only a small part of our data has changed</p>
-        <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our API call, but the DOM repaint (shown here in green) is contained to the affected components</p>
+        <p class="note">In this example, we're rendering the full page on each keypress, and after new data arrives from our API call, but the DOM repaint (shown here in green) is limited to the affected components</p>
         <p class="note">Although I considered this the best part of React, it wasn't until recently that I really appreciated why</p>
         <p class="note step">At the end of January this year, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
         <p class="note">In it, he outlined his thoughts about how React has changed the performance, efficiency, and complexity costs associated with dynamic DOM updates</p>
@@ -1344,7 +1344,7 @@
         </code>
       </pre>
       <div class="notes">
-        <p class="note">Predicting the future is a difficult and sometimes dangerous game, but it's hard to ignore the obvious signs that the font-end is coming to look a lot more like the back-end</p>
+        <p class="note">Predicting the future is a difficult and sometimes dangerous game, but it's hard to ignore the obvious signs that the front-end is coming to look a lot more like the back-end</p>
         <p class="note step">If you were at Web Rebels the last couple of days, or if you've been following along with the news lately, you know that the new Service Worker API has arrived, and it's put a proxy server in your browser</p>
         <p class="note">Every client request can now be handled right on the device, whether there is a network connection or not. This is a big deal, and I think it really validates this server-centric approach</p>
         <p class="note step">I'm not exactly sure what this will look like yet, but I'm excited that the future of the web is looking a lot like it's server-rendered past</p>
@@ -1419,7 +1419,7 @@
         <p class="note step">There are a few tricks you can try to improve things:</p>
         <p class="note step">...be sure to run in <em>production</em> mode (which is generally good practice for most things, not just React)</p>
         <p class="note step">...use the minified version of React</p>
-        <p class="note step">...render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or React.createClass)</p>
+        <p class="note step">...render all components as <em>stateless functions</em> (that is, components should not inherit from React.Component or React.createClass, they should be pure functions)</p>
         <p class="note step">...and maybe render components in a child process? I haven't tried this yet, but I'm tempted, though there are probably costs associated with serializing/de-serializing data</p>
         <p class="note">What React badly needs is an asynchronous renderer</p>
         <p class="note step">Fortunately, work has begun on an asynchronous, streaming renderer, and although some core team members are sceptical, it looks like React may eventually get improved server-side rendering</p>
