@@ -136,7 +136,7 @@
         <p class="note"></p>
         <p class="note step">Yr is a collaboration between Norway's state broadcaster, NRK, (where I work) and the state Meteorological Institute, Met</p>
         <p class="note">NRK and Met have collaborated to deliver weather reports to Norwegians since forever, first via radio, then TV</p>
-        <p class="note">In 2006, Met decided to make it's data freely available to the public. North Americans have always enjoyed free access to weather data, but in Europe, that largely hasn't been the case, and certainly wasn't until the Norwegians decided to shake things up. Shortly after that, NRK and Met released Yr</p>
+        <p class="note">In 2006, Met decided to make it's data freely available to the public. North Americans have always enjoyed free access to weather data, but in Europe, that largely hasn't been the case, and certainly wasn't until Norway decided to shake things up. Shortly after that, NRK and Met released Yr</p>
         <p class="note step">The service quickly became one of the most used in Norway...</p>
         <p class="note step">...and last summer had 9 million (unique) visitors per week...</p>
         <p class="note step">...of which roughly 60% was mobile traffic (evenly split between web and native apps), on 11,996 different devices</p>
@@ -936,7 +936,7 @@
         <p class="note step">According to Google, the answer would be everywhere except, apparently, Western Sahara</p>
         <p class="note step">Norway accounts for a little under half of the traffic, with most of the remaining top 10 coming from northern Europe. </p>
         <p class="note">Strangely, Yr is big with South African farmers, and though it's <em>not</em> so big in Japan...</p>
-        <p class="note step">...there were 31 sessions recorded from North Korea, so I'm not sure, but that might make it big in North Korea</p>
+        <p class="note step">...there were 31 sessions recorded from North Korea</p>
       </div>
     </section>
 
@@ -974,13 +974,13 @@
         </ul>
       </div>
       <div class="notes">
-        <p class="note">Yr is a great Norwegian web success story, but the web has changed a lot over the last 10 years</p>
+        <p class="note">Yr is a great success story, but the web has changed a lot over the last 10 years</p>
         <p class="note step">In 2007, if you fired-up your top-of-the-line Nokia N95, the website would have looked something like this</p>
         <p class="note step">Unfortunately, in 2013, it would still have looked something like this...</p>
         <p class="note step">...though with a little bit of work, you could opt for the desktop version instead</p>
         <p class="note step">The mobile version had a lot going for it: it was light on bandwidth, and it worked well on small screens, but it was also very light on features</p>
         <p class="note step">The desktop version, on the other hand: is heavy on features and content, but also heavy on bandwidth, and not responsive to screen size at all (960px FTW!)</p>
-        <p class="note">Mobile traffic was growing quickly, and it was obvious that Yr needed to offer a better experience for it's mobile web users</p>
+        <p class="note">Mobile traffic was growing quickly, and it was obvious that Yr needed a better experience for it's mobile web users</p>
         <p class="note step">Not surpisingly, it was decided that a single, responsive web site was the most future-proof strategy</p>
       </div>
     </section>
@@ -1043,13 +1043,13 @@
         </svg>
       </div>
       <div class="notes">
-        <p class="note">Before I go on, I should point out that the team at NRK responsible for the fifth most used weather service in the world, has always been quite small, and has never had more than 4 or 5 developers at any one time</p>
+        <p class="note">Before going any further, I should point out that the team at NRK responsible for the fifth most used weather service in the world, has always been quite small, and has never had more than 4 or 5 developers at any one time</p>
         <p class="note">In 2013, when I joined, there were only 3</p>
         <p class="note">Much of the code base at that time dated from the last redesign in 2010...</p>
         <p class="note step">...and it was a classic monolith: picture a large blob of data wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and who know what else</p>
-        <p class="note">Now, I wish I was here to talk about all the clever strategies we used to dismantle this beast, but the truth is: we were terrified of breaking anything, and this monster is still with us today</p>
-        <p class="note step">The application is reliable, and has proven itself for many years, but there are very few tests (it was basically built with email-driven-development: errors and regressions were discoverd and reported by users), and it used to take 2 weeks to prepare new releases</p>
-        <p class="note">This is a familiar story plot, and I'm a little ashamed to say that we played to type...</p>
+        <p class="note">I wish I was here to talk about all the clever strategies we used to dismantle this beast, but the truth is: we were terrified of breaking anything, and this monster is still with us today</p>
+        <p class="note step">The application was reliable, and had proven itself for many years, but there were very few tests (it was basically built with email-driven-development: errors and regressions were discoverd and reported by users), and it used to take 2 weeks to prepare new releases</p>
+        <p class="note">This is a familiar story, and I'm a little ashamed to say that we played to type...</p>
         <p class="note step">...by starting over</p>
         <p class="note step">So instead of swapping out small pieces, we pulled out the largest part, which was all the place name data, into it's own service</p>
         <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening inside the Yr application</p>
@@ -1141,8 +1141,8 @@
         <p class="note step">It's accessible: not all devices are created equal, and server rendering makes it easier to deliver content to as many as possible</p>
         <p class="note step">And it's progressive: delivering a baseline experience to all allows us to add additional features, and improve that experience, for those devices that <em>can</em> handle it. It's also easier to not worry about those that can't</p>
         <p class="note step">Add it all up, and it's <strong>CRAP</strong>! Having to do all this is a real pain in the ass</p>
-        <p class="note">Caching is nightmare; worrying about the resiliency of the network and our code is a headache; making content accessible on all those devices is impossible; and building things that can be progressively enhanced is hard</p>
-        <p class="note">But honestly, most of us love crap: we eat crap, we watch crap, and we spend a lot of time looking at crap on our phones</p>
+        <p class="note">Caching is a nightmare; worrying about the resiliency of the network and our code is a headache; making content accessible on all those devices is impossible; and building things that can be progressively enhanced is hard</p>
+        <p class="note">But honestly, most of us love crap: we love eating crap, we love watching crap, and we love spending a lot of time looking at crap on our phones</p>
         <p class="note step">So, do your users a favour, and make it CRAP, but not shit. They'll love you for it</p>
       </div>
     </section>
@@ -1200,6 +1200,12 @@
           });
         </code>
       </pre>
+      <ul class="crap">
+        <li><span>★</span> all pages can be server rendered</li>
+        <li><span>★</span> anchor tags work with or without JavaScript</li>
+        <li><span>★</span> baseline content is available to every device</li>
+        <li><span>★</span> can choose how much enhanced experience to offer</li>
+      </ul>
       <div class="notes">
         <p class="note">Once I committed to making things crappier with server-side rendering, I needed to find a way to smooth over the differences between server and client code</p>
         <p class="note step">The logic flow on the server starts with a URL, and routes that URL to a handler, where you can fetch and munge some data, before finally rendering a string of HTML</p>
@@ -1211,9 +1217,14 @@
         <p class="note step">Well, it <em>is</em> possible, and it's actually a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
-        <p class="note step">...and Express is a simple and elegant way to route that new state to a logic handler</p>
-        <p class="note">Today, whether it's a request captured by Node on the server, or a request captured by the History API on the client, all routing, validation, and handling logic is powered by the same basic Express code</p>
-        <p class="note step">Treating program flow on the client in a similar way as on the server has reduced the cost, for me, of switching between contexts, and has allowed us to really leverage the power of URLs, which ultimately are the key to making things super CRAP, which is super good!</p>
+        <p class="note step">...and Express is a simple and elegant way to route that new state to your logic</p>
+        <p class="note">Whether it's a request captured by Node on the server, or a request captured by the History API on the client, all routing, validation, and handling logic is powered by the same basic Express code</p>
+        <p class="note step">You may be wondering: how crappy can this approach really be?</p>
+        <p class="note step">The server responds to all requests with rendered content</p>
+        <p class="note">Anchor tags will still work without JavaScript, or with JavaScript that is behaving badly</p>
+        <p class="note">All devices get the baseline content, and can follow links to other content</p>
+        <p class="note">Not all devices need to run in a dynamic, enhanced mode, and even then, not all pages need to be rendered on the client (if there's no route enabled, throw a 404 and let the server render the resource)</p>
+        <p class="note">That's some 4 star crap right there</p>
       </div>
     </section>
 

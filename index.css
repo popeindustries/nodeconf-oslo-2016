@@ -1127,6 +1127,7 @@ blockquote:before {
   opacity: 0;
 }
 #express {
+  color: #fff;
   background-color: #050a07;
   opacity: 0;
   transition-duration: 800ms;
@@ -1166,6 +1167,24 @@ blockquote:before {
 #express .anchor,
 #express .handler {
   transform: translate(-50%, -50%);
+}
+#express .crap {
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transition: opacity 200ms linear;
+  transform: translate(-50%, -50%);
+}
+#express .crap li {
+  font-size: 2.2vw;
+}
+#express .crap li span {
+  color: #db1a7e;
+  display: inline-block;
+  font-size: 120%;
+  font-weight: 600;
+  padding-right: 0.5vw;
 }
 #express.show {
   opacity: 1;
@@ -1239,6 +1258,9 @@ blockquote:before {
 }
 #express.step-10 .handler {
   opacity: 0;
+}
+#express.step-11 .crap {
+  opacity: 1;
 }
 #express.hide {
   opacity: 0;

@@ -1107,6 +1107,7 @@ blockquote {
 }
 
 #express {
+  color: white;
   background-color: BLACK;
   opacity: 0;
   transition-duration: TRANSITION_DURATION_LONG;
@@ -1139,6 +1140,24 @@ blockquote {
   .anchor,
   .handler {
     transform: translate(-50%, -50%);
+  }
+  .crap {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: opacity TRANSITION_DURATION_SHORT linear;
+    transform: translate(-50%, -50%);
+    li {
+      font-size: 2.2vw;
+      span {
+        color: PINK;
+        display: inline-block;
+        font-size: 120%;
+        font-weight: 600;
+        padding-right: 0.5vw;
+      }
+    }
   }
   &.show {
     opacity: 1;
@@ -1231,6 +1250,11 @@ blockquote {
     }
     .handler {
       opacity: 0;
+    }
+  }
+  &.step-11 {
+    .crap {
+      opacity: 1;
     }
   }
   &.hide {
