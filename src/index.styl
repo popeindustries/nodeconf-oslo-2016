@@ -837,6 +837,68 @@ blockquote {
     transition: all TRANSITION_DURATION_LONG TRANSITION_TIMING_CUBIC_OUT;
     z-index: -1;
   }
+  .more {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+  }
+  .diagram {
+    fill: none;
+    height: 10vw
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    stroke-width: 1px;
+    stroke: black;
+    top: 20%;
+    transition: all TRANSITION_DURATION_SHORT ease-out;
+    width: 10vw;
+    svg {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+  .client,
+  .server {
+    fill: #1D120C;
+    stroke: #BB9882;
+  }
+  .client {
+    transform: translateX(50%);
+  }
+  .server {
+    transform: translateX(-175%);
+  }
+  .document {
+    fill: white;
+    opacity: 0;
+    transform: translate(-175%, 0%) scale(0.6);
+    transition: opacity TRANSITION_DURATION_SHORT linear, transform TRANSITION_DURATION TRANSITION_TIMING_CUBIC_OUT;
+    .loader {
+      fill: black;
+      transition: visibility 10ms TRANSITION_DURATION_LONG * 4 linear;
+      visibility: hidden;
+      circle {
+        animation: loadBounce 0.4s linear 0s infinite alternate-reverse;
+      }
+      circle + circle {
+        animation: loadBounce 0.4s linear -0.2s infinite alternate-reverse;
+      }
+      circle + circle + circle{
+        animation: loadBounce 0.4s linear -0.4s infinite alternate-reverse;
+      }
+    }
+    .content {
+      transition: visibility 10ms TRANSITION_DURATION_LONG * 8 linear;
+      visibility: hidden;
+    }
+  }
   .titles {
     full();
     transition: all TRANSITION_DURATION_SHORT linear;
@@ -845,7 +907,7 @@ blockquote {
       opacity: 0;
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-100%);
       transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
       white-space: nowrap;
       span {
@@ -855,7 +917,7 @@ blockquote {
       }
     }
     .title-1 {
-      transform: translate(60%, -50%);
+      transform: translate(50%, -100%);
       span {
         opacity: 0;
       }
@@ -869,37 +931,78 @@ blockquote {
     }
   }
   &.step-1 {
-    .title-1 {
+    .bg {
+      -webkit-filter: brightness(0.4);
+      filter: brightness(0.4);
+    }
+    .more {
       opacity: 1;
     }
   }
   &.step-2 {
+    .bg {
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+    }
+    .more {
+      opacity: 0;
+    }
+  }
+  &.step-3 {
+    .server,
+    .client {
+      opacity: 1;
+    }
+  }
+  &.step-4 {
+    .document {
+      opacity: 1;
+      transform: translate(50%, 0);
+      .loader {
+        visibility: visible;
+      }
+      .content {
+        visibility: visible;
+      }
+    }
+  }
+  &.step-5 {
+    .server,
+    .client,
+    .document {
+      display: none;
+    }
     .title-1 {
-      transform: translate(0, -50%);
+      opacity: 1;
+    }
+  }
+  &.step-6 {
+    .title-1 {
+      transform: translate(0, -100%);
       span {
         opacity: 1;
       }
     }
   }
-  &.step-3 {
+  &.step-7 {
     .title-1 {
-      transform: translate(0, -150%);
+      transform: translate(0, -190%);
     }
     .title-2 {
       opacity: 1;
-      transform: translate(0, -50%);
+      transform: translate(0, -100%);
     }
   }
-  &.step-4 {
+  &.step-8 {
     .title-1 {
-      transform: translate(0, -250%);
+      transform: translate(0, -275%);
     }
     .title-2 {
-      transform: translate(0, -150%);
+      transform: translate(0, -190%);
     }
     .title-3 {
       opacity: 1;
-      transform: translate(0, -50%);
+      transform: translate(0, -100%);
     }
   }
   &.hide {

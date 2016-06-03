@@ -1047,12 +1047,12 @@
         <p class="note">In 2013, when I joined, there were only 3</p>
         <p class="note">Much of the code base at that time dated from the last redesign in 2010...</p>
         <p class="note step">...and it was a classic monolith: picture a large blob of data wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and who know what else</p>
-        <p class="note">Now, I wish I was here to talk about all the clever strategies we used to carefully and precisely dismantle this beast, but the truth is: we were terrified of breaking anything, and this monster is still with us today</p>
+        <p class="note">Now, I wish I was here to talk about all the clever strategies we used to dismantle this beast, but the truth is: we were terrified of breaking anything, and this monster is still with us today</p>
         <p class="note step">The application is reliable, and has proven itself for many years, but there are very few tests (it was basically built with email-driven-development: errors and regressions were discoverd and reported by users), and it used to take 2 weeks to prepare new releases</p>
         <p class="note">This is a familiar story plot, and I'm a little ashamed to say that we played to type...</p>
         <p class="note step">...by starting over</p>
         <p class="note step">So instead of swapping out small pieces, we pulled out the largest part, which was all the place name data, into it's own service</p>
-        <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening here</p>
+        <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening inside the Yr application</p>
         <p class="note">Weather data comes from Met, and is mostly indexed by lat/long coordinate, so a large chunk of the application deals with matching a coordinate to a city, ski hill, your street, or any one of <strong>ten million</strong> places around the world</p>
         <p class="note">It's great to be able to expose this data to others (there are plans on making it public, for instance), but we really should have swapped out the existing data with this new service. We didn't, and now we're feeling the pain as old and new applications slowly drift out of sync</p>
         <p class="note step">Instead of slowly killing off the monolith, we pushed on and began building a REST API and view renderer for the new, responsive layout</p>
@@ -1065,6 +1065,46 @@
 
     <section id="universal">
       <div class="bg"></div>
+      <pre class="code more">
+        <code class="js">
+          const Node = function (less) {
+            return Math.pow(less, 2);
+          };
+        </code>
+      </pre>
+      <div class="diagram server">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <rect x="10" y="0" width="80" height="100" vector-effect="non-scaling-stroke" />
+          <rect x="80" y="8" width="4" height="4" />
+          <line x1="10" y1="20" x2="90" y2="20" vector-effect="non-scaling-stroke" />
+        </svg>
+      </div>
+      <div class="diagram client">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <rect x="20" y="0" width="60" height="100" rx="5" ry="5" vector-effect="non-scaling-stroke" />
+          <line x1="20" y1="10" x2="80" y2="10" vector-effect="non-scaling-stroke" />
+          <line x1="20" y1="90" x2="80" y2="90" vector-effect="non-scaling-stroke" />
+          <circle cx="50" cy="95" r="2" vector-effect="non-scaling-stroke" />
+        </svg>
+      </div>
+      <div class="diagram document">
+        <svg width="100px" height="100px" viewBox="0 0 100 100" xml:space="preserve">
+          <rect x="21" y="10" width="58" height="80" vector-effect="non-scaling-stroke" />
+          <rect x="25" y="12" width="50" height="16" vector-effect="non-scaling-stroke" />
+          <rect x="25" y="32" width="50" height="16" vector-effect="non-scaling-stroke" />
+          <rect x="25" y="52" width="50" height="16" vector-effect="non-scaling-stroke" />
+          <rect x="25" y="72" width="50" height="16" vector-effect="non-scaling-stroke" />
+          <g class="loader">
+            <circle cx="40" cy="40" r="2" />
+            <circle cx="50" cy="40" r="2" />
+            <circle cx="60" cy="40" r="2" />
+          </g>
+          <g class="content">
+            <rect x="21" y="10" width="58" height="80" vector-effect="non-scaling-stroke" />
+            <path d="M550 349C560, 342.3333333333333, 570, 313.1666666666667, 580, 306C590, 298.8333333333333, 600, 296.6666666666667, 610, 306C620, 315.3333333333333, 630, 355.1666666666667, 640, 362C650, 368.8333333333333, 660, 359, 670, 347" transform="translate(-195,-85) scale(0.4)" vector-effect="non-scaling-stroke" />
+          </g>
+        </svg>
+      </div>
       <div class="titles">
         <h1 class="title title-1">JavaScript <span>up</span></h1>
         <h1 class="title title-2">JavaScript <span>down</span></h1>
@@ -1073,13 +1113,13 @@
       <div class="notes">
         <p class="note">This is NodeConf, so it shouldn't come as any surprise that the new Yr is powered by Node.js</p>
         <p class="note">And in 2016, this shouldn't come as a shock, but 18 months ago, at least at NRK, this wasn't the normal way to do things, certainly not for a site as popular as Yr</p>
-        <p class="note">But I was convinced, at least in this case, that we could get more done with less</p>
+        <p class="note step">But I was convinced, at least in this case, that we could get more done with less</p>
         <p class="note">Less time spent duplicating work, less time spent switching between contexts/platforms/languages, and less time spent getting content to users, is more time you can spend on making them happier</p>
         <p class="note step">Running JavaScript on the server with Node isn't really going to change the world, but it does give you more time to try</p>
-        <p class="note">And it's given me, the front-end guy, the ability to control the UI rendering lifecyle, and the flexibility to decide where that rendering takes place</p>
-        <p class="note">Given our content, client-side rendering can be a real benefit to our users (for example, when switching between different locations, or between different visualisations), but I have 11,996 different reasons for wanting to be able to lean on server-side rendering</p>
+        <p class="note step">And it's given me, the front-end guy, full control over rendering the UI, and the flexibility to decide where that rendering takes place</p>
+        <p class="note step">Given our content, client-side rendering can be a real benefit to our users (for example, when switching between different locations, or between different visualisations), but I have 11,996 different reasons for wanting to be able to lean on server-side rendering</p>
         <p class="note">For us, rendering on the server on first request, and then rendering on the client for subsequent requests, is the fastest and most reliable way to get content to our users</p>
-        <p class="note">Some call this isomorphic, or universal...</p>
+        <p class="note step">Some call this isomorphic, or universal...</p>
         <p class="note step">...but I like to call it: JavaScript Up...</p>
         <p class="note step">...JavaScript Down...</p>
         <p class="note step">...JavaScript All The Way Around</p>
