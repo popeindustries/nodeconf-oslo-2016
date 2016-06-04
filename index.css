@@ -1165,6 +1165,7 @@ blockquote:before {
 }
 #express .url,
 #express .anchor,
+#express .history,
 #express .handler {
   transform: translate(-50%, -50%);
 }
@@ -1250,17 +1251,23 @@ blockquote:before {
 #express.step-9 .anchor {
   opacity: 0;
 }
-#express.step-9 .handler {
+#express.step-9 .history {
   opacity: 1;
 }
-#express.step-10 .bg {
+#express.step-10 .history {
+  opacity: 0;
+}
+#express.step-10 .handler {
+  opacity: 1;
+}
+#express.step-11 .bg {
   -webkit-filter: brightness(1);
   filter: brightness(1);
 }
-#express.step-10 .handler {
+#express.step-11 .handler {
   opacity: 0;
 }
-#express.step-11 .crap {
+#express.step-12 .crap {
   opacity: 1;
 }
 #express.hide {
@@ -1320,6 +1327,9 @@ blockquote:before {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
+#render .react-client {
+  transform: translate(-59%, -50%);
+}
 #render.show {
   opacity: 1;
 }
@@ -1332,16 +1342,19 @@ blockquote:before {
   transform: translate(-50%, -50%);
 }
 #render.step-2 .react-server {
-  opacity: 0;
-  transform: translate(-50%, -150%);
+  transform: translate(-50%, -80%);
 }
 #render.step-2 .react-client {
   opacity: 1;
-  transform: translate(-50%, -50%);
+  transform: translate(-59%, -30%);
+}
+#render.step-3 .react-server {
+  opacity: 0;
+  transform: translate(-50%, -200%);
 }
 #render.step-3 .react-client {
   opacity: 0;
-  transform: translate(-50%, -150%);
+  transform: translate(-59%, -150%);
 }
 #render.step-3 .mixins {
   opacity: 1;

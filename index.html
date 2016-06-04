@@ -139,7 +139,7 @@
         <p class="note">In 2006, Met decided to make it's data freely available to the public. North Americans have always enjoyed free access to weather data, but in Europe, that largely hasn't been the case, and certainly wasn't until Norway decided to shake things up. Shortly after that, NRK and Met released Yr</p>
         <p class="note step">The service quickly became one of the most used in Norway...</p>
         <p class="note step">...and last summer had 9 million (unique) visitors per week...</p>
-        <p class="note step">...of which roughly 60% was mobile traffic (evenly split between web and native apps), on 11,996 different devices</p>
+        <p class="note step">...of which roughly 60% was mobile traffic on 11,996 different devices</p>
       </div>
     </section>
 
@@ -1043,22 +1043,22 @@
         </svg>
       </div>
       <div class="notes">
-        <p class="note">When I joined the team at NRK in 2013, it was 4 people, management included. I was amazed that the fifth most popular weather service in the world was run by such a small team</p>
+        <p class="note">When I joined the team at NRK in 2013, it was 4 people, management included (no offence to management, they are people too). I was amazed that the fifth most popular weather service in the world was run by such a small team</p>
         <p class="note">I thought this was pretty cool, but there is a limit to the amount of work a small team can accomplish</p>
         <p class="note">Much of the code base at that time dated from the last redesign in 2010...</p>
         <p class="note step">...and it was a classic monolith: picture a large blob of data wrapped in a layer of XML, with several view layers for rendering mobile pages, desktop pages, app embedded views, svgs, pdfs, and who know what else</p>
-        <p class="note">I wish I was here to talk about all the clever strategies we used to dismantle this beast, but the truth is: we were terrified of breaking anything, and this monster is still with us today</p>
+        <p class="note">I wish I was here to talk about all the clever strategies we used to dismantle this beast, but the truth is: we were shit scared of breaking anything, and this monster is still with us today</p>
         <p class="note step">The application was reliable, and had proven itself for many years, but there were very few tests (it was basically built with email-driven-development: errors and regressions were discovered and reported by users), and it used to take 2 weeks to prepare new releases</p>
         <p class="note">This is a familiar story, and we followed the usual script...</p>
         <p class="note step">...by starting over</p>
         <p class="note step">So instead of incrementally replacing smaller parts, we remade the largest one, which was all the place name data, into it's own service</p>
         <p class="note">Surprisingly, at least to me, is that there is actually very little weather related stuff happening inside here</p>
         <p class="note">Weather data comes from Met, and is mostly indexed by lat/long coordinate, so large parts of the application deal with matching a coordinate to a city, ski hill, your street, or any one of ten million places around the world</p>
-        <p class="note">It's great to be able to expose this data to others (there are plans on making it public, for instance), but we regret not swapping out the existing data components with this new service. Now we're feeling the pain as old and new applications slowly drift out of sync</p>
-        <p class="note step">So instead of slowly killing off the monolith, we pushed on and began building a REST API and view renderer for the new, responsive layout</p>
+        <p class="note">It's great to be able to expose this data to others (there are plans on making it public, for instance), but it was a mistake to not swap out the existing data components with this new service. Now we're feeling the pain as old and new applications slowly drift out of sync</p>
+        <p class="note step">So instead of slowly killing off the monolith, we pushed on, and began building a REST API and view renderer for the new, responsive layout</p>
         <p class="note">Although this was a big improvement over the existing structure, and we were now using a CI server to run tests and deploy to the cloud, our workflow for building the UI was really silly for such a small team:</p>
         <p class="note">I was delivering static versions of the front-end markup to my colleague to implement on the back-end, and we ended up duplicating a lot of the work associated with generating HTML</p>
-        <p class="note step">So after a lot of grumbling, and a prototype while our project manager was on summer holiday, we decided to split the API and view renderer into separate projects</p>
+        <p class="note step">So after a lot of grumbling on my part, and a prototype while management was on holiday, we decided to split the API and view renderer into separate projects</p>
         <p class="note step">Today, we have 4 monoliths instead of 1</p>
       </div>
     </section>
@@ -1192,6 +1192,14 @@
           &lt;a href="/en/search?q=foo"&gt;&lt;/a&gt;
         </code>
       </pre>
+      <pre class="code history">
+        <code class="js">
+          window.<span class="function">addEventListener</span>('popstate', function (evt) {
+            const url = location.pathname + location.search;
+            app.handle(Request(url), Response());
+          });
+        </code>
+      </pre>
       <pre class="code handler">
         <code class="js">
           app.<span class="function">get</span>('/en/search', function (req, res, next) {
@@ -1217,14 +1225,15 @@
         <p class="note step">Well, it turns out that it <em>is</em> possible, and is actually a great way to think about program logic:</p>
         <p class="note step">URLs are fantastic for encapsulating state...</p>
         <p class="note step">...anchor tags are great triggers for transitioning between those states...</p>
+        <p class="note step">...the History API is a nice way to capture that state and send it to Express...</p>
         <p class="note step">...and Express is a simple and elegant way to route that new state to your logic</p>
-        <p class="note">Whether it's a request captured by Node on the server, or a request captured by the History API on the client, all routing, validation, and handling logic is powered by the same basic Express code</p>
+        <p class="note">So whether it's a request on the server, or a request on the client, all routing, validation, and handling logic is powered by the same basic Express code</p>
         <p class="note step">You may be wondering: how crappy can this approach really be?</p>
-        <p class="note step">The server responds to all requests with rendered content: that's very cacheable</p>
-        <p class="note">Anchor tags will still work without JavaScript, or with JavaScript that is behaving badly: that's very resilient</p>
-        <p class="note">All devices get the baseline content, and can follow links to other content: that's accessible</p>
+        <p class="note step">The server responds to all requests with rendered content, and that's very cacheable</p>
+        <p class="note">Anchor tags will still work without JavaScript, or with JavaScript that is behaving badly, and that's very resilient</p>
+        <p class="note">All devices get the baseline content, and can follow links to other content, and that's accessible</p>
         <p class="note">Not all devices need to run in a dynamic, enhanced mode, and even then, not all pages need to be rendered on the client: if there's no route enabled, for instance, throw a 404 and let the server render the resource. That's extremely progressive</p>
-        <p class="note">That's some 4 star CRAP right there</p>
+        <p class="note">So that's some 4 star CRAP right there</p>
       </div>
     </section>
 
@@ -1251,8 +1260,8 @@
       </pre>
       <div class="notes">
         <p class="note">As far as data is concerned, if you're familiar with Express, then you know that it has few opinions about how you manage the data you might need to render a view</p>
-        <p class="note">I don't have very strong opinions about it either. We've got lot's of it, and managing it can be really hard, but data is quite domain specific, so I'm going to skip over the details</p>
-        <p class="note step">When loading data, however, I do recommend using a request library, like SuperAgent, that seamlessly supports both environments, as it makes sharing code between the server and client that much easier</p>
+        <p class="note">I don't have very strong opinions about it either. We've got lot's of it, and managing it can be really hard, but data is quite domain specific, so I'm just going to hand wave my way around the details</p>
+        <p class="note step">I can say, though, that if you want to share as much code between the server and client as possible, a request library, like SuperAgent, that supports loading data in both environments, can help you get there</p>
       </div>
     </section>
 
@@ -1317,9 +1326,9 @@
         <p class="note step">At the end of January this year, Nicholas Zakas published a blog post called "React and the economics of dynamic web interfaces"</p>
         <p class="note">In it, he outlined his thoughts about how React has changed the performance, efficiency, and complexity costs associated with dynamic DOM updates</p>
         <p class="note step">QUOTE: React has, ironically, allowed us to once again think about writing web applications as a series of pages rather than a monolithic blob of JavaScript code</p>
-        <p class="note step">QUOTE: it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side</p>
+        <p class="note step">it's the same mental model as traditional server-only applications. A page is rendered, some changes are requested, then a page is rendered with those changes. The only difference is that this can all happen client-side</p>
         <p class="note step">If client-side Express was the lightning, this, for me, was the thunder</p>
-        <p class="note">The one-two punch of Express and React made it possible to understand and manage program flow on the client just as you would on the server, and that was a very big idea</p>
+        <p class="note">The one-two combination of Express and React made it possible to think about and manage program flow on the client just as you would on the server, and that was a very big idea</p>
         <p class="note">I'm not suggesting that this is the answer to everyone's prayers, but I think that applying a server model to the client can be a really elegant solution...</p>
         <p class="note step">...with the major practical benefit for us being that we now have a codebase that is 80% shared between server and client, and I now spend very little time and mental energy switching between the two</p>
       </div>

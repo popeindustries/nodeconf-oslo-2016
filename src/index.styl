@@ -1138,6 +1138,7 @@ blockquote {
   }
   .url,
   .anchor,
+  .history,
   .handler {
     transform: translate(-50%, -50%);
   }
@@ -1240,11 +1241,19 @@ blockquote {
     .anchor {
       opacity: 0;
     }
-    .handler {
+    .history {
       opacity: 1;
     }
   }
   &.step-10 {
+    .history {
+      opacity: 0;
+    }
+    .handler {
+      opacity: 1;
+    }
+  }
+  &.step-11 {
     .bg {
       -webkit-filter: brightness(1);
       filter: brightness(1);
@@ -1253,7 +1262,7 @@ blockquote {
       opacity: 0;
     }
   }
-  &.step-11 {
+  &.step-12 {
     .crap {
       opacity: 1;
     }
@@ -1319,6 +1328,9 @@ blockquote {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+  .react-client {
+    transform: translate(-59%, -50%);
+  }
   &.show {
     opacity: 1;
   }
@@ -1334,18 +1346,21 @@ blockquote {
   }
   &.step-2 {
     .react-server {
-      opacity: 0;
-      transform: translate(-50%, -150%);
+      transform: translate(-50%, -80%);
     }
     .react-client {
       opacity: 1;
-      transform: translate(-50%, -50%);
+      transform: translate(-59%, -30%);
     }
   }
   &.step-3 {
+    .react-server {
+      opacity: 0;
+      transform: translate(-50%, -200%);
+    }
     .react-client {
       opacity: 0;
-      transform: translate(-50%, -150%);
+      transform: translate(-59%, -150%);
     }
     .mixins {
       opacity: 1;
