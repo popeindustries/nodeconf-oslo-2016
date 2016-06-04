@@ -1142,16 +1142,18 @@ blockquote {
   .handler {
     transform: translate(-50%, -50%);
   }
-  .crap {
+  .craps {
     left: 20%;
     opacity: 0;
     position: absolute;
     top: 50%;
-    transition: opacity TRANSITION_DURATION_SHORT linear;
-    transform: translateY(-50%);
+    transition: all TRANSITION_DURATION_SHORT TRANSITION_TIMING_CUBIC_OUT;
+    transform: translateY(-20%);
     width: 100%;
-    li {
+    .crap {
       font-size: 2.2vw;
+      opacity: 0;
+      transition: opacity TRANSITION_DURATION_SHORT linear;
       span {
         color: PINK;
         display: inline-block;
@@ -1263,7 +1265,34 @@ blockquote {
     }
   }
   &.step-12 {
-    .crap {
+    .craps {
+      opacity: 1;
+    }
+    .crap-1 {
+      opacity: 1;
+    }
+  }
+  &.step-13 {
+    .craps {
+      transform: translateY(-35%);
+    }
+    .crap-2 {
+      opacity: 1;
+    }
+  }
+  &.step-14 {
+    .craps {
+      transform: translateY(-50%);
+    }
+    .crap-3 {
+      opacity: 1;
+    }
+  }
+  &.step-15 {
+    .craps {
+      transform: translateY(-65%);
+    }
+    .crap-4 {
       opacity: 1;
     }
   }
